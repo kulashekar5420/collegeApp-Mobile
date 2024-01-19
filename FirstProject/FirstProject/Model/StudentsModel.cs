@@ -10,6 +10,7 @@ public class StudentsModel
     public string Gender { get; set; }
     public string StudentState {  get; set; }
   
+    public string HeLLO { get; set; }
 
     //get hod for mapping 
     public string HodName { get; set; }
