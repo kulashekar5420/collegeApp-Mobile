@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+            xmlns:local="clr-namespace:FirstProject.Students"
+            xmlns:FirstProjectTeachers="clr-namespace:FirstProject.Teachers"
+            xmlns:FirstProjectHods="clr-namespace:FirstProject.Hods"
+            x:Class="FirstProject.DashboardTabbed"
+            xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core" 
+            xmlns:FirstProject1="clr-namespace:FirstProject.Teachers"
+            android:TabbedPage.ToolbarPlacement="Bottom"
+            NavigationPage.HasNavigationBar="False"
+            SelectedTabColor="White"
+            UnselectedTabColor="Black"
+            BarTextColor="White" 
+            BarBackgroundColor="#1664C0"
+            android:TabbedPage.IsSwipePagingEnabled="False">
+
+    <NavigationPage Title="Students"       
+                    IconImageSource="studentimg"
+                    android:SwipeView.SwipeTransitionMode="Drag"
+                    BarBackgroundColor="#1975D1">
+        <x:Arguments>
+            <local:StudentPage/>
+        </x:Arguments>
+    </NavigationPage>
+
+    <NavigationPage Title="Teachers" 
+                    NavigationPage.HasNavigationBar="True"
+                    IconImageSource="teacherimg"
+                    android:SwipeView.SwipeTransitionMode="Drag"
+                    BarBackgroundColor="#1975D1">
+        <x:Arguments>
+            <FirstProjectTeachers:TeacherPage/>
+        </x:Arguments>
+    </NavigationPage>
+
+    <NavigationPage Title="Hods"
+                    IconImageSource="teacherimg"
+                    BarBackgroundColor="#1975D1">
+        <x:Arguments>
+            <FirstProjectHods:HodPage/>
+        </x:Arguments>
+    </NavigationPage>
+
+</TabbedPage>

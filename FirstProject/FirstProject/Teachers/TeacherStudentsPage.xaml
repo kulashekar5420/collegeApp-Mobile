@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FirstProject.Teachers.TeacherStudentsPage"
+             BackgroundColor="White">
+
+    <ContentPage.Content>
+        <RelativeLayout>
+      
+           <CollectionView  
+             ItemsSource="{Binding Students}"
+             VerticalOptions="CenterAndExpand" 
+             HorizontalOptions="CenterAndExpand"
+             Margin="15,10,10,0" >
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <SwipeView HeightRequest="110" BackgroundColor="White">
+
+                            <SwipeView.RightItems >
+                                <SwipeItems >
+                                    <!--delete swipeview -->
+                                    <SwipeItemView >
+                                        <StackLayout
+                                         
+                                         WidthRequest="50" 
+                                         HeightRequest="50">
+
+                                            <StackLayout.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                                            </StackLayout.GestureRecognizers>
+
+                                            <Image 
+                                             Source="deleteicon"
+                                             VerticalOptions="CenterAndExpand"
+                                             HeightRequest="30"
+                                             WidthRequest="30"/>
+                                        </StackLayout>
+                                    </SwipeItemView>
+
+                                </SwipeItems>
+
+                            </SwipeView.RightItems>
+
+                            <Frame
+                             BackgroundColor="White"
+                             Margin="5" 
+                             CornerRadius="20" 
+                             VerticalOptions="CenterAndExpand" 
+                             HeightRequest="57">
+
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer />
+                                </Frame.GestureRecognizers>
+
+                                <Grid>
+                                    <StackLayout Orientation="Horizontal" WidthRequest="20">
+                                        <Image WidthRequest="60" VerticalOptions="StartAndExpand">
+                                            <Image.Triggers>
+                                                <DataTrigger TargetType="Image" Binding="{Binding Gender}" Value="Male">
+                                                    <Setter Property="Source" Value="maleicon.png" />
+                                                </DataTrigger>
+                                                <DataTrigger TargetType="Image" Binding="{Binding  Gender}" Value="Female">
+                                                    <Setter Property="Source" Value="femaleicon.png" />
+                                                </DataTrigger>
+                                            </Image.Triggers>
+                                        </Image>
+                                    </StackLayout>
+
+                                    <StackLayout Orientation="Vertical" Margin="70,0,0,0">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+
+                                            </Grid.ColumnDefinitions>
+
+                                            <Label Text="Name :" TextColor="Black" FontSize="Small" FontAttributes="Bold"/>
+                                            <Label Grid.Column="1" Text="{Binding StudentName}" TextColor="Black" Margin="0,0,10,-3"/>
+                                        </Grid>
+
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+
+                                            </Grid.ColumnDefinitions>
+
+                                            <Label Text="Rollid :" TextColor="Black" FontSize="Small" FontAttributes="Bold"/>
+                                            <Label Grid.Column="1" Text="{Binding StudentId}" TextColor="Black" Margin="0,0,10,-2"/>
+                                        </Grid>
+
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+
+                                            </Grid.ColumnDefinitions>
+
+                                            <Label Text="Teacher :" TextColor="Black" FontSize="Small" FontAttributes="Bold"/>
+                                            <Label Grid.Column="1" Text="{Binding TeacherId}" TextColor="Black" Margin="0,0,10,-3"/>
+                                        </Grid>
+
+                                    </StackLayout>
+
+                                    <StackLayout Orientation="Horizontal"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"  Margin="200,20,0,0">
+
+                                        <Grid>
+
+                                            <Label Grid.Column="1"  Text="{Binding StudentDepartment}" FontSize="Medium" FontAttributes="Bold" TextColor="Black"/>
+                                        </Grid>
+
+                                    </StackLayout>
+                                </Grid>
+
+                            </Frame>
+                        </SwipeView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+
+            <Label 
+                Text="No students found"
+                FontAttributes="Bold"
+                FontSize="Medium"
+                TextColor="Black"
+                IsVisible="{Binding IsNoDataVisible}" 
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand"
+                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.5, Constant=-70}"
+                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.5, Constant=-50}"/>
+
+        </RelativeLayout>
+    </ContentPage.Content>
+</ContentPage>

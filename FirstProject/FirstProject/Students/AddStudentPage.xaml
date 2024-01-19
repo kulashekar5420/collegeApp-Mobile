@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:FirstProject" 
+             xmlns:FirstProject="clr-namespace:FirstProject"
+             x:Class="FirstProject.Students.AddStudentPage"
+             Title="Add Student">
+
+    <ContentPage.Content>
+        
+      <ScrollView>
+      
+        <StackLayout Spacing="10" Padding="30" >
+
+            <Label Text="Enter Student Details"
+                   TextColor="Black"
+                   FontAttributes="Bold"
+                   FontSize="Title"
+                   HorizontalOptions="StartAndExpand"/>
+
+            <StackLayout>
+                <Label Text="Name:" />
+                <Frame CornerRadius="10"
+             Padding="4"  Margin="0,0,0,0"
+             HasShadow="True">
+                    <local:CustomEntry 
+              x:Name="nameEntry"
+              Placeholder="Enter your name" 
+              Keyboard="Text"
+              Text="{Binding Name, Mode=TwoWay}"
+              BackgroundColor="Transparent"/>
+                </Frame>
+            </StackLayout>
+
+               
+                <StackLayout>
+                <Label Text="Department:" />
+                <Frame CornerRadius="10"
+                       Padding="4"  Margin="0,0,0,0"
+                       HasShadow="True">
+
+                    <FirstProject:CustomPicker 
+                        x:Name="departmentPicker" 
+                        Title="Select your department"
+                        BackgroundColor="Transparent"
+                        SelectedItem="{Binding Department, Mode=TwoWay}"
+                        Margin="0,-1,0,0">
+                      
+                        <Picker.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>CSE</x:String>
+                                <x:String>ECE</x:String>
+                                <x:String>EEE</x:String>
+                                <x:String>BME</x:String>
+                            </x:Array>
+                        </Picker.ItemsSource>
+                    </FirstProject:CustomPicker>
+
+                </Frame>
+            </StackLayout>
+
+                <StackLayout>
+                    <Label Text="Student Year :" />
+                    <Frame x:Name="yearFrame"
+                           CornerRadius="10"
+                           Padding="4"
+                           Margin="0,0,0,0"
+                           HasShadow="True">
+
+                        <FirstProject:CustomPicker 
+                               x:Name="studentYearPicker" 
+                               Title="Select your year"
+                               BackgroundColor="Transparent"
+                               SelectedItem="{Binding StudentYear, Mode=TwoWay}"
+                               Margin="0,-1,0,0">
+
+                            <Picker.ItemsSource>
+                                <x:Array Type="{x:Type x:String}">
+                                    <x:String>1st Year</x:String>
+                                    <x:String>2nd Year</x:String>
+                                    <x:String>3rd Year</x:String>
+                                    <x:String>4th Year</x:String>
+                                </x:Array>
+                            </Picker.ItemsSource>
+                        </FirstProject:CustomPicker>
+                    </Frame>
+                </StackLayout>
+
+
+                <StackLayout>
+                <Label Text="Roll No (Auto Generated) :" />
+                <Frame 
+                       CornerRadius="10"
+                       Padding="14"  
+                       Margin="0,0,0,0"
+                       HasShadow="True">
+
+                    <Label 
+                       x:Name="rollIdLabel"
+                       Text="{Binding RollId}"
+                       TextColor="Green" />
+
+                </Frame>
+            </StackLayout>
+
+               
+
+                <StackLayout>
+                    
+                <Label Text="Gender:" />
+                <Frame CornerRadius="10"
+                       Padding="4"  Margin="0,0,0,0"
+                       HasShadow="True">
+
+                    <FirstProject:CustomPicker 
+                       x:Name="genderPicker" 
+                       Title="Select your gender"
+                       BackgroundColor="Transparent"
+                      SelectedItem="{Binding Gender, Mode=TwoWay}"
+                       Margin="0,-1,0,0">
+
+                        <Picker.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>Male</x:String>
+                                <x:String>Female</x:String>
+                            </x:Array>
+                        </Picker.ItemsSource>
+                    </FirstProject:CustomPicker>
+
+                </Frame>
+            </StackLayout>
+
+
+            <StackLayout>
+                <Label Text="Department Hod :" />
+                <Frame CornerRadius="10"
+                       Padding="14" 
+                       Margin="0,0,0,0"
+                       HasShadow="True">
+
+                    <Label
+                       x:Name="HodLabel"
+                       Text="{Binding HodName}"
+                       FontAttributes="Bold"
+                       TextColor="Green"/>
+                </Frame>
+            </StackLayout>
+
+                <StackLayout>
+                    <Label Text="Class Teacher :"/>
+                    <Frame CornerRadius="10"
+                           Padding="14"
+                           Margin="0,0,0,0"
+                           HasShadow="True">
+
+                        <Label
+                            x:Name="TeacherLabel"
+                            Text="{Binding TeacherId}"
+                            FontAttributes="Bold"
+                            TextColor="Green"/>
+
+                    </Frame>
+                </StackLayout>
+
+                <StackLayout>
+                    <Label Text="State:" />
+                    <Frame CornerRadius="10"
+                           Padding="4"  Margin="0,0,0,0"
+                           HasShadow="True">
+                        <FirstProject:CustomPicker 
+                           x:Name="statePicker" 
+                           Title="Select your state"
+                           BackgroundColor="Transparent"
+                           SelectedItem="{Binding StudentState, Mode=TwoWay}"
+                           Margin="0,-1,0,0">
+
+                            <FirstProject:CustomPicker.ItemsSource>
+                                <Binding Path="States" />
+                            </FirstProject:CustomPicker.ItemsSource>
+                            <FirstProject:CustomPicker.ItemDisplayBinding>
+                                <Binding Path="Name" />
+                            </FirstProject:CustomPicker.ItemDisplayBinding>
+                        </FirstProject:CustomPicker>
+                    </Frame>
+                </StackLayout>
+
+
+                <Button Text="Add Student"
+                    Clicked="Button_Clicked"
+                    CornerRadius="10"
+                    TextTransform="None"
+                    FontSize="Medium"
+                    Padding="4"
+                    FontAttributes="Bold"
+                    BackgroundColor="#1975D1"
+                    TextColor="White"
+                    Margin="0,20,0,0" />
+
+            
+        </StackLayout>
+      </ScrollView>
+    
+    </ContentPage.Content>
+
+</ContentPage>
