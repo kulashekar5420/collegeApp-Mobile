@@ -161,28 +161,26 @@
 
                     </Frame>
                 </StackLayout>
-
                 <StackLayout>
                     <Label Text="State:" />
-                    <Frame CornerRadius="10"
-                           Padding="4"  Margin="0,0,0,0"
-                           HasShadow="True">
+                    <Frame CornerRadius="10" Padding="4" Margin="0,0,0,0" HasShadow="True">
                         <FirstProject:CustomPicker 
                            x:Name="statePicker" 
                            Title="Select your state"
                            BackgroundColor="Transparent"
                            SelectedItem="{Binding StudentState, Mode=TwoWay}"
-                           Margin="0,-1,0,0">
-
+                           Margin="0,-1,0,0"
+                           SelectedIndexChanged="statePicker_SelectedIndexChanged">
                             <FirstProject:CustomPicker.ItemsSource>
                                 <Binding Path="States" />
                             </FirstProject:CustomPicker.ItemsSource>
                             <FirstProject:CustomPicker.ItemDisplayBinding>
-                                <Binding Path="Name" />
+                                <Binding Path="StateName" />
                             </FirstProject:CustomPicker.ItemDisplayBinding>
                         </FirstProject:CustomPicker>
                     </Frame>
                 </StackLayout>
+
 
 
                 <Button Text="Add Student"

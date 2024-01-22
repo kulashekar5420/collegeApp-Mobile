@@ -221,12 +221,11 @@ public class StudentsViewModel : INotifyBaseViewModel
 
         return allTeachers.Where(t => t.TeacherYear == selectedStudentYear && t.TeacherDepartment == department).ToList();
     }
-
     public Task LoadAllDepartmentsStudents()
     {
-        var alldepartmentstudents = GetStudentsByDepartmentAsync(StudentDepartment);
-        return alldepartmentstudents;
+        return LoadStudents();
     }
+
 
     public async Task AddStudentAsync(StudentsModel newStudent)
     {

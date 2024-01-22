@@ -158,9 +158,6 @@
     <AndroidResource Include="Resources\mipmap-hdpi\icon.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\viewicon.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\searchboy.png" />
   </ItemGroup>
   <ItemGroup>
@@ -169,10 +166,13 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\filterpageimg.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\apiimg.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties XamarinHotReloadGenericExceptionInfoBarFirstProjectAndroidHideInfoBar="True" XamarinHotReloadDebuggerTimeoutExceptionFirstProjectAndroidHideInfoBar="True" />
+      <UserProperties XamarinHotReloadDebuggerTimeoutExceptionFirstProjectAndroidHideInfoBar="True" XamarinHotReloadGenericExceptionInfoBarFirstProjectAndroidHideInfoBar="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

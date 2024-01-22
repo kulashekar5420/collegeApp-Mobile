@@ -1,7 +1,10 @@
 ﻿using Acr.UserDialogs;
+using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -36,6 +39,40 @@ namespace FirstProject.Students
           
         }
 
+
+
+        private async void statePicker_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            await LoadStatesFromApi();
+        }
+
+        private async Task LoadStatesFromApi()
+        {
+            try
+            {
+                using (HttpClient client = new HttpClient())
+                {
+                    string apiUrl = "https://example.com/api/states";
+                    HttpResponseMessage response = await client.GetAsync(apiUrl);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string json = await response.Content.ReadAsStringAsync();
+                        List<StudentsModel> states = JsonConvert.DeserializeObject<List<StudentsModel>>(json);
+
+                        statePicker.ItemsSource = states;
+                    }
+                    else
+                    {
+                        await DisplayAlert("Error", "Failed to fetch states from the API", "OK");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", $"An error occurred: {ex.Message}", "OK");
+            }
+        }
         private async void LoadAvailableHods()
         {
             var studentsMapHod = (StudentsViewModel)BindingContext;
@@ -192,9 +229,6 @@ namespace FirstProject.Students
                 TeacherName = TeacherLabel.Text
             };
 
-
-
-
             UserDialogs.Instance.ShowLoading("Loading");
             await App.StudentViewModel.AddStudentAsync(newStudent);
             await Task.Delay(1000);
@@ -202,7 +236,6 @@ namespace FirstProject.Students
             UserDialogs.Instance.HideLoading();
             await Navigation.PopAsync();
         }
-
 
     }
 }

@@ -74,7 +74,6 @@
 
                                             </Grid.ColumnDefinitions>
 
-                                            <Label Text="Name :" TextColor="Black" FontSize="Small" FontAttributes="Bold"/>
                                             <Label Grid.Column="1" Text="{Binding StudentName}" TextColor="Black" Margin="0,0,10,-3"/>
                                         </Grid>
 
@@ -84,7 +83,6 @@
 
                                             </Grid.ColumnDefinitions>
 
-                                            <Label Text="Rollid :" TextColor="Black" FontSize="Small" FontAttributes="Bold"/>
                                             <Label Grid.Column="1" Text="{Binding StudentId}" TextColor="Black" Margin="0,0,10,-2"/>
                                         </Grid>
 
@@ -94,7 +92,6 @@
 
                                             </Grid.ColumnDefinitions>
 
-                                            <Label Text="Teacher :" TextColor="Black" FontSize="Small" FontAttributes="Bold"/>
                                             <Label Grid.Column="1" Text="{Binding TeacherId}" TextColor="Black" Margin="0,0,10,-3"/>
                                         </Grid>
 

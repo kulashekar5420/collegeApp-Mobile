@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:FirstProject" 
+             x:Class="FirstProject.REST_APIs.AddData"
+             Title="Add Data">
+
+    <ContentPage.Content>
+        <StackLayout Margin="30,10,0,0">
+            <Entry Placeholder="Email" x:Name="EmailEntry" />
+            <Entry Placeholder="First Name" x:Name="FirstNameEntry" />
+            <Button Text="Save Data"
+                    Margin="5,10,20,20"
+                    TextTransform="None"
+                    BackgroundColor="#1975D1"
+                    TextColor="White"
+                    Clicked="Button_Clicked">
+            </Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,4 +1,5 @@
 ﻿using Acr.UserDialogs;
+using FirstProject;
 using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
 using System;
@@ -25,7 +26,7 @@ namespace FirstProject.Students
 
         private async void Button_Clicked(object sender, EventArgs e)
         {
-            UserDialogs.Instance.ShowLoading($"Loading {selectedDepartment}");
+            UserDialogs.Instance.ShowLoading($"Loading {selectedDepartment} Students");
             await Task.Delay(1000);
 
             if (selectedDepartment == "All Department")

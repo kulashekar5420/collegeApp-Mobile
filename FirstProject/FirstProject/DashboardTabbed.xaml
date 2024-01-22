@@ -6,7 +6,7 @@
             xmlns:FirstProjectHods="clr-namespace:FirstProject.Hods"
             x:Class="FirstProject.DashboardTabbed"
             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core" 
-            xmlns:FirstProject1="clr-namespace:FirstProject.Teachers"
+            xmlns:RestApi="clr-namespace:FirstProject.REST_APIs"
             android:TabbedPage.ToolbarPlacement="Bottom"
             NavigationPage.HasNavigationBar="False"
             SelectedTabColor="White"
@@ -40,6 +40,15 @@
         <x:Arguments>
             <FirstProjectHods:HodPage/>
         </x:Arguments>
+    </NavigationPage>
+
+    <NavigationPage Title="REST APIs"
+                    IconImageSource="apiimg"
+                    BarBackgroundColor="#1975D1">
+        <x:Arguments>
+            <RestApi:ApiPage/>
+        </x:Arguments>
+
     </NavigationPage>
 
 </TabbedPage>

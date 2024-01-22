@@ -24,7 +24,7 @@
 
         <Frame>
             <StackLayout>
-                <Label Text="Filter Popup"
+                <Label Text="Filter Students"
                        HorizontalOptions="Center"
                        FontSize="30"
                        FontAttributes="Bold"
