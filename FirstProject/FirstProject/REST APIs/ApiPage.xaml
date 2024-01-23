@@ -1,36 +1,113 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:FirstProject" 
+             xmlns:local="clr-namespace:FirstProject"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design" 
              x:Class="FirstProject.REST_APIs.ApiPage"
-             Title="API's Dashboard">
+             Title="API's Dashboard" BackgroundColor="White">
 
     <ContentPage.Content>
-        <StackLayout Margin="30,10,0,0">
-            <Button
-                Text="Add Data"
-                Margin="5,10,20,20"
-                TextTransform="None"
-                BackgroundColor="#1975D1"
-                TextColor="White"
-                Clicked="Button_Clicked">
-            </Button>
 
-           
-            <ListView x:Name="userListView" >
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout>
+      
+        <RelativeLayout Margin="0,20,0,10">
 
-                                <Label Text="{Binding first_name}" />
-                                <Label Text="{Binding last_name}" />
-                              
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+            <StackLayout>
+                <ScrollView>
+
+                    <ListView
+                    x:Name="userListView"
+                    HasUnevenRows="True"
+                    HeightRequest="600"
+                    VerticalOptions="CenterAndExpand"
+                    BackgroundColor="Transparent"
+                    SeparatorVisibility="None" >
+
+                    <ListView.ItemTemplate>
+
+                        <DataTemplate>
+
+                            <ViewCell>
+
+                                <SwipeView>
+                                    <SwipeView.RightItems>
+                                        
+                                        <SwipeItems>
+                                            <SwipeItemView>
+                                                <StackLayout
+                                                    WidthRequest="80"
+                                                    HeightRequest="70">
+
+                                                    <StackLayout.GestureRecognizers>
+                                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                                                    </StackLayout.GestureRecognizers>
+
+                                                    <Image
+                                                        Source="deleteicon"
+                                                        VerticalOptions="CenterAndExpand"
+                                                        HorizontalOptions="Center"
+                                                        HeightRequest="30"
+                                                        WidthRequest="30"/>
+
+
+                                                </StackLayout>
+                                            </SwipeItemView>
+                 
+                                        </SwipeItems>
+                                    </SwipeView.RightItems>
+
+                                  
+                                    <StackLayout>
+                                        <Frame CornerRadius="25" 
+                                               HeightRequest="40"
+                                               HorizontalOptions="FillAndExpand"
+                                               Margin="15,5,15,5"
+                                               BackgroundColor="White">
+                                            <StackLayout Orientation="Horizontal">
+                                                <Frame CornerRadius="50"
+                                                       WidthRequest="20"
+                                                       HeightRequest="20"
+                                                       Margin="-5,-10,10,-10">
+                                                    <Image Source="{Binding avatar}"
+                                                           Aspect="AspectFill"
+                                                           Margin="-20,-20,-20,-20"/>
+                                                </Frame>
+                                                <StackLayout VerticalOptions="Center" Spacing="1">
+                                                    <StackLayout Orientation="Horizontal">
+                                                        <Label Text="{Binding first_name}"
+                                                               FontAttributes="Bold"
+                                                               TextColor="Black"/>
+                                                        <Label Text="{Binding last_name}"
+                                                               FontAttributes="Bold"
+                                                               TextColor="Black"/>
+                                                    </StackLayout>
+                                                    <Label Text="{Binding email}"
+                                                           TextColor="Black"/>
+                                                </StackLayout>
+                                            </StackLayout>
+                                        </Frame>
+                                    </StackLayout>
+                                </SwipeView>
+
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+        </ScrollView>
         </StackLayout>
+
+            <ImageButton
+                Source="addstudenticon"         
+                BackgroundColor="Transparent"
+                HorizontalOptions="EndAndExpand"
+                Margin="0,0,20,20"
+                Aspect="AspectFill"
+                WidthRequest="60"
+                Clicked="ImageButton_Clicked"
+                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.77}"
+                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.85}"/>
+
+        </RelativeLayout>
+       
     </ContentPage.Content>
+
 </ContentPage>

@@ -1,21 +1,77 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:FirstProject" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:FirstProject"
              x:Class="FirstProject.REST_APIs.AddData"
              Title="Add Data">
 
     <ContentPage.Content>
-        <StackLayout Margin="30,10,0,0">
-            <Entry Placeholder="Email" x:Name="EmailEntry" />
-            <Entry Placeholder="First Name" x:Name="FirstNameEntry" />
-            <Button Text="Save Data"
-                    Margin="5,10,20,20"
-                    TextTransform="None"
-                    BackgroundColor="#1975D1"
-                    TextColor="White"
-                    Clicked="Button_Clicked">
+        <StackLayout Padding="5" Margin="20,10,30,0">
+
+            <StackLayout>
+                <Label Text="Email:" />
+                <Frame CornerRadius="10"
+   Padding="4"  Margin="0,0,0,0"
+   HasShadow="True">
+                    <local:CustomEntry 
+    x:Name="emailEntry"
+    Placeholder="Enter your email" 
+    Keyboard="Email"
+    Text="{Binding email, Mode=TwoWay}"
+    BackgroundColor="Transparent"/>
+                </Frame>
+            </StackLayout>
+
+            <StackLayout>
+                <Label Text="First Name:" />
+                <Frame CornerRadius="10"
+   Padding="4"  Margin="0,0,0,0"
+   HasShadow="True">
+                    <local:CustomEntry 
+    x:Name="fnameEntry"
+    Placeholder="Enter your first name" 
+    Keyboard="Text"
+    Text="{Binding first_name, Mode=TwoWay}"
+    BackgroundColor="Transparent"/>
+                </Frame>
+            </StackLayout>
+
+            <StackLayout>
+                <Label Text="Last Name:" />
+                <Frame CornerRadius="10"
+   Padding="4"  Margin="0,0,0,0"
+   HasShadow="True">
+                    <local:CustomEntry 
+    x:Name="lnameEntry"
+    Placeholder="Enter your last name" 
+    Keyboard="Text"
+    Text="{Binding last_name, Mode=TwoWay}"
+    BackgroundColor="Transparent"/>
+                </Frame>
+            </StackLayout>
+
+            <StackLayout>
+                <Label Text="Avatar Link:" />
+                <Frame CornerRadius="10"
+Padding="4"  Margin="0,0,0,0"
+HasShadow="True">
+                    <local:CustomEntry 
+ x:Name="avatarEntry"
+ Placeholder="Enter avatar link" 
+ Keyboard="Text"
+ Text="{Binding avatar, Mode=TwoWay}"
+ BackgroundColor="Transparent"/>
+                </Frame>
+            </StackLayout>
+
+            <Button Text="Add Data"
+                    CornerRadius="20"
+                Margin="0,20,0,0"
+                TextTransform="None"
+                BackgroundColor="#1975D1"
+                TextColor="White"
+                Clicked="Button_Clicked"    >
             </Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
+

@@ -37,7 +37,6 @@
 
                                 <SwipeView.RightItems >
                                     <SwipeItems >
-                                        <!--delete swipeview -->
                                         <SwipeItemView >
                                             <StackLayout
                                   
