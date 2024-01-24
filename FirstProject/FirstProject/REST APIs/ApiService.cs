@@ -8,20 +8,31 @@ public class ApiService
 {
     private const string ApiBaseUrl = "https://reqres.in/api/users";
 
-    public async Task<bool> CreateUserAsync(UserData user)
+
+    public async Task<bool> PostDataAsync(UserData user)
     {
-        using (HttpClient client = new HttpClient())
-        { 
-            client.BaseAddress = new Uri(ApiBaseUrl);
-            client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+        using (HttpClient httpClient = new HttpClient())
+        {
+            httpClient.BaseAddress = new Uri(ApiBaseUrl);
+            httpClient.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
             string jsonUserData = JsonConvert.SerializeObject(user);
             StringContent content = new StringContent(jsonUserData, Encoding.UTF8, "application/json");
 
-            HttpResponseMessage response = await client.PostAsync("", content);
+            HttpResponseMessage response = await httpClient.PostAsync("", content).ConfigureAwait(false);
 
-            return response.IsSuccessStatusCode;
-            
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+            else
+            {
+                Console.WriteLine($"API request failed with status code: {response.StatusCode}");
+            }
+
+            return false;
         }
     }
+
+
 }

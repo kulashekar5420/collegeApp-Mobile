@@ -1,7 +1,7 @@
-﻿using System;
-using System.Net.Http;
-using System.Text;
-using Newtonsoft.Json;
+﻿using Acr.UserDialogs;
+using Rg.Plugins.Popup.Services;
+using System;
+using System.Text.RegularExpressions;
 using Xamarin.Forms;
 
 namespace FirstProject.REST_APIs
@@ -14,16 +14,53 @@ namespace FirstProject.REST_APIs
         {
             InitializeComponent();
             apiService = new ApiService();
+
+            fnameEntry.TextChanged += Entry_TextChanged;
+            lnameEntry.TextChanged += Entry_TextChanged;
+            emailEntry.TextChanged += Entry_TextChanged;
+
         }
 
+        private void Entry_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (sender is Entry entry)
+            {
+                if (entry == fnameEntry)
+                {
+                    ErrorFname.Text = "";
+                }
+                else if (entry == lnameEntry)
+                {
+                    ErrorLname.Text = "";
+                }
+                else if (entry == emailEntry)
+                {
+                    ErrorEmail.Text = "";
+                }
+            }
+        }
         private async void Button_Clicked(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(emailEntry.Text) || string.IsNullOrWhiteSpace(fnameEntry.Text))
+
+            ErrorFname.Text = ErrorLname.Text = ErrorEmail.Text = "";
+
+           
+            if (string.IsNullOrWhiteSpace(fnameEntry.Text) || string.IsNullOrWhiteSpace(lnameEntry.Text) || string.IsNullOrWhiteSpace(emailEntry.Text))
             {
-                await DisplayAlert("Error", "Email and First Name are required fields.", "OK");
+                ErrorFname.Text = string.IsNullOrWhiteSpace(fnameEntry.Text) ? "First Name is required" : "";
+                ErrorLname.Text = string.IsNullOrWhiteSpace(lnameEntry.Text) ? "Last Name is required" : "";
+                ErrorEmail.Text = string.IsNullOrWhiteSpace(emailEntry.Text) ? "Email is required" : "";
                 return;
             }
 
+           
+            if (!IsValidEmail(emailEntry.Text))
+            {
+                ErrorEmail.Text = "Invalid email format";
+                return;
+            }
+
+           
             UserData user = new UserData
             {
                 email = emailEntry.Text,
@@ -33,19 +70,29 @@ namespace FirstProject.REST_APIs
             };
 
 
-            bool isSuccess = false;
-
-            isSuccess = await apiService.CreateUserAsync(user);
-
-            if (isSuccess)
+            using (UserDialogs.Instance.Loading("Adding user.."))
             {
-                await DisplayAlert("Success", "User created successfully", "OK");
-            }
-            else
-            {
-                await DisplayAlert("Error", "Failed to create user. Please try again later.", "OK");
-            }
+                bool isSuccess = await apiService.PostDataAsync(user);
 
+                if (isSuccess)
+                {
+                    await Navigation.PopAsync();
+                }
+                else
+                {
+                    await DisplayAlert("Error", "Failed to create user. Please try again later.", "OK");
+                }
+            }
         }
+
+        private bool IsValidEmail(string email)
+        {
+             string emailPattern = @"^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$";
+            Regex regex = new Regex(emailPattern);
+
+            return regex.IsMatch(email);
+        }
+
+
     }
 }

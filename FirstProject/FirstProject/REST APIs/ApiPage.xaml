@@ -13,35 +13,36 @@
 
             <StackLayout>
                 <ScrollView>
-
-                    <ListView
+                    <RefreshView x:Name="refreshView" Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing}" Refreshing="OnRefresh">
+                        <ListView
                     x:Name="userListView"
                     HasUnevenRows="True"
                     HeightRequest="600"
                     VerticalOptions="CenterAndExpand"
+                            
                     BackgroundColor="Transparent"
                     SeparatorVisibility="None" >
 
-                    <ListView.ItemTemplate>
+                            <ListView.ItemTemplate>
 
-                        <DataTemplate>
+                                <DataTemplate>
 
-                            <ViewCell>
+                                    <ViewCell>
 
-                                <SwipeView>
-                                    <SwipeView.RightItems>
-                                        
-                                        <SwipeItems>
-                                            <SwipeItemView>
-                                                <StackLayout
+                                        <SwipeView>
+                                            <SwipeView.RightItems>
+
+                                                <SwipeItems>
+                                                    <SwipeItemView>
+                                                        <StackLayout
                                                     WidthRequest="80"
                                                     HeightRequest="70">
 
-                                                    <StackLayout.GestureRecognizers>
-                                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
-                                                    </StackLayout.GestureRecognizers>
+                                                            <StackLayout.GestureRecognizers>
+                                                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                                                            </StackLayout.GestureRecognizers>
 
-                                                    <Image
+                                                            <Image
                                                         Source="deleteicon"
                                                         VerticalOptions="CenterAndExpand"
                                                         HorizontalOptions="Center"
@@ -49,50 +50,58 @@
                                                         WidthRequest="30"/>
 
 
-                                                </StackLayout>
-                                            </SwipeItemView>
-                 
-                                        </SwipeItems>
-                                    </SwipeView.RightItems>
+                                                        </StackLayout>
+                                                    </SwipeItemView>
 
-                                  
-                                    <StackLayout>
-                                        <Frame CornerRadius="25" 
+                                                </SwipeItems>
+                                            </SwipeView.RightItems>
+
+
+                                            <StackLayout>
+                                                
+                                                
+                                                <Frame CornerRadius="25" 
                                                HeightRequest="40"
                                                HorizontalOptions="FillAndExpand"
                                                Margin="15,5,15,5"
                                                BackgroundColor="White">
-                                            <StackLayout Orientation="Horizontal">
-                                                <Frame CornerRadius="50"
+
+                                                    <Frame.GestureRecognizers>
+                                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1"/>
+                                                    </Frame.GestureRecognizers>
+                                                    
+                                                    <StackLayout Orientation="Horizontal">
+                                                        <Frame CornerRadius="50"
                                                        WidthRequest="20"
                                                        HeightRequest="20"
                                                        Margin="-5,-10,10,-10">
-                                                    <Image Source="{Binding avatar}"
+                                                            <Image Source="{Binding avatar}"
                                                            Aspect="AspectFill"
                                                            Margin="-20,-20,-20,-20"/>
-                                                </Frame>
-                                                <StackLayout VerticalOptions="Center" Spacing="1">
-                                                    <StackLayout Orientation="Horizontal">
-                                                        <Label Text="{Binding first_name}"
+                                                        </Frame>
+                                                        <StackLayout VerticalOptions="Center" Spacing="1">
+                                                            <StackLayout Orientation="Horizontal">
+                                                                <Label Text="{Binding first_name}"
                                                                FontAttributes="Bold"
                                                                TextColor="Black"/>
-                                                        <Label Text="{Binding last_name}"
+                                                                <Label Text="{Binding last_name}"
                                                                FontAttributes="Bold"
                                                                TextColor="Black"/>
-                                                    </StackLayout>
-                                                    <Label Text="{Binding email}"
+                                                            </StackLayout>
+                                                            <Label Text="{Binding email}"
                                                            TextColor="Black"/>
-                                                </StackLayout>
+                                                        </StackLayout>
+                                                    </StackLayout>
+                                                </Frame>
                                             </StackLayout>
-                                        </Frame>
-                                    </StackLayout>
-                                </SwipeView>
+                                        </SwipeView>
 
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-        </ScrollView>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </RefreshView>
+                </ScrollView>
         </StackLayout>
 
             <ImageButton

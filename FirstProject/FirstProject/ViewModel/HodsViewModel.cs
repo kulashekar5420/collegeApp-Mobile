@@ -136,7 +136,7 @@ public class HodsViewModel : INotifyBaseViewModel
     {
         databasePath = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "School.db");
         RefreshCommand = new Command(async () => await RefreshDataAsync());
-        _ = LoadHods();
+        LoadHods();
     }
 
     private async Task RefreshDataAsync()

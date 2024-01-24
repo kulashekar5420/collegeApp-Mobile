@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FirstProject.REST_APIs.DisplayUserPage"
+             Title="Display Profile">
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Frame BackgroundColor="#1975D1" 
+                   HeightRequest="120">
+                <Frame BackgroundColor="White" 
+                       CornerRadius="30"
+                       HeightRequest="70"
+                       Margin="0,0,0,-110">
+                    <Frame CornerRadius="50"
+                           WidthRequest="100"
+                           HeightRequest="100"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           Padding="0"
+                           Margin="0,0,0,40">
+                        <Image Source="{Binding avatar}"
+                               Aspect="AspectFill"
+                               WidthRequest="100"
+                               HeightRequest="100"
+                               Margin="-20,-20,-20,-20"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"/>
+                    </Frame>
+                </Frame>
+            </Frame>
+
+            <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="Center" Spacing="1" Margin="10,0">
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="{Binding first_name}"
+                           FontSize="25"
+                           FontAttributes="Bold"
+                           TextColor="Black"/>
+                    <Label Text="{Binding last_name}"
+                           FontSize="25"
+                           FontAttributes="Bold"
+                           TextColor="Black"/>
+                </StackLayout>
+                <Label Text="{Binding email}"
+                       TextColor="Black"/>
+            </StackLayout>
+
+            <StackLayout>
+                <Label Text="Welcome"
+                       FontAttributes="Bold"
+                       FontSize="25"
+                       Margin="30,40"
+                       TextColor="Black"/>
+            </StackLayout>
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
