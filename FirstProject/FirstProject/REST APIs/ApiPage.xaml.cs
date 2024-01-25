@@ -12,10 +12,13 @@ namespace FirstProject.REST_APIs
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ApiPage : ContentPage
     {
+        
+
         public ApiPage()
         {
             InitializeComponent();
             CheckInternetAndGetData();
+
         }
 
         public class UserContainer
@@ -99,8 +102,13 @@ namespace FirstProject.REST_APIs
             }
         }
 
+      
+
+
+
         private async void OnRefresh(object sender, EventArgs e)
         {
+            
             await GetApiData();
         }
 

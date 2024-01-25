@@ -53,7 +53,7 @@
                                     <x:String>ECE</x:String>
                                     <x:String>EEE</x:String>
                                     <x:String>BME</x:String>
-                                    <x:String>All Department</x:String>
+                                    <x:String>All</x:String>
                                 </x:Array>
                             </Picker.ItemsSource>
                         </FirstProject:CustomPicker>

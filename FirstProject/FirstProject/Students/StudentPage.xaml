@@ -13,7 +13,7 @@
             Order="Primary" />
 
         <ToolbarItem
-        Text="{Binding StudentDepartment, StringFormat={Null}, TargetNullValue='DEPARTMENT'}"
+        Text="{Binding StudentDepartment, StringFormat={Null}, TargetNullValue='ALL'}"
         Order="Default"/>
     </ContentPage.ToolbarItems>
 
@@ -123,33 +123,32 @@
 
                                         </StackLayout>
 
-                                        <StackLayout Orientation="Horizontal"  WidthRequest="20">
+                                        <StackLayout Orientation="Horizontal" WidthRequest="20">
                                             <Grid>
-                                                <Frame Margin="210,0,0,25" WidthRequest="25">
-                                                    <Frame.Triggers>
-                                                        <DataTrigger TargetType="Frame" Binding="{Binding StudentYear}" Value="1st Year">
-                                                            <Setter Property="BackgroundColor" Value="Green" />
-                                                        </DataTrigger>
-                                                        <DataTrigger TargetType="Frame" Binding="{Binding StudentYear}" Value="2nd Year">
-                                                            <Setter Property="BackgroundColor" Value="#0D47A1" />
-                                                        </DataTrigger>
-                                                        <DataTrigger TargetType="Frame" Binding="{Binding StudentYear}" Value="3rd Year">
-                                                            <Setter Property="BackgroundColor" Value="Black" />
-                                                        </DataTrigger>
-                                                        <DataTrigger TargetType="Frame" Binding="{Binding StudentYear}" Value="4th Year">
-                                                            <Setter Property="BackgroundColor" Value="Red" />
-                                                        </DataTrigger>
-                                                    </Frame.Triggers>
 
-                                                    <Label Text="{Binding StudentYear, StringFormat={Null}, TargetNullValue='No Year'}" TextColor="White"/>
-
-
-                                                </Frame>
-                                                <Label Text="{Binding StudentYear}" FontSize="Small" Margin="210,0,0,25" HorizontalOptions="Center" VerticalOptions="Center" TextColor="White"  FontAttributes="Bold"/>
+                                               
+                                                <Label Text="{Binding StudentYear}" 
+                                                       FontSize="Small" Margin="210,0,0,25" 
+                                                       HorizontalOptions="Center"
+                                                       VerticalOptions="Center"
+                                                       FontAttributes="Bold">
+                                                    <Label.Triggers>
+                                                        <DataTrigger TargetType="Label" Binding="{Binding StudentYear}" Value="1st Year">
+                                                            <Setter Property="TextColor" Value="Green" />
+                                                        </DataTrigger>
+                                                        <DataTrigger TargetType="Label" Binding="{Binding StudentYear}" Value="2nd Year">
+                                                            <Setter Property="TextColor" Value="#304FFE" />
+                                                        </DataTrigger>
+                                                        <DataTrigger TargetType="Label" Binding="{Binding StudentYear}" Value="3rd Year">
+                                                            <Setter Property="TextColor" Value="#E65100" />
+                                                        </DataTrigger>
+                                                        <DataTrigger TargetType="Label" Binding="{Binding StudentYear}" Value="4th Year">
+                                                            <Setter Property="TextColor" Value="Red" />
+                                                        </DataTrigger>
+                                                    </Label.Triggers>
+                                                </Label>
                                             </Grid>
-
                                         </StackLayout>
-
                                         <StackLayout Orientation="Horizontal"  WidthRequest="20" Margin="175,40,0,-10">
                                                 
                                           <Label Text="{Binding StudentState, StringFormat={Null}, TargetNullValue='No state found'}" TextColor="Black"/>

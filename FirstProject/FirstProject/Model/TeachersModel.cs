@@ -1,6 +1,4 @@
-﻿using FirstProject.Teachers;
-using SQLite;
-using System.Collections.Generic;
+﻿using SQLite;
 
 public class TeachersModel
 {

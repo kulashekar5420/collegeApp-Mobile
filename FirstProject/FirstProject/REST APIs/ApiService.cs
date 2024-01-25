@@ -34,5 +34,30 @@ public class ApiService
         }
     }
 
+    public async Task<bool> PutDataAsync(UserData user)
+    {
+        using (HttpClient httpClient = new HttpClient())
+        {
+            httpClient.BaseAddress = new Uri(ApiBaseUrl);
+            httpClient.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+            string jsonUserData = JsonConvert.SerializeObject(user);
+            StringContent content = new StringContent(jsonUserData, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = await httpClient.PutAsync($"users/{user.id}", content).ConfigureAwait(false);
+
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+            else
+            {
+                Console.WriteLine($"API request failed with status code: {response.StatusCode}");
+            }
+
+            return false;
+        }
+    }
+
 
 }

@@ -114,11 +114,27 @@
                                         <StackLayout Orientation="Horizontal" 
                                                      WidthRequest="20">
                                             <Grid>
+                                               
 
                                                 <Label x:Name="TeacherYearLabel" Text="{Binding TeacherYear, StringFormat={Null}, TargetNullValue='No Year'}" 
                                                        TextColor="Black" 
-                                                       Margin="210,0,0,25" 
+                                                       Margin="210,12,0,25" 
                                                        FontAttributes="Bold">
+
+                                                    <Label.Triggers>
+                                                        <DataTrigger TargetType="Label" Binding="{Binding TeacherYear}" Value="1st Year">
+                                                            <Setter Property="TextColor" Value="Green" />
+                                                        </DataTrigger>
+                                                        <DataTrigger TargetType="Label" Binding="{Binding TeacherYear}" Value="2nd Year">
+                                                            <Setter Property="TextColor" Value="#304FFE" />
+                                                        </DataTrigger>
+                                                        <DataTrigger TargetType="Label" Binding="{Binding TeacherYear}" Value="3rd Year">
+                                                            <Setter Property="TextColor" Value="#E65100" />
+                                                        </DataTrigger>
+                                                        <DataTrigger TargetType="Label" Binding="{Binding TeacherYear}" Value="4th Year">
+                                                            <Setter Property="TextColor" Value="red" />
+                                                        </DataTrigger>
+                                                    </Label.Triggers>
 
                                                 </Label>
                                             </Grid>

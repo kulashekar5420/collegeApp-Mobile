@@ -1,13 +1,9 @@
-﻿using Acr.UserDialogs;
-using FirstProject;
-using FirstProject.Hods;
+﻿using FirstProject;
 using FirstProject.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;

@@ -1,58 +1,141 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:local="clr-namespace:FirstProject" 
              x:Class="FirstProject.REST_APIs.DisplayUserPage"
-             Title="Display Profile">
+             Title="Profile">
 
     <ContentPage.Content>
-        <StackLayout>
-            <Frame BackgroundColor="#1975D1" 
-                   HeightRequest="120">
-                <Frame BackgroundColor="White" 
-                       CornerRadius="30"
-                       HeightRequest="70"
-                       Margin="0,0,0,-110">
-                    <Frame CornerRadius="50"
-                           WidthRequest="100"
-                           HeightRequest="100"
-                           HorizontalOptions="Center"
-                           VerticalOptions="Center"
-                           Padding="0"
-                           Margin="0,0,0,40">
-                        <Image Source="{Binding avatar}"
-                               Aspect="AspectFill"
-                               WidthRequest="100"
-                               HeightRequest="100"
-                               Margin="-20,-20,-20,-20"
+        <ScrollView>
+            <StackLayout Spacing="10" >
+                <Frame BackgroundColor="#1975D1" HeightRequest="110">
+                    <Frame BackgroundColor="White" 
+                           CornerRadius="30" 
+                           HasShadow="True"
+                           Margin="0,-10,0,-50">
+                        <Frame CornerRadius="50" 
+                               WidthRequest="40" 
+                               HeightRequest="40"
+                               Margin="0,0,0,-80"
+                               HorizontalOptions="Center" 
+                               VerticalOptions="StartAndExpand">
+                            <Image Source="{Binding avatar}"
+                                   Aspect="AspectFill"
+                               WidthRequest="80"
+                               HeightRequest="80"
+                               Margin="-40,-40,-40,-40"
                                HorizontalOptions="Center"
                                VerticalOptions="Center"/>
+                        </Frame>
                     </Frame>
                 </Frame>
-            </Frame>
 
-            <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="Center" Spacing="1" Margin="10,0">
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="{Binding first_name}"
-                           FontSize="25"
-                           FontAttributes="Bold"
-                           TextColor="Black"/>
-                    <Label Text="{Binding last_name}"
-                           FontSize="25"
-                           FontAttributes="Bold"
+                <StackLayout 
+                    HorizontalOptions="CenterAndExpand" 
+                    VerticalOptions="Center" 
+                    Spacing="1" 
+                    Margin="10,-45">
+                    <StackLayout Orientation="Horizontal" 
+                                 HorizontalOptions="Center">
+                        <Label Text="{Binding first_name}" 
+                               FontSize="25" FontAttributes="Bold" 
+                               TextColor="Black"/>
+                        <Label Text="{Binding last_name}" 
+                               FontSize="25" FontAttributes="Bold" 
+                               TextColor="Black"/>
+
+                    </StackLayout>
+
+                        <Label Text="Chennai, India"
+                               HorizontalOptions="Center"/>
+                        
+                </StackLayout>
+
+                <StackLayout Margin="30,65">
+                    <Label Text="Update your data" 
+                           FontAttributes="Bold" 
+                           FontSize="25" 
+                           VerticalOptions="StartAndExpand"
                            TextColor="Black"/>
                 </StackLayout>
-                <Label Text="{Binding email}"
-                       TextColor="Black"/>
-            </StackLayout>
 
-            <StackLayout>
-                <Label Text="Welcome"
-                       FontAttributes="Bold"
-                       FontSize="25"
-                       Margin="30,40"
-                       TextColor="Black"/>
+                
+                <StackLayout Padding="30" Margin="0,-90,0,0" >
+
+                    <Label Text="First Name" />
+                    <Frame CornerRadius="10" Padding="5" HasShadow="True">
+                        <Grid>
+                            <Image Source="usericon" 
+                                   HeightRequest="20" 
+                                   VerticalOptions="Center" 
+                                   HorizontalOptions="Start" 
+                                   Margin="10,0"/>
+                            <local:CustomEntry 
+                                x:Name="fnameEntryDisplay"
+                                Placeholder="Enter your name" 
+                                Keyboard="Text"
+                                Text="{Binding first_name, Mode=TwoWay}"
+                                BackgroundColor="Transparent"
+                                Margin="40,0,0,0"
+                                IsEnabled="False"/>
+                        </Grid>
+                    </Frame>
+                    <Label x:Name="ErrorFname" TextColor="Red" Margin="0,-2,0,-3"/>
+
+
+                    <Label Text="Last Name" />
+                    <Frame CornerRadius="10" Padding="5" HasShadow="True">
+                        <Grid>
+                            <Image Source="usericon" 
+                                   HeightRequest="20" 
+                                   VerticalOptions="Center" 
+                                   HorizontalOptions="Start" Margin="10,0"/>
+                            <local:CustomEntry 
+                                x:Name="lnameEntryDisplay"
+                                Placeholder="Enter your name" 
+                                Keyboard="Text"
+                                Text="{Binding last_name, Mode=TwoWay}"
+                                BackgroundColor="Transparent"
+                                Margin="40,0,0,0"
+                                IsEnabled="False"/>
+                        </Grid>
+                    </Frame>
+                    <Label x:Name="ErrorLname" TextColor="Red" Margin="0,-2,0,-3"/>
+
+                    <Label Text="Email" />
+                    <Frame CornerRadius="10" Padding="5" HasShadow="True">
+                        <Grid>
+                            <Image Source="emailicon" 
+                                   HeightRequest="20" 
+                                   VerticalOptions="Center" 
+                                   HorizontalOptions="Start" Margin="10,0"/>
+                            <local:CustomEntry 
+                                x:Name="emailEntryDisplay"
+                                Placeholder="Enter your name" 
+                                Keyboard="Email"
+                                Text="{Binding email, Mode=TwoWay}"
+                                BackgroundColor="Transparent"
+                                Margin="40,0,0,0"
+                                IsEnabled="False"/>
+                        </Grid>
+
+                    </Frame>
+                    <Label x:Name="ErrorEmail" TextColor="Red" Margin="0,-2,0,-3"/>
+
+
+                    <Button x:Name="editButton"
+                            BackgroundColor="#1975D1"
+                            Clicked="Button_Clicked"
+                            Margin="0,20"
+                            CornerRadius="20"
+                            HeightRequest="50"
+                            Text="Edit Data"
+                            TextTransform="None"
+                            FontAttributes="Bold"
+                            TextColor="White"
+                            FontSize="20"/>
+                </StackLayout>
             </StackLayout>
-            
-        </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

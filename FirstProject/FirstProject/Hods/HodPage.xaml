@@ -110,7 +110,14 @@
                                         </Frame>
 
                                         <Grid>
-                                            <Label TextColor="Black" FontSize="Medium" HorizontalOptions="EndAndExpand" WidthRequest="50" VerticalOptions="CenterAndExpand" FontAttributes="Bold" Text="{Binding HodDepartment}" />
+                                            <Label 
+                                                TextColor="Black"
+                                                FontSize="14" 
+                                                HorizontalOptions="EndAndExpand"
+                                                WidthRequest="50" 
+                                                Margin="-6,0"
+                                                VerticalOptions="CenterAndExpand" 
+                                                Text="{Binding HodDepartment}" />
                                         </Grid>
 
 

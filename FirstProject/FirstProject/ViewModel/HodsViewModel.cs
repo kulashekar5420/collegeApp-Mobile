@@ -1,10 +1,8 @@
 ﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System;
 using FirstProject;
-using Acr.UserDialogs;
 using System.Collections.Generic;
 using FirstProject.ViewModel;
 using System.Windows.Input;
@@ -262,8 +260,6 @@ public class HodsViewModel : INotifyBaseViewModel
     {
         return Task.FromResult(Hods.All(s => s.HodId != hodId));
     }
-  
-
 }
 
 

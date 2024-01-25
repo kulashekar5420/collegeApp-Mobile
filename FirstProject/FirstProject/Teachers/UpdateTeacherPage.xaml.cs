@@ -1,10 +1,6 @@
-﻿using Acr.UserDialogs;
-using FirstProject;
-using FirstProject.Teachers; 
-using System;
+﻿ using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 

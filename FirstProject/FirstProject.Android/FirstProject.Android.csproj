@@ -175,10 +175,19 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\apiimg.png" />
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\emailicon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\usericon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\linkicon.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties XamarinHotReloadDebuggerTimeoutExceptionFirstProjectAndroidHideInfoBar="True" XamarinHotReloadGenericExceptionInfoBarFirstProjectAndroidHideInfoBar="True" />
+      <UserProperties XamarinHotReloadGenericExceptionInfoBarFirstProjectAndroidHideInfoBar="True" XamarinHotReloadDebuggerTimeoutExceptionFirstProjectAndroidHideInfoBar="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

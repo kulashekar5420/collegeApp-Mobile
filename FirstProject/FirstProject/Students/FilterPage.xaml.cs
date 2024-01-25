@@ -1,5 +1,4 @@
 ﻿using Acr.UserDialogs;
-using FirstProject;
 using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
 using System;
@@ -29,9 +28,9 @@ namespace FirstProject.Students
             UserDialogs.Instance.ShowLoading($"Loading {selectedDepartment} Students");
             await Task.Delay(1000);
 
-            if (selectedDepartment == "All Department")
+            if (selectedDepartment == "All")
             {
-                App.StudentViewModel.StudentDepartment = "All Department";
+                App.StudentViewModel.StudentDepartment = "All";
                 await App.StudentViewModel.LoadAllDepartmentsStudents();
             }
             else
