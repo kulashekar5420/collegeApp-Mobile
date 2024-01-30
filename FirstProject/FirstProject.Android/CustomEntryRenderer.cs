@@ -18,7 +18,6 @@ namespace FirstProject.Droid
 
             if (Control != null)
             {
-                // Remove the underline
                 Control.Background = null;
             }
         }

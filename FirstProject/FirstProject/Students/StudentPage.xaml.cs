@@ -9,11 +9,12 @@ namespace FirstProject.Students
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class StudentPage : ContentPage
     {
-          
+      
         public StudentPage()
         {
             InitializeComponent();
             BindingContext = App.StudentViewModel;
+
         }
 
         protected override bool OnBackButtonPressed()

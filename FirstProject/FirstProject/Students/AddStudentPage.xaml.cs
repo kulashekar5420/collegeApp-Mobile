@@ -1,10 +1,7 @@
 ﻿using Acr.UserDialogs;
-using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Net.Http;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -39,47 +36,12 @@ namespace FirstProject.Students
           
         }
 
-
-
-        private async void statePicker_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            await LoadStatesFromApi();
-        }
-
-        private async Task LoadStatesFromApi()
-        {
-            try
-            {
-                using (HttpClient client = new HttpClient())
-                {
-                    string apiUrl = "https://example.com/api/states";
-                    HttpResponseMessage response = await client.GetAsync(apiUrl);
-
-                    if (response.IsSuccessStatusCode)
-                    {
-                        string json = await response.Content.ReadAsStringAsync();
-                        List<StudentsModel> states = JsonConvert.DeserializeObject<List<StudentsModel>>(json);
-
-                        statePicker.ItemsSource = states;
-                    }
-                    else
-                    {
-                        await DisplayAlert("Error", "Failed to fetch states from the API", "OK");
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                await DisplayAlert("Error", $"An error occurred: {ex.Message}", "OK");
-            }
-        }
         private async void LoadAvailableHods()
         {
             var studentsMapHod = (StudentsViewModel)BindingContext;
             await studentsMapHod.LoadAvailableHods();
             availableHods = studentsMapHod.AvailableHods;
         }
-
         private async void DepartmentPicker_SelectedIndexChanged(object sender, EventArgs e)
         {
             string stuDepartment = ((StudentsViewModel)BindingContext).Department;
@@ -106,7 +68,6 @@ namespace FirstProject.Students
                 LoadAvailableTeachers();
             }
         }
-
         private async void LoadAvailableTeachers()
         {
             var studentsViewModel = (StudentsViewModel)BindingContext;
@@ -118,8 +79,6 @@ namespace FirstProject.Students
                 studentsViewModel.AvailableTeachers.Where(t => t.TeacherDepartment == selectedDepartment)
             );
         }
-
-
         private async void StudentYearPicker_SelectedIndexChanged(object sender, EventArgs e)
         {
             string studentYear = ((StudentsViewModel)BindingContext).StudentYear;
@@ -132,7 +91,6 @@ namespace FirstProject.Students
                 LoadAvailableDepTeachers();
             }
         }
-
         private async void LoadAvailableDepTeachers()
         {
             var availableDepTeacher = (StudentsViewModel)BindingContext;
@@ -158,20 +116,17 @@ namespace FirstProject.Students
             }
         }
 
-
         private async Task<TeachersModel> MapStudentTeacherAsync(string studentYear)
         {
             var teacher = availableDepTeachers.FirstOrDefault(t => t.TeacherYear == studentYear);
             return await Task.FromResult(teacher);
         }
 
-
         private async Task<string> GenerateHodAsync(string department)
         {
             var hod = availableHods.FirstOrDefault(h => h.HodDepartment == department);
             return await Task.FromResult(hod != null ? hod.HodName :"");
         }
-
 
         private async Task<string> GenerateRollIdAsync(string department)
         {
@@ -186,6 +141,7 @@ namespace FirstProject.Students
             return rollId;
         }
 
+        //AddStudents data 
         private async void Button_Clicked(object sender, EventArgs e)
         {
             string studentName = ((StudentsViewModel)BindingContext).Name;

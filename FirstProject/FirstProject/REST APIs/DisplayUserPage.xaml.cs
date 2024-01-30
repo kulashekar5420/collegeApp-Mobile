@@ -52,6 +52,7 @@ namespace FirstProject.REST_APIs
             }
         }
 
+
         private async void Button_Clicked(object sender, EventArgs e)
         {
 
@@ -97,9 +98,6 @@ namespace FirstProject.REST_APIs
                 }
 
                 //Validations for Update Data
-
-
-               
                 if (string.IsNullOrWhiteSpace(fnameEntryDisplay.Text) || string.IsNullOrWhiteSpace(lnameEntryDisplay.Text) || string.IsNullOrWhiteSpace(emailEntryDisplay.Text))
                 {
                     ErrorFname.Text = string.IsNullOrWhiteSpace(fnameEntryDisplay.Text) ? "First Name is required" : "";
@@ -121,7 +119,6 @@ namespace FirstProject.REST_APIs
 
                 }
 
-
                 if (!IsValidEmail(emailEntryDisplay.Text))
                 {
                     ErrorEmail.Text = "Invalid email format";
@@ -130,7 +127,7 @@ namespace FirstProject.REST_APIs
 
                 bool IsValidEmail(string email)
                 {
-                    string emailPattern = @"^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$";
+                    string emailPattern = "^[\\w\\.\\-]+@([\\w\\-]+\\.com|[\\w\\-]+\\.in)$";
                     Regex regex = new Regex(emailPattern);
 
                     return regex.IsMatch(email);
@@ -150,13 +147,10 @@ namespace FirstProject.REST_APIs
                         return;
                     }
                 }
-
-                
+  
             }
 
         }
 
-
-        
     }
 }

@@ -7,8 +7,7 @@ namespace FirstProject.REST_APIs
 {
     public partial class AddData : ContentPage
     {
-        private ApiService apiService;
-
+        private readonly ApiService apiService;
         public AddData()
         {
             InitializeComponent();
@@ -17,7 +16,6 @@ namespace FirstProject.REST_APIs
             fnameEntry.TextChanged += Entry_TextChanged;
             lnameEntry.TextChanged += Entry_TextChanged;
             emailEntry.TextChanged += Entry_TextChanged;
-
         }
 
         private void Entry_TextChanged(object sender, TextChangedEventArgs e)
@@ -40,10 +38,7 @@ namespace FirstProject.REST_APIs
         }
         private async void Button_Clicked(object sender, EventArgs e)
         {
-
             ErrorFname.Text = ErrorLname.Text = ErrorEmail.Text = "";
-
-           
 
             if (string.IsNullOrWhiteSpace(fnameEntry.Text) || string.IsNullOrWhiteSpace(lnameEntry.Text) || string.IsNullOrWhiteSpace(emailEntry.Text))
             {
@@ -72,8 +67,6 @@ namespace FirstProject.REST_APIs
                 return;
             }
 
-
-
             UserData user = new UserData
             {
                 email = emailEntry.Text,
@@ -81,7 +74,6 @@ namespace FirstProject.REST_APIs
                 last_name = lnameEntry.Text,
                 avatar = avatarEntry.Text
             };
-
 
             using (UserDialogs.Instance.Loading("Adding user.."))
             {
@@ -98,19 +90,13 @@ namespace FirstProject.REST_APIs
             }
         }
 
+        //Email Validation Method
         private bool IsValidEmail(string email)
         {
-            if (email == null)
-            {
-                return false; 
-            }
-
-            string emailPattern = @"^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$";
+            string emailPattern = "^[\\w\\.\\-]+@([\\w\\-]+\\.com|[\\w\\-]+\\.in)$";
             Regex regex = new Regex(emailPattern);
 
             return regex.IsMatch(email);
         }
-
-
     }
 }

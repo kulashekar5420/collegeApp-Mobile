@@ -18,7 +18,7 @@
                  Margin="10,0"/>
                     <local:CustomEntry 
               x:Name="fnameEntry"
-              Placeholder="Enter your name" 
+              Placeholder="Enter first name" 
               Keyboard="Text"
               Text="{Binding first_name, Mode=TwoWay}"
               BackgroundColor="Transparent"
@@ -37,7 +37,7 @@
                  HorizontalOptions="Start" Margin="10,0"/>
                     <local:CustomEntry 
               x:Name="lnameEntry"
-              Placeholder="Enter your name" 
+              Placeholder="Enter last name" 
               Keyboard="Text"
               Text="{Binding last_name, Mode=TwoWay}"
               BackgroundColor="Transparent"
@@ -55,7 +55,7 @@
                  HorizontalOptions="Start" Margin="10,0"/>
                     <local:CustomEntry 
               x:Name="emailEntry"
-              Placeholder="Enter your name" 
+              Placeholder="Enter email" 
               Keyboard="Email"
               Text="{Binding email, Mode=TwoWay}"
               BackgroundColor="Transparent"

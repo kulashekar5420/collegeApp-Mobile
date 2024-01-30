@@ -3,17 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FirstProject.Hods.HodPage"
              Title="HODs"
-               xmlns:FirstProject="clr-namespace:FirstProject"
              BackgroundColor="White">
-
+    
     <ContentPage.Content>
         <RelativeLayout>
             <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing}">
                 <CollectionView  
-                ItemsSource="{Binding Hods}"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand"
-                Margin="20,20,20,10" >
+                    ItemsSource="{Binding Hods}"
+                    VerticalOptions="CenterAndExpand" 
+                    HorizontalOptions="CenterAndExpand"
+                    Margin="20,20,20,10" >
 
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
@@ -24,27 +23,27 @@
                                         <!--delete swipeview -->
                                         <SwipeItemView>
                                             <StackLayout
-                                            WidthRequest="80" 
-                                            HeightRequest="50">
+                                                WidthRequest="80" 
+                                                HeightRequest="50">
                                                 <StackLayout.GestureRecognizers>
                                                     <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1"/>
                                                 </StackLayout.GestureRecognizers>
                                                 <Image 
-                                                Source="deleteicon"
-                                                VerticalOptions="CenterAndExpand"
-                                                HeightRequest="30"
-                                                WidthRequest="30"/>
+                                                    Source="deleteicon"
+                                                    VerticalOptions="CenterAndExpand"
+                                                    HeightRequest="30"
+                                                    WidthRequest="30"/>
                                             </StackLayout>
                                         </SwipeItemView>
                                     </SwipeItems>
                                 </SwipeView.RightItems>
 
                                 <Frame
-                                BackgroundColor="White"
-                                Margin="3" 
-                                CornerRadius="20" 
-                                VerticalOptions="CenterAndExpand" 
-                                HeightRequest="60">
+                                    BackgroundColor="White"
+                                    Margin="3" 
+                                    CornerRadius="20" 
+                                    VerticalOptions="CenterAndExpand" 
+                                    HeightRequest="60">
 
                                     <Frame.GestureRecognizers>
                                         <TapGestureRecognizer />
@@ -53,7 +52,8 @@
                                     <Grid>
 
                                         <StackLayout Orientation="Horizontal" WidthRequest="20">
-                                            <Image WidthRequest="60" VerticalOptions="StartAndExpand">
+                                            <Image 
+                                                WidthRequest="60" VerticalOptions="StartAndExpand">
                                                 <Image.Triggers>
                                                     <DataTrigger TargetType="Image" Binding="{Binding HodGender}" Value="Male">
                                                         <Setter Property="Source" Value="maleicon.png" />
@@ -82,13 +82,8 @@
 
                                                     <Label Grid.Column="1" Text="{Binding HodId}" TextColor="Black" />
                                                 </Grid>
-
-
                                             </StackLayout>
                                         </StackLayout>
-
-
-
 
                                         <Frame HasShadow="False" CornerRadius="14" HorizontalOptions="EndAndExpand" WidthRequest="20" HeightRequest="-10" VerticalOptions="CenterAndExpand">
                                             <Frame.Triggers>
@@ -105,8 +100,6 @@
                                                     <Setter Property="BorderColor" Value="Green"/>
                                                 </DataTrigger>
                                             </Frame.Triggers>
-
-
                                         </Frame>
 
                                         <Grid>
@@ -127,9 +120,8 @@
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
-
             </RefreshView>
-
+            
             <Label 
                    Text="No hods found"
                    FontAttributes="Bold"
@@ -140,7 +132,6 @@
                    HorizontalOptions="CenterAndExpand"
                    RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.5, Constant=-50}"
                    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.5, Constant=-50}"/>
-
 
             <ImageButton
                 Clicked="ImageButton_Clicked"

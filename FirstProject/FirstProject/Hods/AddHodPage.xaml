@@ -1,60 +1,36 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             xmlns:local="clr-namespace:FirstProject" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"   
              xmlns:FirstProject="clr-namespace:FirstProject"
              x:Class="FirstProject.Hods.AddHodPage"
              Title="Add Hod">
     <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Spacing="10" Padding="30" >
+                <Label Text="Enter Hod Details"
+                       TextColor="Black"
+                       FontAttributes="Bold"
+                       FontSize="Title"
+                       HorizontalOptions="StartAndExpand"/>
 
-      <ScrollView>
-            
-            
-      
-        <StackLayout Spacing="10" Padding="30" >
+                <StackLayout>
+                    <Label Text="Choose Teacher: (Before choosing teacher, kindly register teacher first)"  />
+                    <Frame CornerRadius="10"
+                           Padding="4" 
+                           Margin="0,0,0,0"
+                           HasShadow="True">
 
-            <Label Text="Enter Hod Details"
-                   TextColor="Black"
-                   FontAttributes="Bold"
-                   FontSize="Title"
-                   HorizontalOptions="StartAndExpand"/>
+                        <FirstProject:CustomPicker 
+                               x:Name="teacherPicker"
+                               Title="Select Teacher"
+                               ItemDisplayBinding="{Binding  DisplayText}" 
+                               Margin="0,-1,0,0">
+                        </FirstProject:CustomPicker>
 
-            <StackLayout>
-                <Label Text="Choose Teacher: (Before choosing teacher, kindly register teacher first)"  />
-                <Frame CornerRadius="10"
-                       Padding="4" 
-                       Margin="0,0,0,0"
-                       HasShadow="True">
+                    </Frame>
 
-                    
-                   <FirstProject:CustomPicker 
-                       x:Name="teacherPicker"
-                       Title="Select Teacher"
-                       ItemDisplayBinding="{Binding  DisplayText}" 
-                       Margin="0,-1,0,0">
-
-                    </FirstProject:CustomPicker>
-                </Frame>
-            </StackLayout>
+                </StackLayout>
                 <Label Text="Hod Name:"/>
-            <Frame 
-                CornerRadius="10"
-                Padding="14"  
-                Margin="0,0,0,0"
-                HasShadow="True">
-
-                <Label 
-                   Text="{Binding HodName}"
-                   TextColor="Black" />
-            </Frame>
-
-            <StackLayout>
-                
-            </StackLayout>
-            
-            
-            <StackLayout>
-                <Label Text="Teacher Department :" />
                 <Frame 
                     CornerRadius="10"
                     Padding="14"  
@@ -62,80 +38,69 @@
                     HasShadow="True">
 
                     <Label 
-                        Text="{Binding HodDepartment}"
-                        TextColor="Black" />
+                       Text="{Binding HodName}" TextColor="Black" />
                 </Frame>
-            </StackLayout>
 
-           
+                <StackLayout>
 
-            <StackLayout>
-                <Label Text="Teacher Gender :" />
-                <Frame 
+                </StackLayout>
+                <StackLayout>
+                    <Label Text="Teacher Department :" />
+                    <Frame 
+                        CornerRadius="10"
+                        Padding="14"  
+                        Margin="0,0,0,0"
+                        HasShadow="True">
+
+                        <Label Text="{Binding HodDepartment}" TextColor="Black" />
+                    </Frame>
+                </StackLayout>
+                <StackLayout>
+                    <Label Text="Teacher Gender :" />
+                    <Frame 
+                        CornerRadius="10"
+                        Padding="14"  
+                        Margin="0,0,0,0"
+                        HasShadow="True">
+
+                        <Label Text="{Binding HodGender}" TextColor="Black" />
+
+                    </Frame>
+                </StackLayout>
+                <StackLayout>
+                    <Label Text="Teacher Id :" />
+                    <Frame 
+                        CornerRadius="10"
+                        Padding="14"  
+                        Margin="0,0,0,0"
+                        HasShadow="True">
+
+                        <Label Text="{Binding SelectedTeacherTeacherid}" TextColor="Black" />
+
+                    </Frame>
+                </StackLayout>
+                <StackLayout>
+                    <Label Text="Hod Id (Auto Generated) :" />
+                    <Frame 
                     CornerRadius="10"
                     Padding="14"  
                     Margin="0,0,0,0"
                     HasShadow="True">
-
-                    <Label 
-                       Text="{Binding HodGender}"
-                       TextColor="Black" />
-
-                </Frame>
-            </StackLayout>
-
-
-            <StackLayout>
-                <Label Text="Teacher Id :" />
-                <Frame 
+                        <Label x:Name="rollIdLabel"  Text="{Binding HodId}" TextColor="Green" />
+                    </Frame>
+                </StackLayout>
+                <Button 
+                    Text="Add Hod"
+                    Clicked="Button_Clicked"
                     CornerRadius="10"
-                    Padding="14"  
-                    Margin="0,0,0,0"
-                    HasShadow="True">
-
-                    <Label 
-                       Text="{Binding SelectedTeacherTeacherid}"
-                       TextColor="Black" />
-
-                </Frame>
+                    TextTransform="None"
+                    FontSize="Medium"
+                    Padding="4"
+                    FontAttributes="Bold"
+                    BackgroundColor="#1975D1"
+                    TextColor="White"
+                    Margin="0,20,0,30" />
             </StackLayout>
-
-
-
-
-            <StackLayout>
-                <Label Text="Hod Id (Auto Generated) :" />
-                <Frame 
-                CornerRadius="10"
-                Padding="14"  
-                Margin="0,0,0,0"
-                HasShadow="True">
-
-                    <Label 
-                x:Name="rollIdLabel"
-                Text="{Binding HodId}"
-                TextColor="Green" />
-
-                </Frame>
-            </StackLayout>
-
-
-
-            <Button 
-                Text="Add Hod"
-                Clicked="Button_Clicked"
-                CornerRadius="10"
-                TextTransform="None"
-                FontSize="Medium"
-                Padding="4"
-                FontAttributes="Bold"
-                BackgroundColor="#1975D1"
-                TextColor="White"
-                Margin="0,20,0,30" />
-
-
-        </StackLayout>
-
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>

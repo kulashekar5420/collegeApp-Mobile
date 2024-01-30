@@ -1,5 +1,4 @@
-﻿using FirstProject.REST_APIs;
-using System;
+﻿using System;
 using System.IO;
 using Xamarin.Forms;
 namespace FirstProject
@@ -11,25 +10,21 @@ namespace FirstProject
         public static StudentsViewModel StudentViewModel { get; private set; }
         public static TeachersViewModel TeacherViewModel { get; private set; }
         public static HodsViewModel HodsViewModel { get; private set; }
-        public static ViewModelRestAPI ViewModelRestAPI { get; private set; }
 
 
         public App()
         {
             InitializeComponent();
-
-
+            
+            //DatabasePath for SQLite Table
             DatabaseforSchool = new SchoolDatabase(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "School.db"));
-
-          
+            
             StudentViewModel = new StudentsViewModel();
             TeacherViewModel = new TeachersViewModel();
             HodsViewModel = new HodsViewModel();
-            ViewModelRestAPI = new ViewModelRestAPI();
-
-            MainPage = new NavigationPage(new MainPage());
-           
             
+            //MainPage Navigation
+            MainPage = new NavigationPage(new MainPage());
 
         }
        

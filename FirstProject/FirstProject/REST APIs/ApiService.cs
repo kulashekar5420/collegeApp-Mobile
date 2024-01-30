@@ -8,7 +8,7 @@ public class ApiService
 {
     private const string ApiBaseUrl = "https://reqres.in/api/users";
 
-
+    //POST data into API 
     public async Task<bool> PostDataAsync(UserData user)
     {
         using (HttpClient httpClient = new HttpClient())
@@ -34,6 +34,7 @@ public class ApiService
         }
     }
 
+    //PUT data into API
     public async Task<bool> PutDataAsync(UserData user)
     {
         using (HttpClient httpClient = new HttpClient())

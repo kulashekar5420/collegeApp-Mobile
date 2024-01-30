@@ -20,7 +20,7 @@ public class StudentsViewModel : INotifyBaseViewModel
     private ObservableCollection<HodsModel> availableHods;
     private ObservableCollection<TeachersModel> tId;
     private ObservableCollection<TeachersModel> classTeachers;
-    //Get and set the value of isNoDataVisible
+   
     public bool IsNoDataVisible
     {
         get { return isNoDataVisible; }
@@ -133,10 +133,9 @@ public class StudentsViewModel : INotifyBaseViewModel
     public string Department { get; set; }
     public string Gender { get; set; }
     public string StudentYear { get; set; }
-    public ICommand RefreshCommand { get;  set; }
+    public Command RefreshCommand { get;  set; }
     public StudentsViewModel()
     {
-
         databasePath = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "School.db");
         RefreshCommand = new Command(async () => await RefreshDataAsync());
         // Load students 
@@ -149,8 +148,8 @@ public class StudentsViewModel : INotifyBaseViewModel
         {
             StudentDepartment = null;
         }
-
     }
+
     public async Task LoadStudents()
     {
         IsRefreshing = true;
@@ -204,6 +203,8 @@ public class StudentsViewModel : INotifyBaseViewModel
         var hodList = await database.GetAllHodsAsync();
         AvailableHods = new ObservableCollection<HodsModel>(hodList);
     }
+
+    //Load the available teachers
     public async Task LoadAvailableTeachersAsync()
     {
         var database = new SchoolDatabase(databasePath);

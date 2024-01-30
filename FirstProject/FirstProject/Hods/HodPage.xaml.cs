@@ -7,32 +7,23 @@ namespace FirstProject.Hods
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class HodPage : ContentPage
     {
-       
-
         public HodPage()
         {
             InitializeComponent();
-            BindingContext = App.HodsViewModel;
-           
+            BindingContext = App.HodsViewModel;         
         }
-
-
         protected override void OnAppearing()
         {
             base.OnAppearing();
             _ = App.HodsViewModel.LoadHods();
 
         }
-
         private async void ImageButton_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new AddHodPage());
-
-
         }
 
-        //Delete ho
-
+        //Delete hod tapGesture
         private async void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
         {
             if ((sender as StackLayout)?.BindingContext is HodsModel selectedHod)

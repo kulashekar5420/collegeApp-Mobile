@@ -18,10 +18,7 @@ namespace FirstProject.Hods
         {
             InitializeComponent();
             BindingContext = new HodsViewModel();
-
-   
             teacherPicker.SelectedIndexChanged += teacherPicker_SelectedIndexChanged;
-
             availableTeachers = new ObservableCollection<TeachersModel>();
 
             //load the available teachers

@@ -126,10 +126,10 @@
                                                             <Setter Property="TextColor" Value="Green" />
                                                         </DataTrigger>
                                                         <DataTrigger TargetType="Label" Binding="{Binding TeacherYear}" Value="2nd Year">
-                                                            <Setter Property="TextColor" Value="#304FFE" />
+                                                            <Setter Property="TextColor" Value="#5E35B1" />
                                                         </DataTrigger>
                                                         <DataTrigger TargetType="Label" Binding="{Binding TeacherYear}" Value="3rd Year">
-                                                            <Setter Property="TextColor" Value="#E65100" />
+                                                            <Setter Property="TextColor" Value="Black" />
                                                         </DataTrigger>
                                                         <DataTrigger TargetType="Label" Binding="{Binding TeacherYear}" Value="4th Year">
                                                             <Setter Property="TextColor" Value="red" />
