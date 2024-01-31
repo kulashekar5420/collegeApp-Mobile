@@ -38,7 +38,6 @@
                         TextColor="Black"/>
 
                 <StackLayout HorizontalOptions="Center">
-                    <Label Text="Department:"/>
                     <Frame CornerRadius="10" Padding="4" HasShadow="True">
                         <FirstProject:CustomPicker 
                              x:Name="departmentPicker" 
@@ -47,7 +46,7 @@
                              SelectedItem="{Binding Department, Mode=TwoWay}"
                              SelectedIndexChanged="departmentPicker_SelectedIndexChanged">
 
-                            <Picker.ItemsSource>
+                            <Picker.ItemsSource >
                                 <x:Array Type="{x:Type x:String}">
                                     <x:String>CSE</x:String>
                                     <x:String>ECE</x:String>

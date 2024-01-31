@@ -2,6 +2,7 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Rg.Plugins.Popup.Services;
+using FirstProject.Teachers;
 
 
 namespace FirstProject.Students
@@ -9,19 +10,18 @@ namespace FirstProject.Students
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class StudentPage : ContentPage
     {
-      
+        private bool isProcessingTap = false;
+        private bool isProcessingButtonClick = false;
         public StudentPage()
         {
             InitializeComponent();
             BindingContext = App.StudentViewModel;
 
         }
-
         protected override bool OnBackButtonPressed()
         {
             return true;
         }
-
         protected override async void OnAppearing()
         {
             base.OnAppearing();
@@ -30,33 +30,45 @@ namespace FirstProject.Students
         // Add Student Btn 
         private async void ImageButton_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new AddStudentPage());
-
+            if (!isProcessingButtonClick)
+            {
+                isProcessingButtonClick = true;
+                (sender as ImageButton).IsEnabled = false;
+                await Navigation.PushAsync(new AddStudentPage());
+                (sender as ImageButton).IsEnabled = true;
+                isProcessingButtonClick = false;
+            }
         }
         //FilterPage popup
         private async void ToolbarItem_Clicked(object sender, EventArgs e)
         {
-            await PopupNavigation.Instance.PushAsync(new FilterPage());
+             await PopupNavigation.Instance.PushAsync(new FilterPage()); 
         }
 
         private async  void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
         {
-            if ((sender as StackLayout)?.BindingContext is StudentsModel selectedStudent)
-            {
-                bool confirmation = await DisplayAlert("Delete Confirmation", $"Do you want to delete {selectedStudent.StudentName}?", "Yes", "No");
+             if ((sender as StackLayout)?.BindingContext is StudentsModel selectedStudent)
+             {
+                 bool confirmation = await DisplayAlert("Delete Confirmation", $"Do you want to delete {selectedStudent.StudentName}?", "Yes", "No");
 
-                if (confirmation)
-                {
-                    await App.StudentViewModel.DeleteStudentAsync(selectedStudent);
-
-                }
-            }
+                 if (confirmation)
+                 {
+                      await App.StudentViewModel.DeleteStudentAsync(selectedStudent);
+                 }
+             }
         }
         private async void TapGestureRecognizer_Tapped_2(object sender, EventArgs e)
         {
-            if ((sender as Frame)?.BindingContext is StudentsModel selectedStudent)
+            if (!isProcessingTap)
             {
-                await Navigation.PushAsync(new UpdateStudentPage(selectedStudent));
+                isProcessingTap = true;
+
+                if ((sender as Frame)?.BindingContext is StudentsModel selectedStudent)
+                {
+                    await Navigation.PushAsync(new UpdateStudentPage(selectedStudent));
+                }
+
+                isProcessingTap = false;
             }
         }
 

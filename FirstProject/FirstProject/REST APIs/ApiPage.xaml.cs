@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using FirstProject.Teachers;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,7 @@ namespace FirstProject.REST_APIs
     {
         private readonly LocalUserDB localUserDB;
         private bool isLongPressActive = false;
+        private bool isProcessingButtonClick = false;
         public Command LongPressCommand { get; }
 
         public ApiPage()
@@ -110,7 +112,15 @@ namespace FirstProject.REST_APIs
         //Add data image button like FloatingActionButton
         private async void ImageButton_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new AddData());
+            if (!isProcessingButtonClick)
+            {
+                isProcessingButtonClick = true;
+                (sender as ImageButton).IsEnabled = false;
+                await Navigation.PushAsync(new AddData());
+                (sender as ImageButton).IsEnabled = true;
+                isProcessingButtonClick = false;
+            }
+           
         }
 
         private async Task HandleLongPress(UserData selectedItem)
@@ -172,10 +182,14 @@ namespace FirstProject.REST_APIs
         {
             if (!isLongPressActive)
             {
+                isLongPressActive = true;
+
                 if (((Frame)sender).BindingContext is UserData selectedItem)
                 {
                     await Navigation.PushAsync(new DisplayUserPage(selectedItem));
                 }
+
+                isLongPressActive = false;
             }
 
         }

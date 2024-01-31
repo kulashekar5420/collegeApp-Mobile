@@ -116,6 +116,7 @@ public class StudentsViewModel : INotifyBaseViewModel
             }
         }
     }
+
     private string _teacherDisplayName;
     public string TeacherDisplayName
     {
@@ -139,26 +140,27 @@ public class StudentsViewModel : INotifyBaseViewModel
         databasePath = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "School.db");
         RefreshCommand = new Command(async () => await RefreshDataAsync());
         // Load students 
-        _ = LoadStudents();
+         LoadStudents();
     }
     private async Task RefreshDataAsync()
     {
         await LoadStudents();
+
         if (StudentDepartment != null)
         {
             StudentDepartment = null;
         }
     }
-
     public async Task LoadStudents()
     {
         IsRefreshing = true;
         var database = new SchoolDatabase(databasePath);
         var studentsList = await database.GetAllStudentsAsync();
+
+        // Create a new instance of ObservableCollection every time you refresh
         Students = new ObservableCollection<StudentsModel>(studentsList);
         IsNoDataVisible = Students.Count == 0;
-       
-       
+
         IsRefreshing = false;
     }
 

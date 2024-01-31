@@ -1,4 +1,6 @@
-﻿using System;
+﻿using FirstProject.REST_APIs;
+using System;
+using System.Collections.Generic;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -7,10 +9,15 @@ namespace FirstProject.Hods
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class HodPage : ContentPage
     {
+        private bool isProcessingButtonClick = false;
+        List<SwipeView> swipeViews { set; get; }
         public HodPage()
         {
             InitializeComponent();
-            BindingContext = App.HodsViewModel;         
+            BindingContext = App.HodsViewModel;
+
+            swipeViews = new List<SwipeView>();
+
         }
         protected override void OnAppearing()
         {
@@ -20,7 +27,14 @@ namespace FirstProject.Hods
         }
         private async void ImageButton_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new AddHodPage());
+            if (!isProcessingButtonClick)
+            {
+                isProcessingButtonClick = true;
+                (sender as ImageButton).IsEnabled = false;
+                await Navigation.PushAsync(new AddHodPage());
+                (sender as ImageButton).IsEnabled = true;
+                isProcessingButtonClick = false;
+            }     
         }
 
         //Delete hod tapGesture
@@ -28,14 +42,26 @@ namespace FirstProject.Hods
         {
             if ((sender as StackLayout)?.BindingContext is HodsModel selectedHod)
             {
-                bool confirmation = await DisplayAlert("Delete Confirmation", $"Do you want to delete {selectedHod.HodName}?", "Yes", "No");
+               bool confirmation = await DisplayAlert("Delete Confirmation", $"Do you want to delete {selectedHod.HodName}?", "Yes", "No");
                 if (confirmation)
                 {
                     await App.HodsViewModel.DeleteHodAsync(selectedHod);
-
-                   
                 }
             }
+        }
+
+        private void SwipeView_SwipeStarted(object sender, SwipeStartedEventArgs e)
+        {
+            if (swipeViews.Count == 1)
+            {
+                swipeViews[0].Close();
+                swipeViews.Remove(swipeViews[0]);
+            }
+        }
+
+        private void SwipeView_SwipeEnded(object sender, SwipeEndedEventArgs e)
+        {          
+            swipeViews.Add(sender as SwipeView);
         }
     }
 }

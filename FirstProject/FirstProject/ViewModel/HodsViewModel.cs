@@ -20,8 +20,21 @@ public class HodsViewModel : INotifyBaseViewModel
     private string hodGender;
     private string selectedTeacherTeacherid;
     private string hodId;
-    public ICommand RefreshCommand { get; set; }
+    public Command RefreshCommand { get; set; }
 
+    private int openItemIndex = -1; // -1 indicates no open item
+    public int OpenItemIndex
+    {
+        get { return openItemIndex; }
+        set
+        {
+            if (openItemIndex != value)
+            {
+                openItemIndex = value;
+                OnPropertyChanged(nameof(OpenItemIndex));
+            }
+        }
+    }
     public bool IsRefreshing
     {
         get { return isRefreshing; }

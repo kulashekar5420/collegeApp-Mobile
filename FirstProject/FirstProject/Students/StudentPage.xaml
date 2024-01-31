@@ -3,7 +3,6 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="FirstProject.Students.StudentPage"
-    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
     Title="Students"
     BackgroundColor="White" >
 
@@ -17,6 +16,7 @@
         Text="{Binding StudentDepartment, StringFormat={Null}, TargetNullValue='ALL'}"
         Order="Default"/>
     </ContentPage.ToolbarItems>
+    
     <ContentPage.Content>
         <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing}">
             <RelativeLayout >
