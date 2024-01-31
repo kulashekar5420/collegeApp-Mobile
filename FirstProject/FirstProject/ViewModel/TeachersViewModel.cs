@@ -80,14 +80,12 @@ public class TeachersViewModel : INotifyBaseViewModel
     public string teacherId { get; set; }
     public string teacherYear { get; set; }
     public string Gender { get; set; }
-    public ICommand RefreshCommand { get; set; }
-
-
+    public Command RefreshCommand { get; set; }
 
     public TeachersViewModel()
     {
         databasePath = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "School.db");
-        LoadTeachers();
+        _ = LoadTeachers();
         RefreshCommand = new Command(async () => await RefreshDataAsync());
 
 
@@ -195,7 +193,7 @@ public class TeachersViewModel : INotifyBaseViewModel
 
     public async Task DeleteTeacherAsync(TeachersModel selectedTeacher)
     {
-        await unMapTeacher(selectedTeacher.TeacherId);
+        await UnMapTeacher(selectedTeacher.TeacherId);
    
         await App.DatabaseforSchool.DeleteTeacherAsync(selectedTeacher); 
         await LoadTeachers();
@@ -209,7 +207,7 @@ public class TeachersViewModel : INotifyBaseViewModel
     }
 
 
-    private async Task unMapTeacher(string teacherRollId)
+    private async Task UnMapTeacher(string teacherRollId)
     {
         var studentswithTeacher = await GetTeachersByTeacherId(teacherRollId);
       

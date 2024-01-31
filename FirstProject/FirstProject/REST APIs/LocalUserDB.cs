@@ -27,6 +27,13 @@ public class LocalUserDB
     {
         await _localUserDB.InsertAsync(userData);
     }
+
+    public async Task UpdateUserData(UserData userData)
+    {
+        await _localUserDB.UpdateAsync(userData);
+    }
+    
+    
     public async Task<List<UserData>> GetUserData()
     {
         return await _localUserDB.Table<UserData>().ToListAsync();

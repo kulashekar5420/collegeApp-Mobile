@@ -1,6 +1,7 @@
 ﻿using Acr.UserDialogs;
 using System;
 using System.Text.RegularExpressions;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace FirstProject.REST_APIs
@@ -77,23 +78,32 @@ namespace FirstProject.REST_APIs
 
             using (UserDialogs.Instance.Loading("Adding user.."))
             {
-                bool isSuccess = await apiService.PostDataAsync(user);
-
-                if (isSuccess)
+                if(Connectivity.NetworkAccess == NetworkAccess.Internet)
                 {
-                    await Navigation.PopAsync();
+                    bool isSuccess = await apiService.PostDataAsync(user);
+
+                    if (isSuccess)
+                    {
+                        await Navigation.PopAsync();
+                    }
+                    else
+                    {
+                        await DisplayAlert("Error", "Failed to create user. Please try again later.", "OK");
+                    }
                 }
                 else
                 {
-                    await DisplayAlert("Error", "Failed to create user. Please try again later.", "OK");
+                    await DisplayAlert("No Internet Connection", "Please check your internet connection and try again", "OK");
+                    return;
                 }
+               
             }
         }
 
         //Email Validation Method
         private bool IsValidEmail(string email)
         {
-            string emailPattern = "^[\\w\\.\\-]+@([\\w\\-]+\\.com|[\\w\\-]+\\.in)$";
+            string emailPattern = "^([\\w\\.\\-]+)@([\\w\\-]+)((\\.(\\w){2,3})+)$";
             Regex regex = new Regex(emailPattern);
 
             return regex.IsMatch(email);

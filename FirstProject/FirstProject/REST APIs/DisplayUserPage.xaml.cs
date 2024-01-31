@@ -1,6 +1,7 @@
 ﻿using Acr.UserDialogs;
 using System;
 using System.Text.RegularExpressions;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -127,25 +128,35 @@ namespace FirstProject.REST_APIs
 
                 bool IsValidEmail(string email)
                 {
-                    string emailPattern = "^[\\w\\.\\-]+@([\\w\\-]+\\.com|[\\w\\-]+\\.in)$";
+                    string emailPattern = "^([\\w\\.\\-]+)@([\\w\\-]+)((\\.(\\w){2,3})+)$";
                     Regex regex = new Regex(emailPattern);
 
                     return regex.IsMatch(email);
                 }
 
+             
                 using (UserDialogs.Instance.Loading("Update Data"))
                 {
-                    bool isUpdateSuccessful = new ApiService().PutDataAsync(updatedUserData).Result;
-
-                    if (isUpdateSuccessful)
+                    if (Connectivity.NetworkAccess == NetworkAccess.Internet)
                     {
-                        await Navigation.PopAsync();
+                        bool isUpdateSuccessful = new ApiService().PutDataAsync(updatedUserData).Result;
+
+                        if (isUpdateSuccessful)
+                        {
+                            await Navigation.PopAsync();
+                        }
+                        else
+                        {
+                            await DisplayAlert("Error UPDATE! data", "data will be not update in the api", "OK");
+                            return;
+                        }
                     }
                     else
                     {
-                        await DisplayAlert("Error UPDATE! data", "data will be not update in the api", "OK");
+                        await DisplayAlert("No Internet Connection", "Please check your internet connection and try again", "OK");
                         return;
                     }
+                    
                 }
   
             }

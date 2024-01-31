@@ -1,8 +1,7 @@
 ﻿using Newtonsoft.Json;
-using SQLite;
 using System;
 using System.Collections.Generic;
-using System.IO;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
@@ -14,7 +13,7 @@ namespace FirstProject.REST_APIs
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ApiPage : ContentPage
     {
-        private LocalUserDB localUserDB;
+        private readonly LocalUserDB localUserDB;
         private bool isLongPressActive = false;
         public Command LongPressCommand { get; }
 
@@ -45,7 +44,8 @@ namespace FirstProject.REST_APIs
             [JsonProperty("data")]
             public List<UserData> Data { get; set; }
         }
-
+      
+        //Get Data from the API 
         public async Task GetApiData()
         {
             var httpClient = new HttpClient();
@@ -59,7 +59,7 @@ namespace FirstProject.REST_APIs
                 var users = userContainer.Data;
                 foreach (var user in users)
                 {
-                    await localUserDB.SaveUserData(user);
+                    await SaveUserData(user);
                 }
 
                 userListView.ItemsSource = users;
@@ -68,23 +68,45 @@ namespace FirstProject.REST_APIs
             refreshView.IsRefreshing = false;
         }
 
+        private async Task SaveUserData(UserData userData)
+        {
+            var existingUser = await GetUserDataById(userData.id);
+
+            if (existingUser != null)
+            {
+                await localUserDB.UpdateUserData(existingUser);
+            }
+            else
+            {
+                await localUserDB.SaveUserData(userData);
+            }
+        }
+
+        private async Task<UserData> GetUserDataById(int id)
+        {
+            var UserData = await localUserDB.GetUserData();
+            return UserData.Where(u=>u.id == id).FirstOrDefault();
+        }
+
         private async Task DisplayLocalData()
-        {          
+        {
             await localUserDB.InitializeDatabaseAsync();
             var localData = await localUserDB.GetUserData();
 
             if (localData != null && localData.Count > 0)
             {
+                // Clean the existing data
+                userListView.ItemsSource = null;
                 userListView.ItemsSource = localData;
             }
             else
             {
-               await DisplayAlert("No Local Data", "No data available locally.", "OK");
+                await DisplayAlert("No Local Data", "No data available locally.", "OK");
             }
-         
+
             refreshView.IsRefreshing = false;
-           
         }
+
         //Add data image button like FloatingActionButton
         private async void ImageButton_Clicked(object sender, EventArgs e)
         {
@@ -102,11 +124,21 @@ namespace FirstProject.REST_APIs
                 case "Delete":
                     if (selectedItem != null)
                     {
-                        bool answer = await DisplayAlert("Confirmation", $"Do you want to delete user {selectedItem.first_name}?", "Yes", "No");
-                        if (answer)
+                        if (Connectivity.NetworkAccess == NetworkAccess.Internet)
                         {
-                            await DeleteUser(selectedItem.id);
+                            bool answer = await DisplayAlert("Confirmation", $"Do you want to delete user {selectedItem.first_name}?", "Yes", "No");
+                            if (answer)
+                            {
+                                await DeleteUser(selectedItem.id);
+                            }
                         }
+                        else
+                        {
+                            await DisplayAlert("No Internet Connection", "Please check your internet connection and try again", "OK");
+                            return;
+                        }
+
+                       
                     }
                     break;
 
@@ -136,6 +168,18 @@ namespace FirstProject.REST_APIs
             }
         }
 
+        private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            if (!isLongPressActive)
+            {
+                if (((Frame)sender).BindingContext is UserData selectedItem)
+                {
+                    await Navigation.PushAsync(new DisplayUserPage(selectedItem));
+                }
+            }
+
+        }
+        //Pull to referesh
         private async void OnRefresh(object sender, EventArgs e)
         {
             if (Connectivity.NetworkAccess == NetworkAccess.Internet)
@@ -146,19 +190,6 @@ namespace FirstProject.REST_APIs
             {
                 await DisplayLocalData();
             }
-        }
-        private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
-        {
-            if (!isLongPressActive)
-            {
-                var selectedItem = ((Frame)sender).BindingContext as UserData;
-
-                if (selectedItem != null)
-                {
-                    await Navigation.PushAsync(new DisplayUserPage(selectedItem));
-                }
-            }
-
         }
     }
 }

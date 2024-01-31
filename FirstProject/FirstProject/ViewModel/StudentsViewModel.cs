@@ -139,7 +139,7 @@ public class StudentsViewModel : INotifyBaseViewModel
         databasePath = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "School.db");
         RefreshCommand = new Command(async () => await RefreshDataAsync());
         // Load students 
-        LoadStudents();
+        _ = LoadStudents();
     }
     private async Task RefreshDataAsync()
     {
@@ -230,7 +230,7 @@ public class StudentsViewModel : INotifyBaseViewModel
 
     public async Task AddStudentAsync(StudentsModel newStudent)
     {
-        string generatedRollId = await GenerateRollIdAsync(newStudent.StudentDepartment);
+        string generatedRollId = GenerateRollId(newStudent.StudentDepartment);
 
         var student = new StudentsModel
         {
@@ -246,7 +246,7 @@ public class StudentsViewModel : INotifyBaseViewModel
         await App.DatabaseforSchool.SaveStudentAsync(student);
         Students.Add(student);
     }
-    private async Task<string> GenerateRollIdAsync(string department)
+    private string GenerateRollId(string department)
     {
         string rollId;
 
