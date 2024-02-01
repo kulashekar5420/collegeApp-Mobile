@@ -1,8 +1,13 @@
 ﻿using Acr.UserDialogs;
+using Newtonsoft.Json;
+using SQLite;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -15,11 +20,12 @@ namespace FirstProject.Students
         private string generatedRollId;
         private string MappingHod;
         private string MappingTeacher;
-
+        private List<StateModel> localStates;
         private ObservableCollection<TeachersModel> availableDepTeachers;
         private ObservableCollection<HodsModel> availableHods;
         private ObservableCollection<TeachersModel> availableDepteachers;
-
+        private SchoolDatabase schoolDatabase;
+ 
         public AddStudentPage()
         {
             InitializeComponent();
@@ -27,13 +33,65 @@ namespace FirstProject.Students
 
             departmentPicker.SelectedIndexChanged += DepartmentPicker_SelectedIndexChanged;
             studentYearPicker.SelectedIndexChanged += StudentYearPicker_SelectedIndexChanged;
+            statePicker.SelectedIndexChanged += StatePicker_SelectedIndexChanged;
 
             availableHods = new ObservableCollection<HodsModel>();
             availableDepTeachers = new ObservableCollection<TeachersModel>();
 
+            // Initialize SchoolDatabase
+            schoolDatabase = App.DatabaseforSchool;
             LoadAvailableTeachers();
             LoadAvailableHods();
-          
+
+            //Based on the Connectivity the method will be trigger
+            if (Connectivity.NetworkAccess == NetworkAccess.Internet)
+            {
+                LoadStatesDataAsync();
+            }
+            else
+            {
+                LoadLocalStates();
+            }
+            
+        }
+
+        //Load the localstates from the database and load it on statepicker
+        private async void LoadLocalStates()
+        {
+            localStates = await schoolDatabase.GetAllStatesAsync();
+
+            if (localStates.Any())
+            {
+                statePicker.ItemsSource = localStates.Select(state => state.Name).ToList();
+            }
+        }
+
+        private async Task SaveLocalStates(List<StateModel> states)
+        {
+            await schoolDatabase.SaveStatesAsync(states);
+        }
+
+        private void StatePicker_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedState = statePicker.SelectedItem as string;
+            ((StudentsViewModel)BindingContext).StudentState = selectedState;
+        }
+
+        //LoadStates from the API url and sava into the Local SQLite database
+        //Tabel Name StateModels
+        private async void LoadStatesDataAsync()
+        { 
+            using (HttpClient client = new HttpClient())
+            {
+                string url = "https://gist.githubusercontent.com/shubhamjain/35ed77154f577295707a/raw/7bc2a915cff003fb1f8ff49c6890576eee4f2f10/IndianStates.json";
+                string json = await client.GetStringAsync(url);
+                Dictionary<string, string> statesData = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);     
+                
+                List<StateModel> stateModels = statesData.Select(kv => new StateModel { Abbreviation = kv.Key, Name = kv.Value }).ToList();
+                await SaveLocalStates(stateModels);
+                statePicker.ItemsSource = stateModels.Select(state => state.Name).ToList();
+            }
+           
         }
 
         private async void LoadAvailableHods()
@@ -91,6 +149,7 @@ namespace FirstProject.Students
                 LoadAvailableDepTeachers();
             }
         }
+
         private async void LoadAvailableDepTeachers()
         {
             var availableDepTeacher = (StudentsViewModel)BindingContext;
@@ -141,13 +200,14 @@ namespace FirstProject.Students
             return rollId;
         }
 
-        //AddStudents data 
+        //Add the Student information into the SQLite database
         private async void Button_Clicked(object sender, EventArgs e)
         {
             string studentName = ((StudentsViewModel)BindingContext).Name;
             string studentDepartment = ((StudentsViewModel)BindingContext).Department;
             string studentGender = ((StudentsViewModel)BindingContext).Gender;
             string studentYear = ((StudentsViewModel)BindingContext).StudentYear;
+            string studentState = ((StudentsViewModel)BindingContext).StudentState;
            
             if (string.IsNullOrWhiteSpace(studentName) || studentName.Length <= 4)
             {
@@ -180,6 +240,7 @@ namespace FirstProject.Students
                 StudentId = generatedRollId,
                 Gender = studentGender,
                 StudentYear = studentYear,
+                StudentState = studentState,
                 TeacherId = MappingTeacher,
                 HodName = MappingHod,
                 TeacherName = TeacherLabel.Text
@@ -193,5 +254,6 @@ namespace FirstProject.Students
             await Navigation.PopAsync();
         }
 
+       
     }
 }

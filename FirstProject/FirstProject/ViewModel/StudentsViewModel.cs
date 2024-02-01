@@ -5,8 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
-using System.Windows.Input;
 using FirstProject.ViewModel;
+using FirstProject.Students;
 
 public class StudentsViewModel : INotifyBaseViewModel
 {
@@ -92,7 +92,6 @@ public class StudentsViewModel : INotifyBaseViewModel
             OnPropertyChanged(nameof(TId));
         }
     }
-   
 
     public ObservableCollection<TeachersModel> ClassTeachers
     {
@@ -103,6 +102,7 @@ public class StudentsViewModel : INotifyBaseViewModel
             OnPropertyChanged(nameof(ClassTeachers));
         }
     }
+
     private string studentDepartment;
     public string StudentDepartment
     {
@@ -117,40 +117,42 @@ public class StudentsViewModel : INotifyBaseViewModel
         }
     }
 
-    private string _teacherDisplayName;
+    private string teacherDisplayName;
     public string TeacherDisplayName
     {
-        get { return _teacherDisplayName; }
+        get { return teacherDisplayName; }
         set
         {
-            if (_teacherDisplayName != value)
+            if (teacherDisplayName != value)
             {
-                _teacherDisplayName = value;
+                teacherDisplayName = value;
                 OnPropertyChanged(nameof(TeacherDisplayName));
             }
         }
     }
+
+   
+
     public string Name { get; set; }
     public string Department { get; set; }
     public string Gender { get; set; }
     public string StudentYear { get; set; }
     public Command RefreshCommand { get;  set; }
+    public string StudentState { get;  set; }
+
     public StudentsViewModel()
     {
         databasePath = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "School.db");
         RefreshCommand = new Command(async () => await RefreshDataAsync());
-        // Load students 
-         LoadStudents();
+        // Load students from the database
+        _ = LoadStudents();
     }
-    private async Task RefreshDataAsync()
-    {
-        await LoadStudents();
 
-        if (StudentDepartment != null)
-        {
-            StudentDepartment = null;
-        }
+    private async Task RefreshDataAsync()
+    {     
+        await LoadStudentsByDepartment(studentDepartment);     
     }
+
     public async Task LoadStudents()
     {
         IsRefreshing = true;
@@ -180,10 +182,12 @@ public class StudentsViewModel : INotifyBaseViewModel
     //Load students based on the department
     public async Task LoadStudentsByDepartment(string department)
     {
+        IsRefreshing = true;
         var studentsList = await GetStudentsByDepartmentAsync(department);
 
         Students = new ObservableCollection<StudentsModel>(studentsList);
         IsNoDataVisible = Students.Count == 0;
+        IsRefreshing = false;
     }
     public async Task<List<StudentsModel>> GetStudentsByDepartmentAsync(string selectedDepartment)
     {
@@ -224,6 +228,7 @@ public class StudentsViewModel : INotifyBaseViewModel
 
         return allTeachers.Where(t => t.TeacherYear == selectedStudentYear && t.TeacherDepartment == department).ToList();
     }
+
     public Task LoadAllDepartmentsStudents()
     {
         return LoadStudents();
@@ -241,6 +246,7 @@ public class StudentsViewModel : INotifyBaseViewModel
             StudentId = generatedRollId,
             Gender = newStudent.Gender,
             StudentYear = newStudent.StudentYear,
+            StudentState = newStudent.StudentState,
             TeacherId = newStudent.TeacherId,
             HodName = newStudent.HodName
         };

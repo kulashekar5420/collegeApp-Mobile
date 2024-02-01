@@ -11,6 +11,7 @@ namespace FirstProject.Hods
     {
         private bool isProcessingButtonClick = false;
         List<SwipeView> swipeViews { set; get; }
+
         public HodPage()
         {
             InitializeComponent();
@@ -52,7 +53,7 @@ namespace FirstProject.Hods
 
         private void SwipeView_SwipeStarted(object sender, SwipeStartedEventArgs e)
         {
-            if (swipeViews.Count == 1)
+            if (swipeViews.Count != 0)
             {
                 swipeViews[0].Close();
                 swipeViews.Remove(swipeViews[0]);

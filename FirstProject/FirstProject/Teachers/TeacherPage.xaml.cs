@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -9,11 +10,15 @@ namespace FirstProject.Teachers
     {
         private bool isProcessingTap = false;
         private bool isProcessingButtonClick = false;
+        List<SwipeView> swipeViews { set; get; }
+
         public TeacherPage()
         {
             InitializeComponent();
             BindingContext = App.TeacherViewModel;
-    
+
+            swipeViews = new List<SwipeView>();
+
         }
 
         protected override async void OnAppearing()
@@ -79,5 +84,18 @@ namespace FirstProject.Teachers
            
         }
 
+        private void SwipeView_SwipeStarted(object sender, SwipeStartedEventArgs e)
+        {
+            if (swipeViews.Count != 0)
+            {
+                swipeViews[0].Close();
+                swipeViews.Remove(swipeViews[0]);
+            }
+        }
+
+        private void SwipeView_SwipeEnded(object sender, SwipeEndedEventArgs e)
+        {
+            swipeViews.Add(sender as SwipeView);
+        }
     }
 }

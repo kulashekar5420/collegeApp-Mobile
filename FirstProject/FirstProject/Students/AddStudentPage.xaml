@@ -20,16 +20,14 @@
 
                 <StackLayout>
                     <Label Text="Name:" />
-                    <Frame CornerRadius="10"
-                           Padding="4"  
-                           Margin="0,0,0,0"
-                           HasShadow="True">
+                    <Frame CornerRadius="10" Padding="4" Margin="0,0,0,0" HasShadow="True">
                         <local:CustomEntry 
-                           x:Name="nameEntry"
-                           Placeholder="Enter your name" 
-                           Keyboard="Text"
-                           Text="{Binding Name, Mode=TwoWay}"
-                           BackgroundColor="Transparent"/>
+                             x:Name="nameEntry"
+                             Placeholder="Enter your name" 
+                             Keyboard="Text"
+                             Text="{Binding Name, Mode=TwoWay}"
+                             BackgroundColor="Transparent"/>        
+
                     </Frame>
                 </StackLayout>
 
@@ -167,12 +165,6 @@
                            BackgroundColor="Transparent"
                            SelectedItem="{Binding StudentState, Mode=TwoWay}"
                            Margin="0,-1,0,0">
-                            <FirstProject:CustomPicker.ItemsSource>
-                                <Binding Path="States" />
-                            </FirstProject:CustomPicker.ItemsSource>
-                            <FirstProject:CustomPicker.ItemDisplayBinding>
-                                <Binding Path="StateName" />
-                            </FirstProject:CustomPicker.ItemDisplayBinding>
                         </FirstProject:CustomPicker>
                     </Frame>
                 </StackLayout>

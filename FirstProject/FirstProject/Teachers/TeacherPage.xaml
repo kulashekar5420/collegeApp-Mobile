@@ -20,7 +20,8 @@
 
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <SwipeView HeightRequest="110" BackgroundColor="White">
+                            <SwipeView HeightRequest="110" BackgroundColor="White"
+                                       SwipeStarted="SwipeView_SwipeStarted" SwipeEnded="SwipeView_SwipeEnded">
 
                                 <SwipeView.RightItems >
                                     <SwipeItems >

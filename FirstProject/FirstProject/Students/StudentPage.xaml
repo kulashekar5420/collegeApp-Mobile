@@ -8,13 +8,15 @@
 
     <ContentPage.ToolbarItems>
         <ToolbarItem
-            Icon="filtericon"
-            Clicked="ToolbarItem_Clicked"
-            Order="Primary" />
+             IconImageSource="filtericon"
+             Clicked="ToolbarItem_Clicked"
+             Order="Primary"/>
+           
 
         <ToolbarItem
-        Text="{Binding StudentDepartment, StringFormat={Null}, TargetNullValue='ALL'}"
-        Order="Default"/>
+            Text="{Binding StudentDepartment, StringFormat={Null}, TargetNullValue='ALL'}"  
+            Order="Default"
+ />
     </ContentPage.ToolbarItems>
     
     <ContentPage.Content>
@@ -30,7 +32,8 @@
 
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <SwipeView HeightRequest="100" BackgroundColor="White">
+                            <SwipeView HeightRequest="100" BackgroundColor="White" 
+                                       SwipeStarted="SwipeView_SwipeStarted" SwipeEnded="SwipeView_SwipeEnded">
 
                                 <SwipeView.RightItems >
                                     <SwipeItems >
@@ -134,8 +137,9 @@
                                                 </Label>
                                             </Grid>
                                         </StackLayout>
-                                        <StackLayout Orientation="Horizontal"  WidthRequest="20" Margin="175,40,0,-10">
-                                            <Label Text="{Binding StudentState, StringFormat={Null}, TargetNullValue='No state found'}" TextColor="Black"/>
+                                        <StackLayout Orientation="Horizontal" HorizontalOptions="Start" VerticalOptions="End" Margin="160,0,0,0">
+                                            <Label Text="{Binding StudentState, StringFormat={Null}, TargetNullValue='No state found'}" TextColor="Black"
+                                                   FontSize="10" Margin="10,0"/>
                                         </StackLayout>
                                     </Grid>
                                 </Frame>

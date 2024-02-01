@@ -35,8 +35,7 @@ namespace FirstProject.REST_APIs
                 await GetApiData();
             }
             else
-            {
-                await DisplayAlert("No Internet Connection", "Please check your internet connection and try again later - Kindly reopen the app.", "OK");
+            {              
                 await DisplayLocalData();
             }
         }
@@ -103,7 +102,9 @@ namespace FirstProject.REST_APIs
             }
             else
             {
-                await DisplayAlert("No Local Data", "No data available locally.", "OK");
+                await DisplayAlert("Oops, Something Went Wrong",
+                                   "Looks like there's no data available. Make sure your internet is on so we can save the data in the local database.",
+                                   "OK");
             }
 
             refreshView.IsRefreshing = false;

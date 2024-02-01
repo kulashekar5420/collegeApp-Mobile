@@ -20,3 +20,10 @@ public class StudentsModel
   
 }
 
+public class StateModel
+{
+    public string Abbreviation { get; set; }
+    public string Name { get; set; }
+}
+
+

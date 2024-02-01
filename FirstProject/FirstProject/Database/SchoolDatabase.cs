@@ -15,6 +15,7 @@ public class SchoolDatabase
         await _database.CreateTableAsync<StudentsModel>().ConfigureAwait(false);
         await _database.CreateTableAsync<TeachersModel>().ConfigureAwait(false);
         await _database.CreateTableAsync<HodsModel>().ConfigureAwait(false);
+        await _database.CreateTableAsync<StateModel>().ConfigureAwait(false);
     }
 
     // Student Module CRUD
@@ -65,5 +66,15 @@ public class SchoolDatabase
     public async Task<int> DeleteHodAsync(HodsModel hods)
     {
         return await _database.DeleteAsync(hods);
+    }
+
+    public async Task SaveStatesAsync(List<StateModel> states)
+    {
+        await _database.InsertAllAsync(states);
+    }
+
+    public async Task<List<StateModel>> GetAllStatesAsync()
+    {
+        return await _database.Table<StateModel>().ToListAsync();
     }
 }

@@ -3,6 +3,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Rg.Plugins.Popup.Services;
 using FirstProject.Teachers;
+using System.Collections.Generic;
 
 
 namespace FirstProject.Students
@@ -12,11 +13,14 @@ namespace FirstProject.Students
     {
         private bool isProcessingTap = false;
         private bool isProcessingButtonClick = false;
+        List<SwipeView> swipeViews { set; get; }
+
         public StudentPage()
         {
             InitializeComponent();
             BindingContext = App.StudentViewModel;
 
+            swipeViews = new List<SwipeView>();
         }
         protected override bool OnBackButtonPressed()
         {
@@ -72,6 +76,21 @@ namespace FirstProject.Students
             }
         }
 
+        private void SwipeView_SwipeStarted(object sender, SwipeStartedEventArgs e)
+        {
+            if(swipeViews.Count != 0)
+            {
+                swipeViews[0].Close();
+                swipeViews.Remove(swipeViews[0]);
+            }
+        }
+
+        private void SwipeView_SwipeEnded(object sender, SwipeEndedEventArgs e)
+        {
+            swipeViews.Add(sender as SwipeView);
+        }
+
+       
     }
 }
 
