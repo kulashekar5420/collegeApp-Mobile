@@ -205,7 +205,7 @@ public class HodsViewModel : INotifyBaseViewModel
         await LoadAvailableTeachersAsync();
         await App.DatabaseforSchool.SaveHodsAsync(hod);
         Hods.Add(hod);
-       
+        IsNoDataVisible = Hods.Count == 0;
 
     }
 

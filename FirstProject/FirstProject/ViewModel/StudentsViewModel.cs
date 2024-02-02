@@ -14,6 +14,7 @@ public class StudentsViewModel : INotifyBaseViewModel
     private bool isNoDataVisible;
     private bool isRefreshing;
     private ObservableCollection<StudentsModel> students;
+    private ObservableCollection<StudentsModel> teacherstudents;
     private ObservableCollection<TeachersModel> availableTeachers;
     private ObservableCollection<TeachersModel> availableDepteachers;
     private readonly Dictionary<string, int> departmentOrderNumbers = new Dictionary<string, int>();
@@ -53,6 +54,16 @@ public class StudentsViewModel : INotifyBaseViewModel
         {
             students = value;
             OnPropertyChanged(nameof(Students));
+        }
+    }
+
+    public ObservableCollection<StudentsModel> TeacherStudents
+    {
+        get { return teacherstudents; }
+        set
+        {
+            teacherstudents = value;
+            OnPropertyChanged(nameof(TeacherStudents));
         }
     }
     public ObservableCollection<TeachersModel> AvailableTeachers
@@ -194,7 +205,7 @@ public class StudentsViewModel : INotifyBaseViewModel
     public async Task LoadStudentsByTeacher(TeachersModel teacher)
     {
         var studentsList = await GetStudentsByTeacherAsync(teacher);
-        Students = new ObservableCollection<StudentsModel>(studentsList);
+        TeacherStudents = new ObservableCollection<StudentsModel>(studentsList);
         IsNoDataVisible = Students.Count == 0;
     }
 

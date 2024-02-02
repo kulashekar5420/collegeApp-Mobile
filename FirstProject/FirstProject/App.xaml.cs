@@ -8,7 +8,7 @@ namespace FirstProject
         
         public static SchoolDatabase DatabaseforSchool { get; private set; }
         public static StudentsViewModel StudentViewModel { get; private set; }
-        public static TeachersViewModel TeacherViewModel { get; private set; }
+        public static TeachersViewModel TeacherViewModel { get; private set; }  
         public static HodsViewModel HodsViewModel { get; private set; }
 
 
@@ -22,7 +22,7 @@ namespace FirstProject
             StudentViewModel = new StudentsViewModel();
             TeacherViewModel = new TeachersViewModel();
             HodsViewModel = new HodsViewModel();
-            
+          
             //MainPage Navigation
             MainPage = new NavigationPage(new MainPage());
 
