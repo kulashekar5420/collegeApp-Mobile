@@ -167,6 +167,7 @@
                            Margin="0,-1,0,0">
                         </FirstProject:CustomPicker>
                     </Frame>
+
                 </StackLayout>
 
                 <Button Text="Add Student"

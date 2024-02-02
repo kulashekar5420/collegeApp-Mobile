@@ -152,7 +152,9 @@ public class TeachersViewModel : INotifyBaseViewModel
        // If it's a normal teacher, add the teacher without checking for class teacher
        await App.DatabaseforSchool.SaveTeachersAsync(teacher);
        Teachers.Add(teacher);
-       
+
+       IsNoDataVisible = Teachers.Count == 0;
+
     }
 
 

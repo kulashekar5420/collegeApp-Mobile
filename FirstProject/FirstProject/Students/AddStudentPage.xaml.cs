@@ -35,6 +35,7 @@ namespace FirstProject.Students
             studentYearPicker.SelectedIndexChanged += StudentYearPicker_SelectedIndexChanged;
             statePicker.SelectedIndexChanged += StatePicker_SelectedIndexChanged;
 
+
             availableHods = new ObservableCollection<HodsModel>();
             availableDepTeachers = new ObservableCollection<TeachersModel>();
 
@@ -43,7 +44,11 @@ namespace FirstProject.Students
             LoadAvailableTeachers();
             LoadAvailableHods();
 
-            //Based on the Connectivity the method will be trigger
+            
+            statePicker.Items.Add("NA");
+            statePicker.SelectedIndex = 0;
+
+            //Based on the Connectivity the method will be triggered
             if (Connectivity.NetworkAccess == NetworkAccess.Internet)
             {
                 LoadStatesDataAsync();
@@ -52,7 +57,7 @@ namespace FirstProject.Students
             {
                 LoadLocalStates();
             }
-            
+
         }
 
         //Load the localstates from the database and load it on statepicker
@@ -64,6 +69,12 @@ namespace FirstProject.Students
             {
                 statePicker.ItemsSource = localStates.Select(state => state.Name).ToList();
             }
+            else
+            {
+                await DisplayAlert("Oops, Turn on your Internet",
+                                 "There's no data available. Make sure your internet is on",
+                                 "OK");
+            }
         }
 
         private async Task SaveLocalStates(List<StateModel> states)
@@ -71,10 +82,11 @@ namespace FirstProject.Students
             await schoolDatabase.SaveStatesAsync(states);
         }
 
-        private void StatePicker_SelectedIndexChanged(object sender, EventArgs e)
+        private  void StatePicker_SelectedIndexChanged(object sender, EventArgs e)
         {
             string selectedState = statePicker.SelectedItem as string;
             ((StudentsViewModel)BindingContext).StudentState = selectedState;
+
         }
 
         //LoadStates from the API url and sava into the Local SQLite database
@@ -254,6 +266,5 @@ namespace FirstProject.Students
             await Navigation.PopAsync();
         }
 
-       
     }
 }

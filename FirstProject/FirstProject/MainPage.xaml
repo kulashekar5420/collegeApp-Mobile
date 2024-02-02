@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FirstProject.MainPage"
-            NavigationPage.HasNavigationBar="False"
+             NavigationPage.HasNavigationBar="False"
              BackgroundImageSource="bgshape" >
     
     <ContentPage.Content>
@@ -15,8 +15,8 @@
                            FontSize="45"
                            FontAttributes="Bold"
                            TextColor="Yellow"        />
-                    <Label Text="Thapovan School App"
-                           Margin="30,0"
+                    <Label Text="Thapovan CollegeGo"
+                           Margin="33,0"
                            FontSize="25"
                            FontAttributes="Bold"
                            TextColor="White"/>
@@ -28,7 +28,7 @@
             
             <StackLayout VerticalOptions="StartAndExpand" Padding="20" Margin="0,0,0,-10">
                 <Label 
-                    Text="Thapovan School App"
+                    Text="Thapovan College App"
                     TextColor="Black"
                     Margin="0,-10,0,-10"
                     FontAttributes="Bold"

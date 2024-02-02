@@ -11,6 +11,8 @@ namespace FirstProject.Students
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class StudentPage : ContentPage
     {
+        private string studentDepartment;
+        private static string selectedDepartment;
         private bool isProcessingTap = false;
         private bool isProcessingButtonClick = false;
         List<SwipeView> swipeViews { set; get; }
@@ -26,11 +28,7 @@ namespace FirstProject.Students
         {
             return true;
         }
-        protected override async void OnAppearing()
-        {
-            base.OnAppearing();
-            await App.StudentViewModel.LoadStudents();
-        } 
+      
         // Add Student Btn 
         private async void ImageButton_Clicked(object sender, EventArgs e)
         {

@@ -15,8 +15,8 @@
 
         <ToolbarItem
             Text="{Binding StudentDepartment, StringFormat={Null}, TargetNullValue='ALL'}"  
-            Order="Default"
- />
+            Order="Default"/>
+        
     </ContentPage.ToolbarItems>
     
     <ContentPage.Content>
@@ -24,9 +24,10 @@
             <RelativeLayout >
 
                 <CollectionView  
+                   x:Name="studentList"
                    ItemsSource="{Binding Students}" 
                    VerticalOptions="CenterAndExpand" 
-                    HorizontalOptions="CenterAndExpand"
+                   HorizontalOptions="CenterAndExpand"
                    Margin="15,15,15,20"
                    Background="white">
 
@@ -148,17 +149,20 @@
                     </CollectionView.ItemTemplate>
                 </CollectionView>
 
-                <Label 
-                   Text="No student found"
-                   FontAttributes="Bold"
-                   FontSize="Medium"
-                   TextColor="Black"
-                   IsVisible="{Binding IsNoDataVisible}"
-                   VerticalOptions="CenterAndExpand" 
-                   HorizontalOptions="CenterAndExpand"
-                   RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.5, Constant=-70}"
-                   RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.5, Constant=-50}"/>
-         
+                <StackLayout Opacity="0.3"  Margin="105,210,0,0" >
+                    <Image Source="usericon"
+                            WidthRequest="150"
+                            HeightRequest="150"
+                            IsVisible="{Binding IsNoDataVisible}"/>
+                    <Label 
+                         Text="No Student Found"
+                         FontAttributes="Bold"
+                         FontSize="Medium"
+                         TextColor="Black"
+                         IsVisible="{Binding IsNoDataVisible}"/>
+
+                </StackLayout>
+
                 <ImageButton
                 Clicked="ImageButton_Clicked"
                 Source="addstudenticon"

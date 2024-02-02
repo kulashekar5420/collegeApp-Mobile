@@ -1,4 +1,5 @@
-﻿using FirstProject.Teachers;
+﻿using Acr.UserDialogs;
+using FirstProject.Teachers;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -26,17 +27,22 @@ namespace FirstProject.REST_APIs
             LongPressCommand = new Command<UserData>(async (selectedItem) => await HandleLongPress(selectedItem));
             BindingContext = this;
             CheckInternetAndGetData();
+            
         }
-
+        
         private async void CheckInternetAndGetData()
         {
             if (Connectivity.NetworkAccess == NetworkAccess.Internet)
             {
+                //get the data from the api
                 await GetApiData();
             }
             else
-            {              
+            {    //Display the userdata from the Local database          
                 await DisplayLocalData();
+                await DisplayAlert("Oops, Something Went Wrong",
+                                 "Looks like there's no data available. Make sure your internet is on so we can save the data in the local database.",
+                                 "OK");
             }
         }
 
@@ -48,7 +54,7 @@ namespace FirstProject.REST_APIs
       
         //Get Data from the API 
         public async Task GetApiData()
-        {
+        {        
             var httpClient = new HttpClient();
 
             var response = await httpClient.GetStringAsync("https://reqres.in/api/users?page=1&per_page=15");
@@ -65,8 +71,16 @@ namespace FirstProject.REST_APIs
 
                 userListView.ItemsSource = users;
             }
+            else
+            {
+                refreshView.IsRefreshing = true;
+                userListView.ItemsSource = null;
+                refreshView.IsRefreshing = false;
+                
+            }
 
             refreshView.IsRefreshing = false;
+
         }
 
         private async Task SaveUserData(UserData userData)
@@ -102,9 +116,7 @@ namespace FirstProject.REST_APIs
             }
             else
             {
-                await DisplayAlert("Oops, Something Went Wrong",
-                                   "Looks like there's no data available. Make sure your internet is on so we can save the data in the local database.",
-                                   "OK");
+                return;
             }
 
             refreshView.IsRefreshing = false;

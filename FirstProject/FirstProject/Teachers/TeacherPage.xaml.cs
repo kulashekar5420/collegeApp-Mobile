@@ -21,13 +21,6 @@ namespace FirstProject.Teachers
 
         }
 
-        protected override async void OnAppearing()
-        {
-            base.OnAppearing();
-            await App.TeacherViewModel.LoadTeachers();
-        }
-
-
         private async void ImageButton_Clicked(object sender, EventArgs e)
         {
             if (!isProcessingButtonClick)

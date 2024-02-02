@@ -174,15 +174,21 @@
                 </CollectionView>
 
 
-                <Label 
-                Text="No teachers found"
-                FontAttributes="Bold"
-                FontSize="Medium"
-                TextColor="Black"
-                IsVisible="{Binding IsNoDataVisible}" 
-                 Margin="110,270,0,0"/>
-                <!-- Floating Action button custom - like ImageButton  -->
+                <StackLayout Opacity="0.3"  Margin="105,210,0,0" >
+                    <Image Source="usericon"
+                           WidthRequest="150"
+                           HeightRequest="150"
+                           IsVisible="{Binding IsNoDataVisible}"/>
+                    <Label 
+                        Text="No Teacher Found"
+                        FontAttributes="Bold"
+                        FontSize="Medium"
+                        TextColor="Black"
+                        IsVisible="{Binding IsNoDataVisible}"/>
 
+                </StackLayout>
+
+                <!-- Floating Action button custom - like ImageButton  -->
                 <ImageButton
                 Clicked="ImageButton_Clicked"
                 Source="addstudenticon"

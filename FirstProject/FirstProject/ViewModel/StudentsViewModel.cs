@@ -131,7 +131,20 @@ public class StudentsViewModel : INotifyBaseViewModel
         }
     }
 
-   
+
+    private static string selectedDepartment;
+    public string SelectedDepartment
+    {
+        get { return selectedDepartment; }
+        set
+        {
+            if (studentDepartment != value)
+            {
+                studentDepartment = value;
+                OnPropertyChanged(nameof(SelectedDepartment));
+            }
+        }
+    }
 
     public string Name { get; set; }
     public string Department { get; set; }
@@ -139,30 +152,42 @@ public class StudentsViewModel : INotifyBaseViewModel
     public string StudentYear { get; set; }
     public Command RefreshCommand { get;  set; }
     public string StudentState { get;  set; }
+    
 
     public StudentsViewModel()
     {
         databasePath = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "School.db");
         RefreshCommand = new Command(async () => await RefreshDataAsync());
         // Load students from the database
-        _ = LoadStudents();
+        LoadStudents();
     }
 
     private async Task RefreshDataAsync()
-    {     
-        await LoadStudentsByDepartment(studentDepartment);     
+    {
+        if(studentDepartment == null)
+        {
+            await LoadStudents();
+        }
+        else if (studentDepartment == "All")
+        {
+            await App.StudentViewModel.LoadAllDepartmentsStudents();
+        }
+        else
+        {          
+            await LoadStudentsByDepartment(studentDepartment);
+        }
     }
+
 
     public async Task LoadStudents()
     {
         IsRefreshing = true;
         var database = new SchoolDatabase(databasePath);
         var studentsList = await database.GetAllStudentsAsync();
-
+       
         // Create a new instance of ObservableCollection every time you refresh
         Students = new ObservableCollection<StudentsModel>(studentsList);
         IsNoDataVisible = Students.Count == 0;
-
         IsRefreshing = false;
     }
 
@@ -234,7 +259,6 @@ public class StudentsViewModel : INotifyBaseViewModel
         return LoadStudents();
     }
 
-
     public async Task AddStudentAsync(StudentsModel newStudent)
     {
         string generatedRollId = GenerateRollId(newStudent.StudentDepartment);
@@ -253,6 +277,8 @@ public class StudentsViewModel : INotifyBaseViewModel
 
         await App.DatabaseforSchool.SaveStudentAsync(student);
         Students.Add(student);
+
+        IsNoDataVisible = Students.Count == 0;
     }
     private string GenerateRollId(string department)
     {

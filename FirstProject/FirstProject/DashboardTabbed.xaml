@@ -46,7 +46,7 @@
                     IconImageSource="apiimg"
                     BarBackgroundColor="#1975D1">
         <x:Arguments>
-            <RestApi:ApiPage/>
+            <RestApi:ApiPage />
         </x:Arguments>
 
     </NavigationPage>
