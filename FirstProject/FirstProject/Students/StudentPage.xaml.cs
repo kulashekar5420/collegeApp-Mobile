@@ -28,7 +28,7 @@ namespace FirstProject.Students
         {
             return true;
         }
-      
+
         // Add Student Btn 
         private async void ImageButton_Clicked(object sender, EventArgs e)
         {

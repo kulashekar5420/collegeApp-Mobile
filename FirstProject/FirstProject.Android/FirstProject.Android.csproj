@@ -184,10 +184,13 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\linkicon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\nointernet.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties XamarinHotReloadGenericExceptionInfoBarFirstProjectAndroidHideInfoBar="True" XamarinHotReloadDebuggerTimeoutExceptionFirstProjectAndroidHideInfoBar="True" />
+      <UserProperties XamarinHotReloadDebuggerTimeoutExceptionFirstProjectAndroidHideInfoBar="True" XamarinHotReloadGenericExceptionInfoBarFirstProjectAndroidHideInfoBar="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

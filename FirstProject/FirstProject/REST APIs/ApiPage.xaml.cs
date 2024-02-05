@@ -8,6 +8,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration.WindowsSpecific;
 using Xamarin.Forms.Xaml;
 
 namespace FirstProject.REST_APIs
@@ -28,22 +29,25 @@ namespace FirstProject.REST_APIs
             BindingContext = this;
             CheckInternetAndGetData();
 
+
         }
 
         private async void CheckInternetAndGetData()
         {
             if (Connectivity.NetworkAccess == NetworkAccess.Internet)
             {
-                //get the data from the api
                 await GetApiData();
             }
             else
-            {    //Display the userdata from the Local database          
+            {
                 await DisplayLocalData();
-                await DisplayAlert("Oops, Something Went Wrong",
-                                 "Looks like there's no data available. Make sure your internet is on so we can save the data in the local database.",
-                                 "OK");
             }
+            if(userListView.ItemsSource == null)
+            {
+                NoDataVisible.IsVisible = true;
+                NoImageVisible.IsVisible = true;
+            }
+                   
         }
 
         public class UserContainer
@@ -56,7 +60,6 @@ namespace FirstProject.REST_APIs
         public async Task GetApiData()
         {
             var httpClient = new HttpClient();
-
             var response = await httpClient.GetStringAsync("https://reqres.in/api/users?page=1&per_page=15");
 
             var userContainer = JsonConvert.DeserializeObject<UserContainer>(response);
@@ -69,14 +72,16 @@ namespace FirstProject.REST_APIs
                     await SaveUserData(user);
                 }
 
-                userListView.ItemsSource = users;     
+                userListView.ItemsSource = users;             
+                userListView.IsVisible = true;
+                NoDataVisible.IsVisible = false; NoImageVisible.IsVisible = false;
             }
             else
             {
-                userListView.ItemsSource = null;
+                return;
             }
 
-            refreshView.IsRefreshing = false;
+            userListView.IsRefreshing = false;
         }
 
 
@@ -107,16 +112,15 @@ namespace FirstProject.REST_APIs
 
             if (localData != null && localData.Count > 0)
             {
+                NoDataVisible.IsVisible = false;
+                NoImageVisible.IsVisible = false;
                 // Clean the existing data
                 userListView.ItemsSource = null;
                 userListView.ItemsSource = localData;
-            }
-            else
-            {
-                return;
+                
             }
 
-            refreshView.IsRefreshing = false;
+            userListView.IsRefreshing = false;
         }
 
         //Add data image button like FloatingActionButton
@@ -203,8 +207,9 @@ namespace FirstProject.REST_APIs
             }
 
         }
-        //Pull to referesh
-        private async void OnRefresh(object sender, EventArgs e)
+        //Pull to referesh       
+
+        private async void userListView_Refreshing(object sender, EventArgs e)
         {
             if (Connectivity.NetworkAccess == NetworkAccess.Internet)
             {
@@ -212,7 +217,8 @@ namespace FirstProject.REST_APIs
             }
             else
             {
-                await DisplayLocalData();
+                await DisplayAlert("Something Went Wrong", "Kindly Turn on your internet, and Try again later", "OK");
+                userListView.IsRefreshing = false;
             }
         }
     }

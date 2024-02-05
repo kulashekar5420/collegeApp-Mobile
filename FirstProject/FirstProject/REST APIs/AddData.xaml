@@ -7,62 +7,66 @@
 
     <ContentPage.Content>
         <StackLayout Padding="5" Margin="20,30,30,0">
-            
             <Label Text="First Name" />
             <Frame CornerRadius="10" Padding="5" HasShadow="True">
                 <Grid>
                     <Image Source="usericon" 
-                 HeightRequest="20" 
-                 VerticalOptions="Center" 
-                 HorizontalOptions="Start" 
-                 Margin="10,0"/>
+                           HeightRequest="20" 
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Start" 
+                           Margin="10,0"/>
+
                     <local:CustomEntry 
-              x:Name="fnameEntry"
-              Placeholder="Enter first name" 
-              Keyboard="Text"
-              Text="{Binding first_name, Mode=TwoWay}"
-              BackgroundColor="Transparent"
-                         Margin="40,0,0,0"/>
+                           x:Name="fnameEntry"
+                           Placeholder="Enter first name" 
+                           Keyboard="Text"
+                           Text="{Binding first_name, Mode=TwoWay}"
+                           BackgroundColor="Transparent"
+                           Margin="40,0,0,0"/>
+                    
                 </Grid>
             </Frame>
+
             <Label x:Name="ErrorFname" TextColor="Red" Margin="0,-2,0,-3"/>
-
-
+            
             <Label Text="Last Name" />
             <Frame CornerRadius="10" Padding="5" HasShadow="True">
                 <Grid>
                     <Image Source="usericon" 
-                 HeightRequest="20" 
-                 VerticalOptions="Center" 
-                 HorizontalOptions="Start" Margin="10,0"/>
+                           HeightRequest="20" 
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Start" Margin="10,0"/>
+
                     <local:CustomEntry 
-              x:Name="lnameEntry"
-              Placeholder="Enter last name" 
-              Keyboard="Text"
-              Text="{Binding last_name, Mode=TwoWay}"
-              BackgroundColor="Transparent"
-                         Margin="40,0,0,0"/>
+                           x:Name="lnameEntry"
+                           Placeholder="Enter last name" 
+                           Keyboard="Text"
+                           Text="{Binding last_name, Mode=TwoWay}"
+                           BackgroundColor="Transparent"
+                                     Margin="40,0,0,0"/>
                 </Grid>
             </Frame>
+            
             <Label x:Name="ErrorLname" TextColor="Red" Margin="0,-2,0,-3"/>
 
             <Label Text="Email" />
             <Frame CornerRadius="10" Padding="5" HasShadow="True">
                 <Grid>
                     <Image Source="emailicon" 
-                 HeightRequest="20" 
-                 VerticalOptions="Center" 
-                 HorizontalOptions="Start" Margin="10,0"/>
-                    <local:CustomEntry 
-              x:Name="emailEntry"
-              Placeholder="Enter email" 
-              Keyboard="Email"
-              Text="{Binding email, Mode=TwoWay}"
-              BackgroundColor="Transparent"
-                         Margin="40,0,0,0"/>
-                </Grid>
+                           HeightRequest="20" 
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Start" Margin="10,0"/>
 
+                    <local:CustomEntry 
+                           x:Name="emailEntry"
+                           Placeholder="Enter email" 
+                           Keyboard="Email"
+                           Text="{Binding email, Mode=TwoWay}"
+                           BackgroundColor="Transparent"
+                           Margin="40,0,0,0"/>
+                </Grid>
             </Frame>
+            
             <Label x:Name="ErrorEmail" TextColor="Red" Margin="0,-2,0,-3"/>
 
             <Label Text="Avatar Link"/>
@@ -73,12 +77,12 @@
                            HorizontalOptions="Start"
                            Margin="10,0"/>
                     <local:CustomEntry
-                        x:Name="avatarEntry"
-                        Placeholder="Enter your link"
-                        Keyboard="Url"
-                        Text="{Binding avatar, Mode=TwoWay}"
-                        BackgroundColor="Transparent"
-                         Margin="40,0,0,0"/>
+                           x:Name="avatarEntry"
+                           Placeholder="Enter your link"
+                           Keyboard="Url"
+                           Text="{Binding avatar, Mode=TwoWay}"
+                           BackgroundColor="Transparent"
+                           Margin="40,0,0,0"/>
                 </Grid>
 
             </Frame>

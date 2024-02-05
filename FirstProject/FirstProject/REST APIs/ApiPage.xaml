@@ -6,29 +6,25 @@
              Title="API's Dashboard" BackgroundColor="White">
 
     <ContentPage.Content>
-        <RelativeLayout Margin="0,20,0,10">
+        <RelativeLayout Margin="0,20,0,0">
             <StackLayout>
-                <ScrollView>
-                    <RefreshView 
-                        x:Name="refreshView" 
-                        Command="{Binding RefreshCommand}" 
-                        IsRefreshing="{Binding IsRefreshing}" 
-                        Refreshing="OnRefresh">
 
-                        <ListView
+                <ListView
                             x:Name="userListView"
                             HasUnevenRows="True"
-                            HeightRequest="690"
-                            VerticalOptions="CenterAndExpand"
+                            HeightRequest="600"
+                            IsPullToRefreshEnabled="True"
+                            Refreshing="userListView_Refreshing"
+                            VerticalOptions="StartAndExpand"
                             BackgroundColor="Transparent"
                             SeparatorVisibility="None">
 
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <ViewCell>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
 
-                                        <StackLayout>
-                                            <Frame CornerRadius="25" 
+                                <StackLayout>
+                                    <Frame CornerRadius="25" 
                                                    HeightRequest="40"
                                                    HorizontalOptions="FillAndExpand"
                                                    Margin="15,5,15,5"
@@ -42,43 +38,55 @@
                                                    xct:TouchEffect.PressedOpacity="0.6"
                                                    xct:TouchEffect.PressedBackgroundColor="#64B5F6">
 
-                                                <Frame.GestureRecognizers>
-                                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
-                                                </Frame.GestureRecognizers>
+                                        <Frame.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                                        </Frame.GestureRecognizers>
 
-                                                <StackLayout Orientation="Horizontal">
-                                                    <Frame CornerRadius="50"
+                                        <StackLayout Orientation="Horizontal">
+                                            <Frame CornerRadius="50"
                                                            WidthRequest="20"
                                                            HeightRequest="20"
                                                            Margin="-5,-10,10,-10">
-                                                        <Image Source="{Binding avatar}"
+                                                <Image Source="{Binding avatar}"
                                                                Aspect="AspectFill"
                                                                Margin="-20,-20,-20,-20"/>
-                                                    </Frame>
-                                                    <StackLayout VerticalOptions="Center" Spacing="1">
-                                                        <StackLayout Orientation="Horizontal">
-                                                            <Label Text="{Binding first_name}"
-                                                                   FontAttributes="Bold"
-                                                                   TextColor="Black"/>
-                                                            <Label Text="{Binding last_name}"
-                                                                   FontAttributes="Bold"
-                                                                   TextColor="Black"/>
-                                                        </StackLayout>
-                                                        <Label Text="{Binding email}"
-                                                               TextColor="Black"/>
-                                                    </StackLayout>
-
-                                                </StackLayout>
                                             </Frame>
+                                            <StackLayout VerticalOptions="Center" Spacing="1">
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label Text="{Binding first_name}"
+                                                                   FontAttributes="Bold"
+                                                                   TextColor="Black"/>
+                                                    <Label Text="{Binding last_name}"
+                                                                   FontAttributes="Bold"
+                                                                   TextColor="Black"/>
+                                                </StackLayout>
+                                                <Label Text="{Binding email}"
+                                                               TextColor="Black"/>
+                                            </StackLayout>
+
                                         </StackLayout>
-                                    </ViewCell>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
-                    </RefreshView>
-                </ScrollView>
+                                    </Frame>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
             </StackLayout>
 
+            <StackLayout Opacity="0.4" Margin="60,60">
+                <Image x:Name="NoImageVisible"
+                       Source="nointernet"
+                       HeightRequest="250"
+                       IsVisible="False"/>
+                <Label x:Name="NoDataVisible"
+                       Text="No User Found"
+                       HorizontalTextAlignment="Center"
+                       FontSize="25"
+                       FontAttributes="Bold"
+                       IsVisible="False"/>
+            </StackLayout>
+            
             <ImageButton
                 Source="addstudenticon"         
                 BackgroundColor="Transparent"

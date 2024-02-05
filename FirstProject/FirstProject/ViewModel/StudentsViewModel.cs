@@ -12,6 +12,7 @@ public class StudentsViewModel : INotifyBaseViewModel
 {
     private readonly string databasePath;
     private bool isNoDataVisible;
+    private bool isNoStudentsVisible;
     private bool isRefreshing;
     private ObservableCollection<StudentsModel> students;
     private ObservableCollection<StudentsModel> teacherstudents;
@@ -34,6 +35,23 @@ public class StudentsViewModel : INotifyBaseViewModel
             }
         }
     }
+
+
+    public bool IsNoStudentsVisible
+    {
+        get { return isNoStudentsVisible;  }
+        set
+        {
+            if (isNoStudentsVisible != value)
+            {
+                isNoStudentsVisible = value;
+                OnPropertyChanged(nameof(IsNoStudentsVisible));
+            }
+        }
+    }
+    
+
+    
     public bool IsRefreshing
     {
         get { return isRefreshing; }
@@ -206,7 +224,7 @@ public class StudentsViewModel : INotifyBaseViewModel
     {
         var studentsList = await GetStudentsByTeacherAsync(teacher);
         TeacherStudents = new ObservableCollection<StudentsModel>(studentsList);
-        IsNoDataVisible = TeacherStudents.Count == 0;
+        IsNoStudentsVisible = TeacherStudents.Count == 0;    
     }
 
     public async Task<List<StudentsModel>> GetStudentsByTeacherAsync(TeachersModel teacher)
@@ -346,6 +364,7 @@ public class StudentsViewModel : INotifyBaseViewModel
         var studentsList = await GetStudentsByTeacherAsync(teacher);
         TeacherStudents = new ObservableCollection<StudentsModel>(studentsList);
 
-        IsNoDataVisible = Students.Count == 0;
+        IsNoStudentsVisible = TeacherStudents.Count == 0;
+        
     }
 }
