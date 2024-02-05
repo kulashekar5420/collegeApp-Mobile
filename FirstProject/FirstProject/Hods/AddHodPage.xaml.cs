@@ -54,9 +54,7 @@ namespace FirstProject.Hods
 
                 generatedHodid = await GenerateHodidAsync(selectedTeacher.TeacherDepartment);
                 rollIdLabel.Text = $"{generatedHodid}";
-
-            }
-           
+            }          
         }
         
         private async Task<string> GenerateHodidAsync(string teacher)
@@ -97,7 +95,6 @@ namespace FirstProject.Hods
                     return;
                 }
 
-
                 // Show the loading
                 UserDialogs.Instance.ShowLoading("Loading");
 
@@ -105,12 +102,11 @@ namespace FirstProject.Hods
                
                 // Hide the loading
                 UserDialogs.Instance.HideLoading();
-
                 await Navigation.PopAsync();
             }
             else
             {
-                await DisplayAlert("Error", "Please select a teacher.", "OK");
+                await DisplayAlert(" HOD Error", "Please select a teacher.", "OK");
             }
         }
 

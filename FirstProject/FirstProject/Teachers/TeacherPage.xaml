@@ -147,11 +147,11 @@
                                             <Grid>
 
                                                 <Label
-                                                Grid.Column="1" 
-                                                Text="View Students" 
-                                                FontSize="15" 
-                                                FontAttributes="Bold" 
-                                                TextColor="#2196F3">
+                                                    Grid.Column="1" 
+                                                    Text="View Students" 
+                                                    FontSize="15" 
+                                                    FontAttributes="Bold" 
+                                                    TextColor="#2196F3">
 
                                                     <Label.GestureRecognizers>
                                                         <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_2"></TapGestureRecognizer>

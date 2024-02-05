@@ -18,7 +18,7 @@
                         <ListView
                             x:Name="userListView"
                             HasUnevenRows="True"
-                            HeightRequest="600"
+                            HeightRequest="690"
                             VerticalOptions="CenterAndExpand"
                             BackgroundColor="Transparent"
                             SeparatorVisibility="None">
@@ -40,7 +40,7 @@
                                                    xct:TouchEffect.AnimationEasing="{x:Static Easing.CubicOut}"
                                                    xct:TouchEffect.PressedScale="0.95"
                                                    xct:TouchEffect.PressedOpacity="0.6"
-                                                   xct:TouchEffect.PressedBackgroundColor="LightBlue">
+                                                   xct:TouchEffect.PressedBackgroundColor="#64B5F6">
 
                                                 <Frame.GestureRecognizers>
                                                     <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
@@ -67,7 +67,7 @@
                                                         <Label Text="{Binding email}"
                                                                TextColor="Black"/>
                                                     </StackLayout>
-                                                   
+
                                                 </StackLayout>
                                             </Frame>
                                         </StackLayout>

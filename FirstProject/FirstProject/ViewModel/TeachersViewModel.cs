@@ -85,10 +85,8 @@ public class TeachersViewModel : INotifyBaseViewModel
     public TeachersViewModel()
     {
         databasePath = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "School.db");
-        _ = LoadTeachers();
         RefreshCommand = new Command(async () => await RefreshDataAsync());
-
-
+        LoadTeachers();
     }
 
     private async Task RefreshDataAsync()

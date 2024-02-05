@@ -206,7 +206,7 @@ public class StudentsViewModel : INotifyBaseViewModel
     {
         var studentsList = await GetStudentsByTeacherAsync(teacher);
         TeacherStudents = new ObservableCollection<StudentsModel>(studentsList);
-        IsNoDataVisible = Students.Count == 0;
+        IsNoDataVisible = TeacherStudents.Count == 0;
     }
 
     public async Task<List<StudentsModel>> GetStudentsByTeacherAsync(TeachersModel teacher)
@@ -344,7 +344,7 @@ public class StudentsViewModel : INotifyBaseViewModel
 
         //get the updated students list in the databse
         var studentsList = await GetStudentsByTeacherAsync(teacher);
-        Students = new ObservableCollection<StudentsModel>(studentsList);
+        TeacherStudents = new ObservableCollection<StudentsModel>(studentsList);
 
         IsNoDataVisible = Students.Count == 0;
     }

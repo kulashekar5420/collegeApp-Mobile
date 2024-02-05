@@ -27,9 +27,9 @@ namespace FirstProject.REST_APIs
             LongPressCommand = new Command<UserData>(async (selectedItem) => await HandleLongPress(selectedItem));
             BindingContext = this;
             CheckInternetAndGetData();
-            
+
         }
-        
+
         private async void CheckInternetAndGetData()
         {
             if (Connectivity.NetworkAccess == NetworkAccess.Internet)
@@ -51,17 +51,17 @@ namespace FirstProject.REST_APIs
             [JsonProperty("data")]
             public List<UserData> Data { get; set; }
         }
-      
+
         //Get Data from the API 
         public async Task GetApiData()
-        {        
+        {
             var httpClient = new HttpClient();
 
             var response = await httpClient.GetStringAsync("https://reqres.in/api/users?page=1&per_page=15");
 
             var userContainer = JsonConvert.DeserializeObject<UserContainer>(response);
 
-            if (userContainer != null && userContainer.Data != null)
+            if (userContainer != null && userContainer.Data != null && userContainer.Data.Count > 0)
             {
                 var users = userContainer.Data;
                 foreach (var user in users)
@@ -69,19 +69,16 @@ namespace FirstProject.REST_APIs
                     await SaveUserData(user);
                 }
 
-                userListView.ItemsSource = users;
+                userListView.ItemsSource = users;     
             }
             else
             {
-                refreshView.IsRefreshing = true;
                 userListView.ItemsSource = null;
-                refreshView.IsRefreshing = false;
-                
             }
 
             refreshView.IsRefreshing = false;
-
         }
+
 
         private async Task SaveUserData(UserData userData)
         {

@@ -20,7 +20,13 @@ namespace FirstProject.Hods
             swipeViews = new List<SwipeView>();
 
         }
-        
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            App.HodsViewModel.LoadHods();
+
+        }
         private async void ImageButton_Clicked(object sender, EventArgs e)
         {
             if (!isProcessingButtonClick)

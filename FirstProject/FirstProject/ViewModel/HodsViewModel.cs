@@ -22,7 +22,7 @@ public class HodsViewModel : INotifyBaseViewModel
     private string hodId;
     public Command RefreshCommand { get; set; }
 
-    private int openItemIndex = -1; // -1 indicates no open item
+    private int openItemIndex = -1;
     public int OpenItemIndex
     {
         get { return openItemIndex; }
@@ -147,7 +147,7 @@ public class HodsViewModel : INotifyBaseViewModel
     {
         databasePath = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "School.db");
         RefreshCommand = new Command(async () => await RefreshDataAsync());
-        Task task = LoadHods();
+        LoadHods();
     }
 
     private async Task RefreshDataAsync()
@@ -205,6 +205,7 @@ public class HodsViewModel : INotifyBaseViewModel
         await LoadAvailableTeachersAsync();
         await App.DatabaseforSchool.SaveHodsAsync(hod);
         Hods.Add(hod);
+        
         IsNoDataVisible = Hods.Count == 0;
 
     }
