@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:FirstProject" 
-             xmlns:FirstProject="clr-namespace:FirstProject"
+             xmlns:FirstProject="clr-namespace:FirstProject" xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              x:Class="FirstProject.Students.AddStudentPage"
              Title="Add Student">
 
@@ -19,7 +19,7 @@
                    HorizontalOptions="StartAndExpand"/>
 
                 <StackLayout>
-                    <Label Text="Name:" />
+                    <Label Text="Name" />
                     <Frame CornerRadius="10" Padding="4" Margin="0,0,0,0" HasShadow="True">
                         <local:CustomEntry 
                              x:Name="nameEntry"
@@ -33,7 +33,7 @@
 
 
                 <StackLayout>
-                    <Label Text="Department:" />
+                    <Label Text="Department" />
                     <Frame CornerRadius="10"
                        Padding="4"  Margin="0,0,0,0"
                        HasShadow="True">
@@ -59,7 +59,7 @@
                 </StackLayout>
 
                 <StackLayout>
-                    <Label Text="Student Year :" />
+                    <Label Text="Student Year " />
                     <Frame x:Name="yearFrame"
                            CornerRadius="10"
                            Padding="4"
@@ -87,7 +87,7 @@
 
 
                 <StackLayout>
-                    <Label Text="Roll No (Auto Generated) :" />
+                    <Label Text="Roll No (Auto Generated) " />
                     <Frame 
                        CornerRadius="10"
                        Padding="14"  
@@ -103,7 +103,7 @@
                 </StackLayout>
                 <StackLayout>
 
-                    <Label Text="Gender:" />
+                    <Label Text="Gender" />
                     <Frame CornerRadius="10"
                        Padding="4"  Margin="0,0,0,0"
                        HasShadow="True">
@@ -127,7 +127,7 @@
                 </StackLayout>
 
                 <StackLayout>
-                    <Label Text="Department Hod :" />
+                    <Label Text="Department Hod " />
                     <Frame CornerRadius="10"
                        Padding="14" 
                        Margin="0,0,0,0"
@@ -142,7 +142,7 @@
                 </StackLayout>
 
                 <StackLayout>
-                    <Label Text="Class Teacher :"/>
+                    <Label Text="Class Teacher "/>
                     <Frame CornerRadius="10"
                            Padding="14"
                            Margin="0,0,0,0"
@@ -156,18 +156,26 @@
 
                     </Frame>
                 </StackLayout>
-                <StackLayout>
-                    <Label Text="State:" />
-                    <Frame CornerRadius="10" Padding="4" Margin="0,0,0,0" HasShadow="True">
-                        <FirstProject:CustomPicker 
-                           x:Name="statePicker" 
-                           Title="Select your state"
-                           BackgroundColor="Transparent"
-                           SelectedItem="{Binding StudentState, Mode=TwoWay}"
-                           Margin="0,-1,0,0">
-                        </FirstProject:CustomPicker>
-                    </Frame>
 
+
+
+                <StackLayout>
+                    <Label Text="Select your state"/>
+                    <Frame x:Name="stateFrame"  CornerRadius="10" Padding="4" HasShadow="True" HeightRequest="40" >
+
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1"/>
+                        </Frame.GestureRecognizers>
+                        
+                        <FirstProject:CustomPicker
+                            x:Name="statePicker" 
+                            Title="Select your state"
+                            SelectedItem="{Binding StudentState, Mode=TwoWay}"                           
+                            IsVisible="False">
+
+                        </FirstProject:CustomPicker>
+
+                    </Frame>
                 </StackLayout>
 
                 <Button Text="Add Student"

@@ -11,8 +11,6 @@ namespace FirstProject.Students
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class StudentPage : ContentPage
     {
-        private string studentDepartment;
-        private static string selectedDepartment;
         private bool isProcessingTap = false;
         private bool isProcessingButtonClick = false;
         List<SwipeView> swipeViews { set; get; }

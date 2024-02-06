@@ -9,13 +9,14 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms.Xaml;
 
 namespace FirstProject.Students
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AddStudentPage : ContentPage
-    {
+    {       
         private static int orderNumber = 1;
         private string generatedRollId;
         private string MappingHod;
@@ -25,7 +26,6 @@ namespace FirstProject.Students
         private ObservableCollection<HodsModel> availableHods;
         private ObservableCollection<TeachersModel> availableDepteachers;
         private SchoolDatabase schoolDatabase;
- 
         public AddStudentPage()
         {
             InitializeComponent();
@@ -35,7 +35,6 @@ namespace FirstProject.Students
             studentYearPicker.SelectedIndexChanged += StudentYearPicker_SelectedIndexChanged;
             statePicker.SelectedIndexChanged += StatePicker_SelectedIndexChanged;
 
-
             availableHods = new ObservableCollection<HodsModel>();
             availableDepTeachers = new ObservableCollection<TeachersModel>();
 
@@ -43,21 +42,7 @@ namespace FirstProject.Students
             schoolDatabase = App.DatabaseforSchool;
             LoadAvailableTeachers();
             LoadAvailableHods();
-
-            
-            statePicker.Items.Add("NA");
-            statePicker.SelectedIndex = 0;
-
-            //Based on the Connectivity the method will be triggered
-            if (Connectivity.NetworkAccess == NetworkAccess.Internet)
-            {
-                LoadStatesDataAsync();
-            }
-            else
-            {
-                LoadLocalStates();
-            }
-
+           
         }
 
         //Load the localstates from the database and load it on statepicker
@@ -66,15 +51,17 @@ namespace FirstProject.Students
             localStates = await schoolDatabase.GetAllStatesAsync();
 
             if (localStates.Any())
-            {
+            {               
                 statePicker.ItemsSource = localStates.Select(state => state.Name).ToList();
+
+                // Open the picker without selecting any item
+                statePicker.Focus();
             }
             else
             {
-                await DisplayAlert("Oops, Turn on your Internet",
-                                 "There's no data available. Make sure your internet is on",
-                                 "OK");
-            }
+                statePicker.IsVisible = false;
+            }         
+            
         }
 
         private async Task SaveLocalStates(List<StateModel> states)
@@ -91,20 +78,27 @@ namespace FirstProject.Students
 
         //LoadStates from the API url and sava into the Local SQLite database
         //Tabel Name StateModels
+
         private async void LoadStatesDataAsync()
-        { 
+        {
+            UserDialogs.Instance.ShowLoading("Loading States");
             using (HttpClient client = new HttpClient())
             {
                 string url = "https://gist.githubusercontent.com/shubhamjain/35ed77154f577295707a/raw/7bc2a915cff003fb1f8ff49c6890576eee4f2f10/IndianStates.json";
                 string json = await client.GetStringAsync(url);
-                Dictionary<string, string> statesData = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);     
-                
+                Dictionary<string, string> statesData = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
+
                 List<StateModel> stateModels = statesData.Select(kv => new StateModel { Abbreviation = kv.Key, Name = kv.Value }).ToList();
                 await SaveLocalStates(stateModels);
                 statePicker.ItemsSource = stateModels.Select(state => state.Name).ToList();
+
+                // Open the picker without selecting any item
+                statePicker.Focus();
             }
-           
+
+            UserDialogs.Instance.HideLoading();
         }
+
 
         private async void LoadAvailableHods()
         {
@@ -266,5 +260,23 @@ namespace FirstProject.Students
             await Navigation.PopAsync();
         }
 
+
+
+        private async void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
+        {   
+            if (Connectivity.NetworkAccess == NetworkAccess.Internet)
+            {
+                statePicker.IsVisible = true;
+                LoadStatesDataAsync();
+            }
+            else 
+            {
+                await DisplayAlert("No Internet Connection", "Please connect your mobile to the internet and try again", "OK");
+
+                statePicker.IsVisible = true;
+                LoadLocalStates();
+               
+            }
+        }
     }
 }
