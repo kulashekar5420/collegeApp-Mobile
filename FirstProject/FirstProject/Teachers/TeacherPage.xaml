@@ -156,16 +156,24 @@
                     </CollectionView.ItemTemplate>
                 </CollectionView>
 
-                <StackLayout Opacity="0.3"  Margin="105,210,0,0" >
-                    <Image Source="usericon"
-                           WidthRequest="150"
-                           HeightRequest="150"
+                <StackLayout Opacity="0.5"  Margin="35,110,35,0" >
+                    <Image Source="nodata1"
                            IsVisible="{Binding IsNoDataVisible}"/>
                     <Label Text="No Teacher Found"
                            FontAttributes="Bold"
-                           FontSize="Medium"
+                           FontSize="30"
+                           Opacity="0.4"
                            TextColor="Black"
+                           HorizontalTextAlignment="Center"
                            IsVisible="{Binding IsNoDataVisible}"/>
+                    <Label
+                       Text="If you're experiencing no data issues, try add teacher and pull to refresh. Your data will be loaded accordingly form the local database."
+                       HorizontalTextAlignment="Center"
+                       Margin="5,0,5,0"
+                       FontSize="15"
+                       Opacity="0.4"
+                       FontAttributes="Bold"
+                       IsVisible="{Binding IsNoDataVisible}"/>
 
                 </StackLayout>
 

@@ -3,6 +3,9 @@ using Android.Content.PM;
 using Android.Runtime;
 using Android.OS;
 using Acr.UserDialogs;
+using FirstProject.Contacts;
+using Xamarin.Forms.Platform.Android;
+using Xamarin.Forms;
 
 namespace FirstProject.Droid
 {
@@ -15,7 +18,7 @@ namespace FirstProject.Droid
             UserDialogs.Init(this);
             Rg.Plugins.Popup.Popup.Init(this); // Initialize Popup Plugin
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
-            global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            global::Xamarin.Forms.Forms.Init(this, savedInstanceState);            
             LoadApplication(new App());
         }
 
@@ -24,5 +27,6 @@ namespace FirstProject.Droid
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
+
     }
 }

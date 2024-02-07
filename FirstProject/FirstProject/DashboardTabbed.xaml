@@ -7,6 +7,7 @@
             x:Class="FirstProject.DashboardTabbed"
             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core" 
             xmlns:RestApi="clr-namespace:FirstProject.REST_APIs"
+            xmlns:Contacts="clr-namespace:FirstProject.Contacts"
             android:TabbedPage.ToolbarPlacement="Bottom"
             NavigationPage.HasNavigationBar="False"
             SelectedTabColor="White"
@@ -47,6 +48,14 @@
                     BarBackgroundColor="#1975D1">
         <x:Arguments>
             <RestApi:ApiPage />
+        </x:Arguments>
+
+    </NavigationPage>
+    <NavigationPage Title="Contacts"
+                 IconImageSource="contactimg"
+                 BarBackgroundColor="#1975D1">
+        <x:Arguments>
+            <Contacts:ContactsPage />
         </x:Arguments>
 
     </NavigationPage>

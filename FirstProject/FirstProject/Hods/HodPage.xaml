@@ -114,17 +114,24 @@
                 </CollectionView>
             </RefreshView>
 
-            <StackLayout Opacity="0.3"  Margin="105,210,0,0" >
-                <Image Source="usericon"
-                       WidthRequest="150"
-                       HeightRequest="150"
+            <StackLayout Opacity="0.5"  Margin="35,110,35,0" >
+                <Image Source="nodata2"
                        IsVisible="{Binding IsNoDataVisible}"/>
                 <Label Text="No Hod Found"
                        FontAttributes="Bold"
-                       FontSize="Medium"
+                       FontSize="30"
+                       Opacity="0.4"
                        HorizontalOptions="Center"
                        TextColor="Black"
                        IsVisible="{Binding IsNoDataVisible}"/>
+                <Label
+                        Text="If you're experiencing no data issues, try add hod and pull to refresh. Your data will be loaded accordingly form the local database."
+                        HorizontalTextAlignment="Center"
+                        Margin="5,0,5,0"
+                        FontSize="15"
+                        Opacity="0.4"
+                        FontAttributes="Bold"
+                        IsVisible="{Binding IsNoDataVisible}"/>
             </StackLayout>
 
             <ImageButton Clicked="ImageButton_Clicked"

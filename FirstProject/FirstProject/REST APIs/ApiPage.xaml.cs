@@ -45,6 +45,7 @@ namespace FirstProject.REST_APIs
             if(userListView.ItemsSource == null)
             {
                 NoDataVisible.IsVisible = true;
+                NoDataVisible1.IsVisible = true;
                 NoImageVisible.IsVisible = true;
             }
                    
@@ -73,7 +74,9 @@ namespace FirstProject.REST_APIs
 
                 userListView.ItemsSource = users;             
                 userListView.IsVisible = true;
-                NoDataVisible.IsVisible = false; NoImageVisible.IsVisible = false;
+                NoDataVisible.IsVisible = false;
+                NoDataVisible1.IsVisible = false;
+                NoImageVisible.IsVisible = false;
             }
             else
             {
@@ -112,6 +115,7 @@ namespace FirstProject.REST_APIs
             if (localData != null && localData.Count > 0)
             {
                 NoDataVisible.IsVisible = false;
+                NoDataVisible1.IsVisible= false;
                 NoImageVisible.IsVisible = false;
                 // Clean the existing data
                 userListView.ItemsSource = null;

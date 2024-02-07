@@ -75,7 +75,7 @@
 
             </StackLayout>
 
-            <StackLayout Opacity="0.4" Margin="60,60">
+            <StackLayout Opacity="0.5"  Margin="55,70,35,0" HeightRequest="401">
                 <Image x:Name="NoImageVisible"
                        Source="nointernet"
                        HeightRequest="250"
@@ -83,9 +83,18 @@
                 <Label x:Name="NoDataVisible"
                        Text="No User Found"
                        HorizontalTextAlignment="Center"
-                       FontSize="25"
+                       FontSize="30"
+                       Opacity="0.4"
                        FontAttributes="Bold"
                        IsVisible="False"/>
+                <Label x:Name="NoDataVisible1"
+                     Text="If you're experiencing internet issues, try enabling it and pull to refresh. Your data will be loaded accordingly."
+                     HorizontalTextAlignment="Center"
+                       WidthRequest="20"
+                     FontSize="15"
+                     Opacity="0.4"
+                     FontAttributes="Bold"
+                     IsVisible="False"/>
             </StackLayout>
             
             <ImageButton
