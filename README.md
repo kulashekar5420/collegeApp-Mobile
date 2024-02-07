@@ -1,7 +1,7 @@
 # CollegeGo Mobile App (Xamarin.Forms) 🚀
 
-| **Project Name** | CollegeGo Mobile App |
-|:----------------:|:---------------------:|
+| **Project Name** | **CollegeGo Mobile App** |
+|:------------------|:------------------------:|
 | **Domain**       | Mobile App Development (Xamarin.Forms) |
 | **Software Tool**| Microsoft Visual Studio |
 
