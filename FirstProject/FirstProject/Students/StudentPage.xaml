@@ -11,8 +11,7 @@
              IconImageSource="filtericon"
              Clicked="ToolbarItem_Clicked"
              Order="Primary"/>
-           
-
+          
         <ToolbarItem
             Text="{Binding StudentDepartment, StringFormat={Null}, TargetNullValue='ALL'}"  
             Order="Default"/>
@@ -33,8 +32,10 @@
 
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <SwipeView HeightRequest="100" BackgroundColor="White" 
-                                       SwipeStarted="SwipeView_SwipeStarted" SwipeEnded="SwipeView_SwipeEnded">
+                            <SwipeView HeightRequest="100" 
+                                       BackgroundColor="White" 
+                                       SwipeStarted="SwipeView_SwipeStarted" 
+                                       SwipeEnded="SwipeView_SwipeEnded">
 
                                 <SwipeView.RightItems >
                                     <SwipeItems >
@@ -60,11 +61,11 @@
                                 </SwipeView.RightItems>
 
                                 <Frame
-                                   BackgroundColor="White"
-                                   Margin="5" 
-                                   CornerRadius="20" 
-                                   VerticalOptions="CenterAndExpand" 
-                                   HeightRequest="80">
+                                       BackgroundColor="White"
+                                       Margin="5" 
+                                       CornerRadius="20" 
+                                       VerticalOptions="CenterAndExpand" 
+                                       HeightRequest="80">
 
                                     <Frame.GestureRecognizers>
                                         <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_2"/>
@@ -92,7 +93,11 @@
 
                                                 </Grid.ColumnDefinitions>
 
-                                                <Label Grid.Column="1" Text="{Binding StudentName}" FontSize="15" FontAttributes="Bold" TextColor="Black" Margin="0,0,0,-5"/>
+                                                <Label Grid.Column="1" Text="{Binding StudentName}" 
+                                                       FontSize="15" 
+                                                       FontAttributes="Bold" 
+                                                       TextColor="Black" 
+                                                       Margin="0,0,0,-5"/>
                                             </Grid>
 
                                             <Grid>
@@ -101,7 +106,10 @@
 
                                                 </Grid.ColumnDefinitions>
 
-                                                <Label Grid.Column="1" Text="{Binding StudentId}" TextColor="Black" Margin="0,0,0,-5" />
+                                                <Label Grid.Column="1" 
+                                                       Text="{Binding StudentId}" 
+                                                       TextColor="Black" 
+                                                       Margin="0,0,0,-5" />
                                             </Grid>
 
                                             <Grid>
@@ -109,7 +117,10 @@
                                                     <ColumnDefinition Width="Auto"/>
                                                     <ColumnDefinition Width="Auto"/>
                                                 </Grid.ColumnDefinitions>
-                                                <Label Grid.Column="1" Text="{Binding StudentDepartment}" TextColor="Black" Margin="0,0,10,-5"/>
+                                                <Label Grid.Column="1" 
+                                                       Text="{Binding StudentDepartment}" 
+                                                       TextColor="Black" 
+                                                       Margin="0,0,10,-5"/>
                                             </Grid>
 
                                         </StackLayout>
@@ -150,29 +161,28 @@
                 </CollectionView>
 
                 <StackLayout Orientation="Vertical" Opacity="0.25" Margin="105,210,0,0" >
-                    <Image Source="usericon"
-                            WidthRequest="150"
-                            HeightRequest="150"
-                            IsVisible="{Binding IsNoDataVisible}"/>
-                    <Label 
-                         Text="No Student Found"
-                         FontAttributes="Bold"
-                         FontSize="Medium"
-                         TextColor="Black"
-                         IsVisible="{Binding IsNoDataVisible}"/>
+                      <Image Source="usericon"
+                             WidthRequest="150"
+                             HeightRequest="150"
+                             IsVisible="{Binding IsNoDataVisible}"/>
+                      <Label Text="No Student Found"
+                             FontAttributes="Bold"
+                             FontSize="Medium"
+                             TextColor="Black"
+                             IsVisible="{Binding IsNoDataVisible}"/>
                 </StackLayout>
 
                 <ImageButton
-                Clicked="ImageButton_Clicked"
-                Source="addstudenticon"
-                BackgroundColor="Transparent"
-                HorizontalOptions="EndAndExpand"
-                Margin="0,0,20,20"
-                Aspect="AspectFill"
-                HeightRequest="65"
-                WidthRequest="60"
-                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.76}"
-                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.84}"/>
+                    Clicked="ImageButton_Clicked"
+                    Source="addstudenticon"
+                    BackgroundColor="Transparent"
+                    HorizontalOptions="EndAndExpand"
+                    Margin="0,0,20,20"
+                    Aspect="AspectFill"
+                    HeightRequest="65"
+                    WidthRequest="60"
+                    RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.76}"
+                    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.84}"/>
 
             </RelativeLayout>
         </RefreshView>

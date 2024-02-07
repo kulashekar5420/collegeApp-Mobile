@@ -3,21 +3,22 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FirstProject.REST_APIs.ApiPage"
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
-             Title="API's Dashboard" BackgroundColor="White">
+             Title="API's Dashboard" 
+             BackgroundColor="White">
 
     <ContentPage.Content>
         <RelativeLayout Margin="0,20,0,0">
             <StackLayout>
 
                 <ListView
-                            x:Name="userListView"
-                            HasUnevenRows="True"
-                            HeightRequest="600"
-                            IsPullToRefreshEnabled="True"
-                            Refreshing="userListView_Refreshing"
-                            VerticalOptions="StartAndExpand"
-                            BackgroundColor="Transparent"
-                            SeparatorVisibility="None">
+                    x:Name="userListView"
+                    HasUnevenRows="True"
+                    HeightRequest="600"
+                    IsPullToRefreshEnabled="True"
+                    Refreshing="userListView_Refreshing"
+                    VerticalOptions="StartAndExpand"
+                    BackgroundColor="Transparent"
+                    SeparatorVisibility="None">
 
                     <ListView.ItemTemplate>
                         <DataTemplate>
@@ -25,18 +26,18 @@
 
                                 <StackLayout>
                                     <Frame CornerRadius="25" 
-                                                   HeightRequest="40"
-                                                   HorizontalOptions="FillAndExpand"
-                                                   Margin="15,5,15,5"
-                                                   BackgroundColor="White"
-                                                   xct:TouchEffect.LongPressCommand="{Binding BindingContext.LongPressCommand, Source={x:Reference Name=userListView}}"
-                                                   xct:TouchEffect.CommandParameter="{Binding .}"
-                                                   xct:TouchEffect.LongPressDuration="500"
-                                                   xct:TouchEffect.AnimationDuration="350"
-                                                   xct:TouchEffect.AnimationEasing="{x:Static Easing.CubicOut}"
-                                                   xct:TouchEffect.PressedScale="0.95"
-                                                   xct:TouchEffect.PressedOpacity="0.6"
-                                                   xct:TouchEffect.PressedBackgroundColor="#64B5F6">
+                                           HeightRequest="40"
+                                           HorizontalOptions="FillAndExpand"
+                                           Margin="15,5,15,5"
+                                           BackgroundColor="White"
+                                           xct:TouchEffect.LongPressCommand="{Binding BindingContext.LongPressCommand, Source={x:Reference Name=userListView}}"
+                                           xct:TouchEffect.CommandParameter="{Binding .}"
+                                           xct:TouchEffect.LongPressDuration="500"
+                                           xct:TouchEffect.AnimationDuration="350"
+                                           xct:TouchEffect.AnimationEasing="{x:Static Easing.CubicOut}"
+                                           xct:TouchEffect.PressedScale="0.95"
+                                           xct:TouchEffect.PressedOpacity="0.6"
+                                           xct:TouchEffect.PressedBackgroundColor="#64B5F6">
 
                                         <Frame.GestureRecognizers>
                                             <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
@@ -47,21 +48,21 @@
                                                            WidthRequest="20"
                                                            HeightRequest="20"
                                                            Margin="-5,-10,10,-10">
-                                                <Image Source="{Binding avatar}"
-                                                               Aspect="AspectFill"
-                                                               Margin="-20,-20,-20,-20"/>
+                                                    <Image Source="{Binding avatar}"
+                                                           Aspect="AspectFill"
+                                                           Margin="-20,-20,-20,-20"/>
                                             </Frame>
                                             <StackLayout VerticalOptions="Center" Spacing="1">
                                                 <StackLayout Orientation="Horizontal">
                                                     <Label Text="{Binding first_name}"
-                                                                   FontAttributes="Bold"
-                                                                   TextColor="Black"/>
+                                                           FontAttributes="Bold"
+                                                           TextColor="Black"/>
                                                     <Label Text="{Binding last_name}"
-                                                                   FontAttributes="Bold"
-                                                                   TextColor="Black"/>
+                                                           FontAttributes="Bold"
+                                                           TextColor="Black"/>
                                                 </StackLayout>
                                                 <Label Text="{Binding email}"
-                                                               TextColor="Black"/>
+                                                       TextColor="Black"/>
                                             </StackLayout>
 
                                         </StackLayout>

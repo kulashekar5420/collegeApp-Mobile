@@ -1,60 +1,54 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FirstProject.Hods.HodPage"
              Title="HODs"
              BackgroundColor="White">
-    
+
     <ContentPage.Content>
         <RelativeLayout>
             <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing}">
-                <CollectionView  
-                    ItemsSource="{Binding Hods}"
-                    VerticalOptions="CenterAndExpand" 
-                    HorizontalOptions="CenterAndExpand"
-                    Margin="20,20,20,10" >
+                
+                <CollectionView ItemsSource="{Binding Hods}"
+                                VerticalOptions="CenterAndExpand" 
+                                HorizontalOptions="CenterAndExpand"
+                                Margin="20,20,20,10">
 
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <SwipeView HeightRequest="85"    BackgroundColor="White" 
+                            <SwipeView HeightRequest="85"    
+                                       BackgroundColor="White" 
                                        SwipeStarted="SwipeView_SwipeStarted" SwipeEnded="SwipeView_SwipeEnded">
-
                                 <SwipeView.RightItems>
                                     <SwipeItems>
                                         <!--delete swipeview -->
                                         <SwipeItemView>
-                                            <StackLayout
-                                                WidthRequest="80" 
-                                                HeightRequest="50">
+                                            <StackLayout WidthRequest="80" 
+                                                         HeightRequest="50">
                                                 <StackLayout.GestureRecognizers>
                                                     <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1"/>
                                                 </StackLayout.GestureRecognizers>
-                                                <Image 
-                                                    Source="deleteicon"
-                                                    VerticalOptions="CenterAndExpand"
-                                                    HeightRequest="30"
-                                                    WidthRequest="30"/>
+                                                <Image Source="deleteicon"
+                                                       VerticalOptions="CenterAndExpand"
+                                                       HeightRequest="30"
+                                                       WidthRequest="30"/>
                                             </StackLayout>
                                         </SwipeItemView>
                                     </SwipeItems>
                                 </SwipeView.RightItems>
-
-                                <Frame
-                                    BackgroundColor="White"
-                                    Margin="3" 
-                                    CornerRadius="20" 
-                                    VerticalOptions="CenterAndExpand" 
-                                    HeightRequest="60">
+                                <Frame BackgroundColor="White"
+                                       Margin="3" 
+                                       CornerRadius="20" 
+                                       VerticalOptions="CenterAndExpand" 
+                                       HeightRequest="60">
 
                                     <Frame.GestureRecognizers>
                                         <TapGestureRecognizer />
                                     </Frame.GestureRecognizers>
 
                                     <Grid>
-
                                         <StackLayout Orientation="Horizontal" WidthRequest="20">
-                                            <Image 
-                                                WidthRequest="60" VerticalOptions="StartAndExpand">
+                                            <Image WidthRequest="60" VerticalOptions="StartAndExpand">
                                                 <Image.Triggers>
                                                     <DataTrigger TargetType="Image" Binding="{Binding HodGender}" Value="Male">
                                                         <Setter Property="Source" Value="maleicon.png" />
@@ -65,7 +59,6 @@
                                                 </Image.Triggers>
                                             </Image>
                                         </StackLayout>
-
                                         <StackLayout>
                                             <StackLayout Orientation="Vertical"  Margin="55,0,0,0">
                                                 <Grid>
@@ -104,14 +97,13 @@
                                         </Frame>
 
                                         <Grid>
-                                            <Label 
-                                                TextColor="Black"
-                                                FontSize="14" 
-                                                HorizontalOptions="EndAndExpand"
-                                                WidthRequest="50" 
-                                                Margin="-6,0"
-                                                VerticalOptions="CenterAndExpand" 
-                                                Text="{Binding HodDepartment}" />
+                                            <Label TextColor="Black"
+                                                   FontSize="14" 
+                                                   HorizontalOptions="EndAndExpand"
+                                                   WidthRequest="50" 
+                                                   Margin="-6,0"
+                                                   VerticalOptions="CenterAndExpand" 
+                                                   Text="{Binding HodDepartment}" />
                                         </Grid>
 
                                     </Grid>
@@ -124,30 +116,27 @@
 
             <StackLayout Opacity="0.3"  Margin="105,210,0,0" >
                 <Image Source="usericon"
-              WidthRequest="150"
-              HeightRequest="150"
-              IsVisible="{Binding IsNoDataVisible}"/>
-                <Label 
-           Text="No Hod Found"
-           FontAttributes="Bold"
-           FontSize="Medium"
-                    HorizontalOptions="Center"
-           TextColor="Black"
-           IsVisible="{Binding IsNoDataVisible}"/>
-
+                       WidthRequest="150"
+                       HeightRequest="150"
+                       IsVisible="{Binding IsNoDataVisible}"/>
+                <Label Text="No Hod Found"
+                       FontAttributes="Bold"
+                       FontSize="Medium"
+                       HorizontalOptions="Center"
+                       TextColor="Black"
+                       IsVisible="{Binding IsNoDataVisible}"/>
             </StackLayout>
-            <ImageButton
-                Clicked="ImageButton_Clicked"
-                Source="addstudenticon"
-                BackgroundColor="Transparent"
-                HorizontalOptions="EndAndExpand"
-                Margin="0,0,20,20"
-                Aspect="AspectFill"
-                HeightRequest="65"
-                WidthRequest="60"
-                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.75}"
-                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.84}"/>
+
+            <ImageButton Clicked="ImageButton_Clicked"
+                         Source="addstudenticon"
+                         BackgroundColor="Transparent"
+                         HorizontalOptions="EndAndExpand"
+                         Margin="0,0,20,20"
+                         Aspect="AspectFill"
+                         HeightRequest="65"
+                         WidthRequest="60"
+                         RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.75}"
+                         RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.84}"/>
         </RelativeLayout>
-      
     </ContentPage.Content>
 </ContentPage>

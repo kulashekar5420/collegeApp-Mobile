@@ -6,8 +6,7 @@
 
     <ContentPage.Content>
         <RelativeLayout>
-      
-           <CollectionView  
+            <CollectionView  
              ItemsSource="{Binding TeacherStudents}"
              VerticalOptions="CenterAndExpand" 
              HorizontalOptions="CenterAndExpand"
@@ -22,9 +21,8 @@
                                     <!--delete swipeview -->
                                     <SwipeItemView >
                                         <StackLayout
-                                         
-                                         WidthRequest="50" 
-                                         HeightRequest="50">
+                                             WidthRequest="50" 
+                                             HeightRequest="50">
 
                                             <StackLayout.GestureRecognizers>
                                                 <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
@@ -37,18 +35,15 @@
                                              WidthRequest="30"/>
                                         </StackLayout>
                                     </SwipeItemView>
-
                                 </SwipeItems>
-
                             </SwipeView.RightItems>
 
                             <Frame
-                             BackgroundColor="White"
-                             Margin="5" 
-                             CornerRadius="20" 
-                             VerticalOptions="CenterAndExpand" 
-                             HeightRequest="57">
-
+                                 BackgroundColor="White"
+                                 Margin="5" 
+                                 CornerRadius="20" 
+                                 VerticalOptions="CenterAndExpand" 
+                                 HeightRequest="57">
                                 <Frame.GestureRecognizers>
                                     <TapGestureRecognizer />
                                 </Frame.GestureRecognizers>
@@ -71,42 +66,36 @@
                                         <Grid>
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="Auto"/>
-
                                             </Grid.ColumnDefinitions>
-
                                             <Label Grid.Column="1" Text="{Binding StudentName}" TextColor="Black" Margin="0,0,10,-3"/>
                                         </Grid>
 
                                         <Grid>
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="Auto"/>
-
                                             </Grid.ColumnDefinitions>
-
                                             <Label Grid.Column="1" Text="{Binding StudentId}" TextColor="Black" Margin="0,0,10,-2"/>
                                         </Grid>
 
                                         <Grid>
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="Auto"/>
-
                                             </Grid.ColumnDefinitions>
-
                                             <Label Grid.Column="1" Text="{Binding TeacherId}" TextColor="Black" Margin="0,0,10,-3"/>
                                         </Grid>
 
                                     </StackLayout>
 
-                                    <StackLayout Orientation="Horizontal"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"  Margin="200,20,0,0">
-
+                                    <StackLayout Orientation="Horizontal"  
+                                                 HorizontalOptions="CenterAndExpand" 
+                                                 VerticalOptions="CenterAndExpand"  
+                                                 Margin="200,20,0,0">
                                         <Grid>
-
                                             <Label Grid.Column="1"  Text="{Binding StudentDepartment}" FontSize="Medium" FontAttributes="Bold" TextColor="Black"/>
                                         </Grid>
 
                                     </StackLayout>
                                 </Grid>
-
                             </Frame>
                         </SwipeView>
                     </DataTemplate>
@@ -117,13 +106,13 @@
 
             <StackLayout Opacity="0.3"  Margin="115,210,0,0" >
                 <Image Source="usericon"
-                       WidthRequest="150"
-                       HeightRequest="150"
-                       IsVisible="{Binding IsNoStudentsVisible}"
-                       VerticalOptions="CenterAndExpand" 
-                       HorizontalOptions="CenterAndExpand"
-                       RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.5, Constant=-70}"
-                       RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.5, Constant=-50}"/>
+                         WidthRequest="150"
+                         HeightRequest="150"
+                         IsVisible="{Binding IsNoStudentsVisible}"
+                         VerticalOptions="CenterAndExpand" 
+                         HorizontalOptions="CenterAndExpand"
+                         RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.5, Constant=-70}"
+                         RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.5, Constant=-50}"/>
 
 
                 <Label 
@@ -137,7 +126,6 @@
                     RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.5, Constant=-70}"
                     RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.5, Constant=-50}"/>
             </StackLayout>
-
         </RelativeLayout>
     </ContentPage.Content>
 </ContentPage>

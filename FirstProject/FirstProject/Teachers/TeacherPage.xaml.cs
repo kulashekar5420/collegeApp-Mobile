@@ -16,7 +16,6 @@ namespace FirstProject.Teachers
         {
             InitializeComponent();
             BindingContext = App.TeacherViewModel;
-
             swipeViews = new List<SwipeView>();
 
         }

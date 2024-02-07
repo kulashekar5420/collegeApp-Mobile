@@ -105,7 +105,6 @@ namespace FirstProject.REST_APIs
         {
             string emailPattern = "^([\\w\\.\\-]+)@([\\w\\-]+)((\\.(\\w){2,3})+)$";
             Regex regex = new Regex(emailPattern);
-
             return regex.IsMatch(email);
         }
     }

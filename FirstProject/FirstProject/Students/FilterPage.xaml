@@ -29,13 +29,15 @@
                        FontSize="30"
                        FontAttributes="Bold"
                        TextColor="Black"/>
-                <Image Source="filterpageimg" HeightRequest="130" Margin="0,0,20,-20"/>
+                <Image Source="filterpageimg" 
+                       HeightRequest="130" 
+                       Margin="0,0,20,-20"/>
                 <Label Text="Thapovan School App!"
                        HorizontalOptions="Center"
-                        FontSize="20"
-                        Margin="0,40,0,0"
-                        FontAttributes="Bold"
-                        TextColor="Black"/>
+                       FontSize="20"
+                       Margin="0,40,0,0"
+                       FontAttributes="Bold"
+                       TextColor="Black"/>
 
                 <StackLayout HorizontalOptions="Center">
                     <Frame CornerRadius="10" Padding="4" HasShadow="True">

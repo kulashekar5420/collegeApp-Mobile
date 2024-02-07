@@ -16,12 +16,10 @@ namespace FirstProject.Teachers
             selectedTeacher = teacher;
             BindingContext = App.StudentViewModel;
             Title = $"{selectedTeacher.TeacherName}'s Students";
-
             LoadStudentsForSelectedTeacher();
         }
         private async void LoadStudentsForSelectedTeacher()
         {
-
             if (selectedTeacher != null)
             {
                 await App.StudentViewModel.LoadStudentsByTeacher(selectedTeacher);
@@ -34,8 +32,7 @@ namespace FirstProject.Teachers
                 bool confirmation = await DisplayAlert("Remove Confirmation", $"Do you want to remove {selectedStudent.StudentName}?", "Yes", "No");
 
                 if (confirmation)
-                {
-                    
+                {      
                     await App.StudentViewModel.RemoveStudentAsync(selectedStudent, selectedTeacher);
                     UserDialogs.Instance.Alert($"{selectedStudent.StudentName} has been removed from {selectedTeacher.TeacherName}.", "Student Removed", "OK");
                 }

@@ -15,10 +15,8 @@ public class ApiService
         {
             httpClient.BaseAddress = new Uri(ApiBaseUrl);
             httpClient.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-
             string jsonUserData = JsonConvert.SerializeObject(user);
             StringContent content = new StringContent(jsonUserData, Encoding.UTF8, "application/json");
-
             HttpResponseMessage response = await httpClient.PostAsync("", content).ConfigureAwait(false);
 
             if (response.IsSuccessStatusCode)
@@ -41,10 +39,8 @@ public class ApiService
         {
             httpClient.BaseAddress = new Uri(ApiBaseUrl);
             httpClient.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-
             string jsonUserData = JsonConvert.SerializeObject(user);
             StringContent content = new StringContent(jsonUserData, Encoding.UTF8, "application/json");
-
             HttpResponseMessage response = await httpClient.PutAsync($"users/{user.id}", content).ConfigureAwait(false);
 
             if (response.IsSuccessStatusCode)

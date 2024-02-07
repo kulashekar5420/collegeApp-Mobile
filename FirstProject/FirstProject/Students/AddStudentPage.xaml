@@ -7,11 +7,9 @@
              Title="Add Student">
 
     <ContentPage.Content>
-
         <ScrollView>
-
+            
             <StackLayout Spacing="10" Padding="30" >
-
                 <Label Text="Enter Student Details"
                    TextColor="Black"
                    FontAttributes="Bold"
@@ -30,7 +28,6 @@
 
                     </Frame>
                 </StackLayout>
-
 
                 <StackLayout>
                     <Label Text="Department" />
@@ -95,9 +92,9 @@
                        HasShadow="True">
 
                         <Label 
-                       x:Name="rollIdLabel"
-                       Text="{Binding RollId}"
-                       TextColor="Green" />
+                           x:Name="rollIdLabel"
+                           Text="{Binding RollId}"
+                           TextColor="Green" />
 
                     </Frame>
                 </StackLayout>
@@ -105,15 +102,15 @@
 
                     <Label Text="Gender" />
                     <Frame CornerRadius="10"
-                       Padding="4"  Margin="0,0,0,0"
-                       HasShadow="True">
+                           Padding="4"  Margin="0,0,0,0"
+                           HasShadow="True">
 
                         <FirstProject:CustomPicker 
-                       x:Name="genderPicker" 
-                       Title="Select your gender"
-                       BackgroundColor="Transparent"
-                      SelectedItem="{Binding Gender, Mode=TwoWay}"
-                       Margin="0,-1,0,0">
+                           x:Name="genderPicker" 
+                           Title="Select your gender"
+                           BackgroundColor="Transparent"
+                           SelectedItem="{Binding Gender, Mode=TwoWay}"
+                           Margin="0,-1,0,0">
 
                             <Picker.ItemsSource>
                                 <x:Array Type="{x:Type x:String}">
@@ -129,15 +126,15 @@
                 <StackLayout>
                     <Label Text="Department Hod " />
                     <Frame CornerRadius="10"
-                       Padding="14" 
-                       Margin="0,0,0,0"
-                       HasShadow="True">
+                           Padding="14" 
+                           Margin="0,0,0,0"
+                           HasShadow="True">
 
                         <Label
-                       x:Name="HodLabel"
-                       Text="{Binding HodName}"
-                       FontAttributes="Bold"
-                       TextColor="Green"/>
+                           x:Name="HodLabel"
+                           Text="{Binding HodName}"
+                           FontAttributes="Bold"
+                           TextColor="Green"/>
                     </Frame>
                 </StackLayout>
 
@@ -155,24 +152,26 @@
                             TextColor="Green"/>
 
                     </Frame>
+
                 </StackLayout>
-
-
 
                 <StackLayout>
                     <Label Text="Select your state"/>
-                    <Frame x:Name="stateFrame"  CornerRadius="10" Padding="4" HasShadow="True" HeightRequest="40" >
+                    <Frame x:Name="stateFrame"  
+                           CornerRadius="10" 
+                           Padding="4" 
+                           HasShadow="True"
+                           HeightRequest="40" >
 
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1"/>
                         </Frame.GestureRecognizers>
-                        
+
                         <FirstProject:CustomPicker
                             x:Name="statePicker" 
                             Title="Select your state"
                             SelectedItem="{Binding StudentState, Mode=TwoWay}"                           
                             IsVisible="False">
-
                         </FirstProject:CustomPicker>
 
                     </Frame>
@@ -188,7 +187,6 @@
                     BackgroundColor="#1975D1"
                     TextColor="White"
                     Margin="0,20,0,0" />
-
 
             </StackLayout>
         </ScrollView>

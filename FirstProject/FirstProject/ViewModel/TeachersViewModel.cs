@@ -10,7 +10,6 @@ using Xamarin.Forms;
 
 public class TeachersViewModel : INotifyBaseViewModel
 {
-    
     private bool isNoDataVisible;
     private readonly string databasePath;
     private ObservableCollection<TeachersModel> teachers;
@@ -74,7 +73,6 @@ public class TeachersViewModel : INotifyBaseViewModel
         }
     }
 
-
     public string teacherName { get; set; }
     public string teacherDepartment { get; set; }
     public string teacherId { get; set; }
@@ -86,7 +84,7 @@ public class TeachersViewModel : INotifyBaseViewModel
     {
         databasePath = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "School.db");
         RefreshCommand = new Command(async () => await RefreshDataAsync());
-        LoadTeachers();
+        _ = LoadTeachers();
     }
 
     private async Task RefreshDataAsync()
@@ -106,7 +104,6 @@ public class TeachersViewModel : INotifyBaseViewModel
         IsRefreshing = false;
 
     }
-
     
     //Load available HOD's in the database
     public async Task LoadAvailableHods()
@@ -115,7 +112,6 @@ public class TeachersViewModel : INotifyBaseViewModel
         var hodList = await database.GetAllHodsAsync();
         AvailableHods = new ObservableCollection<HodsModel>(hodList);
     }
-
 
     public async Task LoadAvailableDepTeachers()
     {
@@ -150,11 +146,9 @@ public class TeachersViewModel : INotifyBaseViewModel
        // If it's a normal teacher, add the teacher without checking for class teacher
        await App.DatabaseforSchool.SaveTeachersAsync(teacher);
        Teachers.Add(teacher);
-
        IsNoDataVisible = Teachers.Count == 0;
 
     }
-
 
     public Task<bool> IsRollIdAvailableAsync(string tRollId)
     {
@@ -179,7 +173,6 @@ public class TeachersViewModel : INotifyBaseViewModel
 
         departmentOrderNumbers[department] = orderNumber + 1;
         rollId = $"101{department}{orderNumber}";
-
         return await Task.FromResult(rollId);
     }
 
@@ -190,11 +183,9 @@ public class TeachersViewModel : INotifyBaseViewModel
         
     }
 
-
     public async Task DeleteTeacherAsync(TeachersModel selectedTeacher)
     {
         await UnMapTeacher(selectedTeacher.TeacherId);
-   
         await App.DatabaseforSchool.DeleteTeacherAsync(selectedTeacher); 
         await LoadTeachers();
     }
@@ -206,7 +197,6 @@ public class TeachersViewModel : INotifyBaseViewModel
         return allStudents.Where(s => s.TeacherId == teacherId).ToList();
     }
 
-
     private async Task UnMapTeacher(string teacherRollId)
     {
         var studentswithTeacher = await GetTeachersByTeacherId(teacherRollId);
@@ -217,7 +207,5 @@ public class TeachersViewModel : INotifyBaseViewModel
             await App.DatabaseforSchool.UpdateStudentAsync(student);
         }
     }
-
- 
 
 }

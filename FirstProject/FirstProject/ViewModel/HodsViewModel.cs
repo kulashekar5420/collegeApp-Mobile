@@ -5,7 +5,6 @@ using System;
 using FirstProject;
 using System.Collections.Generic;
 using FirstProject.ViewModel;
-using System.Windows.Input;
 using Xamarin.Forms;
 
 public class HodsViewModel : INotifyBaseViewModel
@@ -22,19 +21,6 @@ public class HodsViewModel : INotifyBaseViewModel
     private string hodId;
     public Command RefreshCommand { get; set; }
 
-    private int openItemIndex = -1;
-    public int OpenItemIndex
-    {
-        get { return openItemIndex; }
-        set
-        {
-            if (openItemIndex != value)
-            {
-                openItemIndex = value;
-                OnPropertyChanged(nameof(OpenItemIndex));
-            }
-        }
-    }
     public bool IsRefreshing
     {
         get { return isRefreshing; }
@@ -147,7 +133,7 @@ public class HodsViewModel : INotifyBaseViewModel
     {
         databasePath = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "School.db");
         RefreshCommand = new Command(async () => await RefreshDataAsync());
-        LoadHods();
+        _ = LoadHods();
     }
 
     private async Task RefreshDataAsync()
@@ -172,7 +158,6 @@ public class HodsViewModel : INotifyBaseViewModel
 
         var allTeachers = await database.GetAllTeachersAsync();
         var hodList = await database.GetAllHodsAsync();
-
         // get the hod teacher id it meanas teacherid == hod teacher id
         var hodTeacherIds = hodList.Select(hod => hod.HodTeacherId).ToList();
 
@@ -181,17 +166,13 @@ public class HodsViewModel : INotifyBaseViewModel
             .Where(teacher => !hodTeacherIds.Contains(teacher.TeacherId))
             .ToList();
 
-        AvailableTeachers = new ObservableCollection<TeachersModel>(availableTeachersList);
-      
+        AvailableTeachers = new ObservableCollection<TeachersModel>(availableTeachersList);     
     }
-
-
 
     public async Task AddHodAsync(HodsModel newHod)
     {
        
         string generatedHodid = await GenerateHodIsAsync(newHod.HodDepartment);
-
         var hod = new HodsModel
         {
             
@@ -204,8 +185,7 @@ public class HodsViewModel : INotifyBaseViewModel
 
         await LoadAvailableTeachersAsync();
         await App.DatabaseforSchool.SaveHodsAsync(hod);
-        Hods.Add(hod);
-        
+        Hods.Add(hod); 
         IsNoDataVisible = Hods.Count == 0;
 
     }
@@ -256,7 +236,6 @@ public class HodsViewModel : INotifyBaseViewModel
     {
         var teachersWithHod = await GetTeachersByHodName(hodName);
         var studentswithHod = await GetStudentsByHodName(hodName);
-
         foreach (var teacher in teachersWithHod)
         {
             teacher.HodName = null; 

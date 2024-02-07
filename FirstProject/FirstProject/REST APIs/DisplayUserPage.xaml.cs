@@ -18,6 +18,7 @@ namespace FirstProject.REST_APIs
             InitializeComponent();
             BindingContext = user;
 
+            //Read data -- Original Data
             originalData = new UserData
             {
                 id = user.id,
@@ -53,10 +54,8 @@ namespace FirstProject.REST_APIs
             }
         }
 
-
         private async void Button_Clicked(object sender, EventArgs e)
         {
-
             ErrorFname.Text = ErrorLname.Text = ErrorEmail.Text = "";
 
             if (!isEditing)
@@ -66,7 +65,7 @@ namespace FirstProject.REST_APIs
                 emailEntryDisplay.IsEnabled = true;
 
                 editButton.Text = "Save Data";
-
+                //Once Button clciked all entry has been change into the enable now users edit the data
                 isEditing = true;
             }
             else
@@ -78,7 +77,6 @@ namespace FirstProject.REST_APIs
                     last_name = lnameEntryDisplay.Text,
                     email = emailEntryDisplay.Text,
                 };
-
 
                 if (updatedUserData.id == originalData.id &&
                     updatedUserData.first_name == originalData.first_name &&
@@ -133,7 +131,6 @@ namespace FirstProject.REST_APIs
 
                     return regex.IsMatch(email);
                 }
-
              
                 using (UserDialogs.Instance.Loading("Update Data"))
                 {

@@ -16,10 +16,10 @@ namespace FirstProject.Hods
         {
             InitializeComponent();
             BindingContext = App.HodsViewModel;
-
             swipeViews = new List<SwipeView>();
-
+       
         }
+
 
         protected override void OnAppearing()
         {
@@ -27,6 +27,7 @@ namespace FirstProject.Hods
             App.HodsViewModel.LoadHods();
 
         }
+
         private async void ImageButton_Clicked(object sender, EventArgs e)
         {
             if (!isProcessingButtonClick)
@@ -52,6 +53,7 @@ namespace FirstProject.Hods
             }
         }
 
+        //It will monitor the count of active swipeview in the page
         private void SwipeView_SwipeStarted(object sender, SwipeStartedEventArgs e)
         {
             if (swipeViews.Count != 0)

@@ -14,7 +14,6 @@ namespace FirstProject.Teachers
         private static int orderNumber = 1;
         private string generatedtRollId;
         private string generatedHod;
-
         private ObservableCollection<HodsModel> availableDephods;
 
         public AddTeachersPage()
@@ -22,9 +21,7 @@ namespace FirstProject.Teachers
             InitializeComponent();
             BindingContext = new TeachersViewModel();        
             tDepartmentPicker.SelectedIndexChanged += TDepartmentPicker_SelectedIndexChanged;         
-            availableDephods = new ObservableCollection<HodsModel>();
-          
-            
+            availableDephods = new ObservableCollection<HodsModel>();                  
             //load availablehods
             LoadAvailableHods();
         }
@@ -33,7 +30,6 @@ namespace FirstProject.Teachers
         private async void LoadAvailableHods()
         {
             var teachersViewModel = (TeachersViewModel)BindingContext;
-
             //get the available hod from the database in viewmodel
             await teachersViewModel.LoadAvailableHods();
             availableDephods = teachersViewModel.AvailableHods;
@@ -44,17 +40,12 @@ namespace FirstProject.Teachers
         {
             string department = ((TeachersViewModel)BindingContext).teacherDepartment;
             var hod = availableDephods.FirstOrDefault(h => h.HodDepartment == department);
-
-
             if (!string.IsNullOrWhiteSpace(department))
             {
                 orderNumber = 1;
-
                 generatedtRollId = await GeneratetRollIdAsync(department);
                 // Generate HOD based on the selected department
                 generatedHod = await GenerateHodAsync(department);
-
-
                 trollIdLabel.Text = $"{generatedtRollId}";
                 HodLabel.Text = $"{generatedHod}";
 

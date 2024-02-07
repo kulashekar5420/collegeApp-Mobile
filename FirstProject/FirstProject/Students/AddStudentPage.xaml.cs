@@ -9,7 +9,6 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
-using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms.Xaml;
 
 namespace FirstProject.Students
@@ -26,15 +25,14 @@ namespace FirstProject.Students
         private ObservableCollection<HodsModel> availableHods;
         private ObservableCollection<TeachersModel> availableDepteachers;
         private SchoolDatabase schoolDatabase;
+
         public AddStudentPage()
         {
             InitializeComponent();
             BindingContext = new StudentsViewModel();
-
             departmentPicker.SelectedIndexChanged += DepartmentPicker_SelectedIndexChanged;
             studentYearPicker.SelectedIndexChanged += StudentYearPicker_SelectedIndexChanged;
             statePicker.SelectedIndexChanged += StatePicker_SelectedIndexChanged;
-
             availableHods = new ObservableCollection<HodsModel>();
             availableDepTeachers = new ObservableCollection<TeachersModel>();
 
@@ -42,20 +40,20 @@ namespace FirstProject.Students
             schoolDatabase = App.DatabaseforSchool;
             LoadAvailableTeachers();
             LoadAvailableHods();
-           
+
         }
+
 
         //Load the localstates from the database and load it on statepicker
         private async void LoadLocalStates()
         {
             localStates = await schoolDatabase.GetAllStatesAsync();
-
             if (localStates.Any())
             {               
-                statePicker.ItemsSource = localStates.Select(state => state.Name).ToList();
+               statePicker.ItemsSource = localStates.Select(state => state.Name).ToList();
 
-                // Open the picker without selecting any item
-                statePicker.Focus();
+               // Open the picker without selecting any item
+               statePicker.Focus();
             }
             else
             {
@@ -78,7 +76,6 @@ namespace FirstProject.Students
 
         //LoadStates from the API url and sava into the Local SQLite database
         //Tabel Name StateModels
-
         private async void LoadStatesDataAsync()
         {
             UserDialogs.Instance.ShowLoading("Loading States");
@@ -99,13 +96,13 @@ namespace FirstProject.Students
             UserDialogs.Instance.HideLoading();
         }
 
-
         private async void LoadAvailableHods()
         {
             var studentsMapHod = (StudentsViewModel)BindingContext;
             await studentsMapHod.LoadAvailableHods();
             availableHods = studentsMapHod.AvailableHods;
         }
+
         private async void DepartmentPicker_SelectedIndexChanged(object sender, EventArgs e)
         {
             string stuDepartment = ((StudentsViewModel)BindingContext).Department;
@@ -116,7 +113,6 @@ namespace FirstProject.Students
                 orderNumber = 1;
                 generatedRollId = await GenerateRollIdAsync(stuDepartment);
                 MappingHod = await GenerateHodAsync(stuDepartment);
-
                 rollIdLabel.Text = generatedRollId;
                 HodLabel.Text = MappingHod;
 
@@ -132,17 +128,17 @@ namespace FirstProject.Students
                 LoadAvailableTeachers();
             }
         }
+
         private async void LoadAvailableTeachers()
         {
             var studentsViewModel = (StudentsViewModel)BindingContext;
             await studentsViewModel.LoadAvailableTeachersAsync();
-
             string selectedDepartment = studentsViewModel.Department;
-
             availableDepTeachers = new ObservableCollection<TeachersModel>(
                 studentsViewModel.AvailableTeachers.Where(t => t.TeacherDepartment == selectedDepartment)
             );
         }
+
         private async void StudentYearPicker_SelectedIndexChanged(object sender, EventArgs e)
         {
             string studentYear = ((StudentsViewModel)BindingContext).StudentYear;
@@ -160,9 +156,7 @@ namespace FirstProject.Students
         {
             var availableDepTeacher = (StudentsViewModel)BindingContext;
             await availableDepTeacher.LoadAvailableDepTeachers();
-
             string selectedStudentYear = availableDepTeacher.StudentYear;
-
             availableDepteachers = new ObservableCollection<TeachersModel>(
                 await App.StudentViewModel.GetTeachersByYearAndDepartmentAsync(selectedStudentYear, availableDepTeacher.Department)
             );
@@ -181,12 +175,14 @@ namespace FirstProject.Students
             }
         }
 
+        //Mapping Student Logic --- student teacher based on the department and year ( If student cse and 1st year means the same dep and year teacher only mapped for student )
         private async Task<TeachersModel> MapStudentTeacherAsync(string studentYear)
         {
             var teacher = availableDepTeachers.FirstOrDefault(t => t.TeacherYear == studentYear);
             return await Task.FromResult(teacher);
         }
 
+        //Generate the Hod (Mapping the HOD based on the selecteddepartment )
         private async Task<string> GenerateHodAsync(string department)
         {
             var hod = availableHods.FirstOrDefault(h => h.HodDepartment == department);
@@ -260,12 +256,10 @@ namespace FirstProject.Students
             await Navigation.PopAsync();
         }
 
-
-
         private async void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
-        {   
+        {
             if (Connectivity.NetworkAccess == NetworkAccess.Internet)
-            {
+            {               
                 statePicker.IsVisible = true;
                 LoadStatesDataAsync();
             }

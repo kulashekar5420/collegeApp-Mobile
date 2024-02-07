@@ -9,7 +9,6 @@ using Xamarin.Essentials;
 public class LocalUserDB
 {
     private readonly SQLiteAsyncConnection _localUserDB;
-
     public LocalUserDB()
     {
         var dbPath = Path.Combine(FileSystem.AppDataDirectory, "local_user_db.sqlite");
@@ -32,8 +31,6 @@ public class LocalUserDB
     {
         await _localUserDB.UpdateAsync(userData);
     }
-    
-    
     public async Task<List<UserData>> GetUserData()
     {
         return await _localUserDB.Table<UserData>().ToListAsync();

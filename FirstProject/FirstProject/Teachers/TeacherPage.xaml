@@ -12,11 +12,11 @@
             <RelativeLayout>
 
                 <CollectionView  
-                ItemsSource="{Binding Teachers}" 
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand"
-                Margin="15,15,15,0"
-                Background="white">
+                    ItemsSource="{Binding Teachers}" 
+                    VerticalOptions="CenterAndExpand" 
+                    HorizontalOptions="CenterAndExpand"
+                    Margin="15,15,15,0"
+                    Background="white">
 
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
@@ -27,20 +27,19 @@
                                     <SwipeItems >
                                         <!--delete swipeview -->
                                         <SwipeItemView >
-                                            <StackLayout
-                                            
-                                            WidthRequest="80" 
-                                            HeightRequest="70" >
+                                            <StackLayout  
+                                                WidthRequest="80" 
+                                                HeightRequest="70">
 
                                                 <StackLayout.GestureRecognizers>
                                                     <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
                                                 </StackLayout.GestureRecognizers>
 
                                                 <Image 
-                                                Source="deleteicon"
-                                                VerticalOptions="CenterAndExpand"
-                                                HeightRequest="30"
-                                                WidthRequest="30"/>
+                                                    Source="deleteicon"
+                                                    VerticalOptions="CenterAndExpand"
+                                                    HeightRequest="30"
+                                                    WidthRequest="30"/>
                                             </StackLayout>
                                         </SwipeItemView>
 
@@ -49,11 +48,11 @@
                                 </SwipeView.RightItems>
 
                                 <Frame
-                                BackgroundColor="White"
-                                Margin="5" 
-                                CornerRadius="20" 
-                                VerticalOptions="CenterAndExpand" 
-                                HeightRequest="80">
+                                    BackgroundColor="White"
+                                    Margin="5" 
+                                    CornerRadius="20" 
+                                    VerticalOptions="CenterAndExpand" 
+                                    HeightRequest="80">
 
                                     <Frame.GestureRecognizers>
                                         <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1"/>
@@ -71,11 +70,6 @@
                                                     </DataTrigger>
                                                 </Image.Triggers>
                                             </Image>
-
-                                          
-
-                                           
-
                                         </StackLayout>
 
                                         <StackLayout Orientation="Vertical" Margin="50,0,0,0" VerticalOptions="Center">
@@ -84,8 +78,6 @@
                                                     <ColumnDefinition Width="Auto"/>
 
                                                 </Grid.ColumnDefinitions>
-
-
                                                 <Label Grid.Column="1" Text="{Binding TeacherName}" FontSize="15" FontAttributes="Bold" TextColor="Black" Margin="0,0,0,-5"/>
                                             </Grid>
 
@@ -98,24 +90,19 @@
                                                 <Label Grid.Column="1" Text="{Binding TeacherDepartment}" TextColor="Black" Margin="0,0,0,-5" />
                                             </Grid>
 
-                                       
-
                                             <Grid>
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="Auto"/>
                                                     <ColumnDefinition Width="Auto"/>
                                                 </Grid.ColumnDefinitions>
-                                               <Label Grid.Column="1" Text="{Binding TeacherId}" TextColor="Black" Margin="0,0,10,-5"/>
+                                                <Label Grid.Column="1" Text="{Binding TeacherId}" TextColor="Black" Margin="0,0,10,-5"/>
                                             </Grid>
-
-
 
                                         </StackLayout>
 
                                         <StackLayout Orientation="Horizontal" 
                                                      WidthRequest="20">
                                             <Grid>
-                                               
 
                                                 <Label x:Name="TeacherYearLabel" Text="{Binding TeacherYear, StringFormat={Null}, TargetNullValue='No Year'}" 
                                                        TextColor="Black" 
@@ -159,47 +146,41 @@
 
                                                 </Label>
 
-
                                             </Grid>
-
                                         </StackLayout>
 
-
                                     </Grid>
-
                                 </Frame>
                             </SwipeView>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
 
-
                 <StackLayout Opacity="0.3"  Margin="105,210,0,0" >
                     <Image Source="usericon"
                            WidthRequest="150"
                            HeightRequest="150"
                            IsVisible="{Binding IsNoDataVisible}"/>
-                    <Label 
-                        Text="No Teacher Found"
-                        FontAttributes="Bold"
-                        FontSize="Medium"
-                        TextColor="Black"
-                        IsVisible="{Binding IsNoDataVisible}"/>
+                    <Label Text="No Teacher Found"
+                           FontAttributes="Bold"
+                           FontSize="Medium"
+                           TextColor="Black"
+                           IsVisible="{Binding IsNoDataVisible}"/>
 
                 </StackLayout>
 
                 <!-- Floating Action button custom - like ImageButton  -->
                 <ImageButton
-                Clicked="ImageButton_Clicked"
-                Source="addstudenticon"
-                BackgroundColor="Transparent"
-                HorizontalOptions="EndAndExpand"
-                Margin="0,0,20,20"
-                Aspect="AspectFill"
-                HeightRequest="65"
-                WidthRequest="60"
-                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.75}"
-                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.84}"/>
+                    Clicked="ImageButton_Clicked"
+                    Source="addstudenticon"
+                    BackgroundColor="Transparent"
+                    HorizontalOptions="EndAndExpand"
+                    Margin="0,0,20,20"
+                    Aspect="AspectFill"
+                    HeightRequest="65"
+                    WidthRequest="60"
+                    RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.75}"
+                    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.84}"/>
             </RelativeLayout>
 
         </RefreshView>

@@ -4,12 +4,12 @@ using System.Threading.Tasks;
 public class SchoolDatabase 
 {
     private readonly SQLiteAsyncConnection _database;
-
     public SchoolDatabase(string dbPath)
     {
         _database = new SQLiteAsyncConnection(dbPath);
         InitializeTablesAsync().Wait();
     }
+
     private async Task InitializeTablesAsync()
     {
         await _database.CreateTableAsync<StudentsModel>().ConfigureAwait(false);
@@ -73,6 +73,7 @@ public class SchoolDatabase
         await _database.InsertAllAsync(states);
     }
 
+    //Get and load the all state's in india and save into the local database SQite
     public async Task<List<StateModel>> GetAllStatesAsync()
     {
         return await _database.Table<StateModel>().ToListAsync();

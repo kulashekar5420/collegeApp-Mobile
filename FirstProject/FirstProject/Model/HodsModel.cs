@@ -11,8 +11,5 @@ public class HodsModel
 
     public string HodInfo => $"{HodName} - {HodId}";
 
-
-
-
 }
 

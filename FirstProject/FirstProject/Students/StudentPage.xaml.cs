@@ -14,12 +14,10 @@ namespace FirstProject.Students
         private bool isProcessingTap = false;
         private bool isProcessingButtonClick = false;
         List<SwipeView> swipeViews { set; get; }
-
         public StudentPage()
         {
             InitializeComponent();
             BindingContext = App.StudentViewModel;
-
             swipeViews = new List<SwipeView>();
         }
         protected override bool OnBackButtonPressed()

@@ -21,11 +21,11 @@
                                VerticalOptions="StartAndExpand">
                             <Image Source="{Binding avatar}"
                                    Aspect="AspectFill"
-                               WidthRequest="80"
-                               HeightRequest="80"
-                               Margin="-40,-40,-40,-40"
-                               HorizontalOptions="Center"
-                               VerticalOptions="Center"/>
+                                   WidthRequest="80"
+                                   HeightRequest="80"
+                                   Margin="-40,-40,-40,-40"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"/>
                         </Frame>
                     </Frame>
                 </Frame>
@@ -37,13 +37,14 @@
                     Margin="10,-45">
                     <StackLayout Orientation="Horizontal" 
                                  HorizontalOptions="Center">
-                        <Label Text="{Binding first_name}" 
-                               FontSize="25" FontAttributes="Bold" 
-                               TextColor="Black"/>
-                        <Label Text="{Binding last_name}" 
-                               FontSize="25" FontAttributes="Bold" 
-                               TextColor="Black"/>
-
+                          <Label Text="{Binding first_name}" 
+                                 FontSize="25" 
+                                 FontAttributes="Bold" 
+                                 TextColor="Black"/>
+                          <Label Text="{Binding last_name}" 
+                                 FontSize="25" FontAttributes="Bold" 
+                                 TextColor="Black"/>
+  
                     </StackLayout>
 
                         <Label Text="Chennai, India"
@@ -58,8 +59,7 @@
                            VerticalOptions="StartAndExpand"
                            TextColor="Black"/>
                 </StackLayout>
-
-                
+    
                 <StackLayout Padding="30" Margin="0,-90,0,0" >
 
                     <Label Text="First Name" />
@@ -71,18 +71,18 @@
                                    HorizontalOptions="Start" 
                                    Margin="10,0"/>
                             <local:CustomEntry 
-                                x:Name="fnameEntryDisplay"
-                                Placeholder="Enter first name" 
-                                Keyboard="Text"
-                                Text="{Binding first_name, Mode=TwoWay}"
-                                BackgroundColor="Transparent"
-                                Margin="40,0,0,0"
-                                IsEnabled="False"/>
+                                   x:Name="fnameEntryDisplay"
+                                   Placeholder="Enter first name" 
+                                   Keyboard="Text"
+                                   Text="{Binding first_name, Mode=TwoWay}"
+                                   BackgroundColor="Transparent"
+                                   Margin="40,0,0,0"
+                                   IsEnabled="False"/>
                         </Grid>
                     </Frame>
+
                     <Label x:Name="ErrorFname" TextColor="Red" Margin="0,-2,0,-3"/>
-
-
+                    
                     <Label Text="Last Name" />
                     <Frame CornerRadius="10" Padding="5" HasShadow="True">
                         <Grid>
@@ -91,13 +91,13 @@
                                    VerticalOptions="Center" 
                                    HorizontalOptions="Start" Margin="10,0"/>
                             <local:CustomEntry 
-                                x:Name="lnameEntryDisplay"
-                                Placeholder="Enter last name" 
-                                Keyboard="Text"
-                                Text="{Binding last_name, Mode=TwoWay}"
-                                BackgroundColor="Transparent"
-                                Margin="40,0,0,0"
-                                IsEnabled="False"/>
+                                   x:Name="lnameEntryDisplay"
+                                   Placeholder="Enter last name" 
+                                   Keyboard="Text"
+                                   Text="{Binding last_name, Mode=TwoWay}"
+                                   BackgroundColor="Transparent"
+                                   Margin="40,0,0,0"
+                                   IsEnabled="False"/>
                         </Grid>
                     </Frame>
                     <Label x:Name="ErrorLname" TextColor="Red" Margin="0,-2,0,-3"/>
@@ -110,18 +110,17 @@
                                    VerticalOptions="Center" 
                                    HorizontalOptions="Start" Margin="10,0"/>
                             <local:CustomEntry 
-                                x:Name="emailEntryDisplay"
-                                Placeholder="Enter email" 
-                                Keyboard="Email"
-                                Text="{Binding email, Mode=TwoWay}"
-                                BackgroundColor="Transparent"
-                                Margin="40,0,0,0"
-                                IsEnabled="False"/>
+                                   x:Name="emailEntryDisplay"
+                                   Placeholder="Enter email" 
+                                   Keyboard="Email"
+                                   Text="{Binding email, Mode=TwoWay}"
+                                   BackgroundColor="Transparent"
+                                   Margin="40,0,0,0"
+                                   IsEnabled="False"/>
                         </Grid>
 
                     </Frame>
                     <Label x:Name="ErrorEmail" TextColor="Red" Margin="0,-2,0,-3"/>
-
 
                     <Button x:Name="editButton"
                             BackgroundColor="#1975D1"

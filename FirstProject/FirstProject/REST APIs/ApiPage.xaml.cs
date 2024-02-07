@@ -61,7 +61,6 @@ namespace FirstProject.REST_APIs
         {
             var httpClient = new HttpClient();
             var response = await httpClient.GetStringAsync("https://reqres.in/api/users?page=1&per_page=15");
-
             var userContainer = JsonConvert.DeserializeObject<UserContainer>(response);
 
             if (userContainer != null && userContainer.Data != null && userContainer.Data.Count > 0)
@@ -133,14 +132,12 @@ namespace FirstProject.REST_APIs
                 await Navigation.PushAsync(new AddData());
                 (sender as ImageButton).IsEnabled = true;
                 isProcessingButtonClick = false;
-            }
-           
+            }       
         }
 
         private async Task HandleLongPress(UserData selectedItem)
         {
             isLongPressActive = true;
-
             var result = await DisplayActionSheet("Options", "Cancel", null, "Delete", "Edit");
 
             switch (result)
@@ -161,8 +158,6 @@ namespace FirstProject.REST_APIs
                             await DisplayAlert("No Internet Connection", "Please check your internet connection and try again", "OK");
                             return;
                         }
-
-                       
                     }
                     break;
 
@@ -172,6 +167,7 @@ namespace FirstProject.REST_APIs
                         await Navigation.PushAsync(new DisplayUserPage(selectedItem));
                     }
                     break;
+
             }
             
             isLongPressActive = false;
@@ -205,10 +201,9 @@ namespace FirstProject.REST_APIs
 
                 isLongPressActive = false;
             }
-
         }
-        //Pull to referesh       
 
+        //Pull to referesh       
         private async void userListView_Refreshing(object sender, EventArgs e)
         {
             if (Connectivity.NetworkAccess == NetworkAccess.Internet)
@@ -217,7 +212,7 @@ namespace FirstProject.REST_APIs
             }
             else
             {
-                await DisplayAlert("Something Went Wrong", "Kindly Turn on your internet, and Try again later", "OK");
+                await DisplayAlert("No Internet Connection", "Please connect your mobile to the internet and try again", "OK");
                 userListView.IsRefreshing = false;
             }
         }
