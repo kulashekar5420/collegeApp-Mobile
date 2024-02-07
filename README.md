@@ -6,7 +6,6 @@
 | **Software Tool**| Microsoft Visual Studio |
 
 ## About the Project
-
 The "CollegeGo" mobile application built using Xamarin.Forms is designed to cater to the needs of a college environment, facilitating interactions between students, teachers, and heads of departments (HODs). Here's a brief explanation of the project:
 
 ### Tabbed Pages Structure
