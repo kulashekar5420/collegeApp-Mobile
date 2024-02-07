@@ -1,10 +1,13 @@
-|      **Project Name**     | CollegeCo Mobile App |
+### CollegeGo Mobile App:
+
+
+|      **Project Name**     | CollegeGo Mobile App |
 |:---------------------:|:------------------------------:|
-|         **Domain**        |  Mobile App Development (Xamarin.Forms) |               <img align="right" alt="Coding" width="460" src="https://raw.githubusercontent.com/kulashekar-developer/IBM-Project-28492-1660112884/main/studinlogo.png">
+|         **Domain**        |  Mobile App Development (Xamarin.Forms) |               
 |        **Software Tool**        | Microsoft Visual Studio |
 
 ## About the project 🚀
-# The "CollegeGo" mobile application built using Xamarin.Forms is designed to cater to the needs of a college environment, facilitating interactions between students, teachers, and heads of departments (HODs). Here's a brief explanation of the project:
+#The "CollegeGo" mobile application built using Xamarin.Forms is designed to cater to the needs of a college environment, facilitating interactions between students, teachers, and heads of departments (HODs). Here's a brief explanation of the project:
 Tabbed Pages Structure: The app comprises four main tabbed pages: Student Page, Teacher Page, HOD Page, and REST API Page.
 SQLite Database Integration: Utilizing SQLite enables the app to perform CRUD operations (Create, Read, Update, Delete) efficiently, ensuring seamless management of data within the application.
 REST API Integration: Besides the local database, the app also interfaces with external REST APIs to perform CRUD operations, enhancing data accessibility and flexibility.
