@@ -1,11 +1,7 @@
-
-<img align="right" alt="Coding" width="460" src="https://raw.githubusercontent.com/kulashekar-developer/IBM-Project-28492-1660112884/main/studinlogo.png">
-
 |      **Project Name**     | CollegeCo Mobile App |
 |:---------------------:|:------------------------------:|
-|         **Domain**        |  Mobile App Development (Xamarin.Forms) |
+|         **Domain**        |  Mobile App Development (Xamarin.Forms) |               <img align="right" alt="Coding" width="460" src="https://raw.githubusercontent.com/kulashekar-developer/IBM-Project-28492-1660112884/main/studinlogo.png">
 |        **Software Tool**        | Microsoft Visual Studio |
-
 
 ## About the project 🚀
 # The "CollegeGo" mobile application built using Xamarin.Forms is designed to cater to the needs of a college environment, facilitating interactions between students, teachers, and heads of departments (HODs). Here's a brief explanation of the project:
