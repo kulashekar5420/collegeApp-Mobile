@@ -1,4 +1,4 @@
-# CollegeGo Mobile App 🚀🚀
+# CollegeGo Mobile App (Xamarin.Forms) 🚀🚀
 
 | **Project Name** | CollegeGo Mobile App |
 |:----------------:|:---------------------:|
