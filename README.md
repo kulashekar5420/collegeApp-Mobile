@@ -7,14 +7,21 @@
 |        **Software Tool**        | Microsoft Visual Studio |
 
 ## About the project 🚀
-#The "CollegeGo" mobile application built using Xamarin.Forms is designed to cater to the needs of a college environment, facilitating interactions between students, teachers, and heads of departments (HODs). Here's a brief explanation of the project:
-Tabbed Pages Structure: The app comprises four main tabbed pages: Student Page, Teacher Page, HOD Page, and REST API Page.
-SQLite Database Integration: Utilizing SQLite enables the app to perform CRUD operations (Create, Read, Update, Delete) efficiently, ensuring seamless management of data within the application.
-REST API Integration: Besides the local database, the app also interfaces with external REST APIs to perform CRUD operations, enhancing data accessibility and flexibility.
-MVVM Pattern Implementation: The Model-View-ViewModel (MVVM) architectural pattern is employed throughout the application, facilitating separation of concerns and ensuring maintainability and testability.
-Student Page: Allows students to view and manage their information, such as name, department, ID, gender, year, state, and teacher-related details.
-Teacher Page: Enables teachers to add and display their information in an organized manner, including name, department, gender, year, ID, and HOD-related details.
-HOD Page: Provides HODs with functionalities to manage their department effectively, including selecting teachers from a picker (based on existing teachers' data) and potentially mapping students and other administrative tasks.
+The "CollegeGo" mobile application built using Xamarin.Forms is designed to cater to the needs of a college environment, facilitating interactions between students, teachers, and heads of departments (HODs). Here's a brief explanation of the project:
+# Tabbed Pages Structure: 
+The app comprises four main tabbed pages: Student Page, Teacher Page, HOD Page, and REST API Page.
+# SQLite Database Integration: 
+Utilizing SQLite enables the app to perform CRUD operations (Create, Read, Update, Delete) efficiently, ensuring seamless management of data within the application.
+# REST API Integration: 
+Besides the local database, the app also interfaces with external REST APIs to perform CRUD operations, enhancing data accessibility and flexibility.
+# MVVM Pattern Implementation: 
+The Model-View-ViewModel (MVVM) architectural pattern is employed throughout the application, facilitating separation of concerns and ensuring maintainability and testability.
+# Student Page: 
+Allows students to view and manage their information, such as name, department, ID, gender, year, state, and teacher-related details.
+# Teacher Page: 
+Enables teachers to add and display their information in an organized manner, including name, department, gender, year, ID, and HOD-related details.
+# HOD Page: 
+Provides HODs with functionalities to manage their department effectively, including selecting teachers from a picker (based on existing teachers' data) and potentially mapping students and other administrative tasks.
 REST API Page: Facilitates CRUD operations through a user-friendly interface, employing MVVM pattern for efficient data management.
 
 # Additional Features:
