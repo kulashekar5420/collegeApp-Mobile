@@ -12,6 +12,10 @@
                         <TextCell Text="{Binding DisplayName}" />
                     </DataTemplate>
                 </ListView.ItemTemplate>
+
+                <StackLayout>
+                
+                </StackLayout>
             </ListView>
         </StackLayout>
     </ContentPage.Content>
